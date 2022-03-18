@@ -1,0 +1,17 @@
+{
+    "name": "vigilio/jealyng",
+    "authors": [
+        {
+            "name": "yonatan"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Model\\" : "./models",
+            "Controller\\" : "./controllers",
+            "Classes\\" : "./classes",
+            "MVC\\" : "./"
+        }
+    }
+}
