@@ -1,5 +1,12 @@
-<h3>Esto es el footer</h3>
-<h3>lorena</h3>
-<h4>Soy un virus xddd</h4>
-<button>Click</button>
-
+<html>
+    <head>...</head>
+    <body>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col">...</div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>     
