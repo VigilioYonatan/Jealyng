@@ -1,13 +1,25 @@
 @use '../template/variables' as var;
 // @use '../template/librerias' as lib;
 .btn{
-    padding: .5rem 1rem;
+    padding: .8rem 0rem;
     text-decoration: none;
     color: white;
     background-color: transparent;
     border: 1px solid white; //
     margin-top: 1rem;
+    font-size: .9rem;
+    width: 150px;
+    text-align: center;
 }
+
+.border-right{
+    border-right: 1px solid black; //color
+    @include var.tablet{
+        border: none;
+    }
+}
+
+
 
 @mixin contenido{
     position: absolute;
@@ -257,6 +269,202 @@
             &__price{
 
             }
+        }
+    }
+}
+// about 
+.about{
+    max-width: 100rem;
+    margin:  0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include var.tablet{
+        flex-direction: column;
+    }
+    
+    &-info{
+  
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5rem 0 10rem;
+        @include var.tablet{
+            width:100%;
+           flex-direction: row;
+           padding: 0;
+        }
+        
+        &__card{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            @include var.tablet{
+                width: 40%;
+                margin: 0 .5rem;
+            }
+        }
+
+        &__title{
+            font-size: 1.8rem;
+            text-align: center;
+
+            @include var.mini-tablet{
+               font-size: 1.5rem;
+            }
+
+            @include var.celular{
+               font-size: 1.2rem;
+            }
+        }
+
+        &__txt{
+            width: 60%;
+            text-align: center;
+            padding: .5rem 0;
+
+            @include var.tablet{
+                width: 80%;
+             }
+            @include var.mini-tablet{
+                font-size:.9rem;
+             }
+
+             @include var.celular{
+                width:100%;
+                font-size: .8rem;
+            }
+        }
+
+        &__img{
+            width: 22.5rem;
+            object-fit: cover;
+            height: 31.25rem;
+            margin: 2rem 0;
+
+            @include var.tablet{
+                width: 40%;
+            }
+            @include var.mini-tablet{
+                height: 21.25rem;
+            }
+            @include var.celular{
+                height: 15.25rem;
+            }
+        }
+
+        &__btn{
+            background-color: #2E3238; //color
+            @include var.mini-tablet{
+                width: 6.25rem;
+                font-size: .7rem;
+            }
+        }
+    }
+}
+
+
+
+
+.contenido-title{
+    @include contenido;
+    top:-2.7rem;
+    @include var.tablet{
+        top:1rem;
+    }
+    
+}
+// brands 
+.brands{
+    max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+
+    @include var.tablet{
+        padding-top: 2rem;
+    }
+    &__title{
+        width: 40%;
+        padding: 1rem 0rem;
+        border: 1px solid black; //color
+        text-align: center;
+        background-color: white;//color
+        font-size: 1.5rem;
+  
+        @include var.tablet{
+            width: 40%;
+            padding: .5rem 0rem;
+            font-size: 1rem;
+        }
+        @include var.mini-tablet{
+            width: 50%;
+
+        }
+    }
+    
+}
+
+.brand{
+    
+    
+    &-carousel{
+        position: relative;
+        margin: 0rem 4rem;
+        @include var.celular{
+            margin:0 1rem;
+        }
+    }
+    &__elem{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 6rem 0;
+        border-top: 1px solid black; //color
+        border-bottom: 1px solid black; //color
+        border-right: 1px solid black; //color
+        border-left: 1px solid rgba(0, 0, 0, 0.253); //color
+    
+        @include var.mini-tablet{
+            padding: 4rem 0;
+        }
+    
+    }
+    &__img{
+        width: 6.25rem;
+    }
+
+    &-next, &-previous{
+        width: 40px;
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        top: 35%;
+        z-index: 80;
+        fill: rgb(0, 0, 0);
+        cursor: pointer;
+        
+
+        @include var.mini-tablet{
+            width: 1.875rem;
+        }
+        @include var.celular{
+            display: none;
+        }
+    }
+    &-previous{
+        right: -3rem;
+        @include var.celular{
+            right: 0rem;
+        }
+    }
+    &-next{
+        left: -3rem;
+        @include var.celular{
+            left: 0rem;
         }
     }
 }

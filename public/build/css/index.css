@@ -174,12 +174,24 @@
   }
 }
 .btn {
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 0rem;
   text-decoration: none;
   color: white;
   background-color: transparent;
   border: 1px solid white;
   margin-top: 1rem;
+  font-size: 0.9rem;
+  width: 150px;
+  text-align: center;
+}
+
+.border-right {
+  border-right: 1px solid black;
+}
+@media screen and (max-width: 850px) {
+  .border-right {
+    border: none;
+  }
 }
 
 .wallpaper {
@@ -402,6 +414,220 @@
 .best-card-info__title {
   font-size: 1.2rem;
 }
+.about {
+  max-width: 100rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 850px) {
+  .about {
+    flex-direction: column;
+  }
+}
+.about-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 0 10rem;
+}
+@media screen and (max-width: 850px) {
+  .about-info {
+    width: 100%;
+    flex-direction: row;
+    padding: 0;
+  }
+}
+.about-info__card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 850px) {
+  .about-info__card {
+    width: 40%;
+    margin: 0 0.5rem;
+  }
+}
+.about-info__title {
+  font-size: 1.8rem;
+  text-align: center;
+}
+@media screen and (max-width: 650px) {
+  .about-info__title {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .about-info__title {
+    font-size: 1.2rem;
+  }
+}
+.about-info__txt {
+  width: 60%;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+@media screen and (max-width: 850px) {
+  .about-info__txt {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 650px) {
+  .about-info__txt {
+    font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .about-info__txt {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+}
+.about-info__img {
+  width: 22.5rem;
+  object-fit: cover;
+  height: 31.25rem;
+  margin: 2rem 0;
+}
+@media screen and (max-width: 850px) {
+  .about-info__img {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 650px) {
+  .about-info__img {
+    height: 21.25rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .about-info__img {
+    height: 15.25rem;
+  }
+}
+.about-info__btn {
+  background-color: #2E3238;
+}
+@media screen and (max-width: 650px) {
+  .about-info__btn {
+    width: 6.25rem;
+    font-size: 0.7rem;
+  }
+}
+
+.contenido-title {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 30;
+  top: -2.7rem;
+}
+@media screen and (max-width: 850px) {
+  .contenido-title {
+    top: 1rem;
+  }
+}
+
+.brands {
+  max-width: 1600px;
+  margin: 0 auto;
+  position: relative;
+}
+@media screen and (max-width: 850px) {
+  .brands {
+    padding-top: 2rem;
+  }
+}
+.brands__title {
+  width: 40%;
+  padding: 1rem 0rem;
+  border: 1px solid black;
+  text-align: center;
+  background-color: white;
+  font-size: 1.5rem;
+}
+@media screen and (max-width: 850px) {
+  .brands__title {
+    width: 40%;
+    padding: 0.5rem 0rem;
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 650px) {
+  .brands__title {
+    width: 50%;
+  }
+}
+
+.brand-carousel {
+  position: relative;
+  margin: 0rem 4rem;
+}
+@media screen and (max-width: 450px) {
+  .brand-carousel {
+    margin: 0 1rem;
+  }
+}
+.brand__elem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 0;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid rgba(0, 0, 0, 0.253);
+}
+@media screen and (max-width: 650px) {
+  .brand__elem {
+    padding: 4rem 0;
+  }
+}
+.brand__img {
+  width: 6.25rem;
+}
+.brand-next, .brand-previous {
+  width: 40px;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 35%;
+  z-index: 80;
+  fill: black;
+  cursor: pointer;
+}
+@media screen and (max-width: 650px) {
+  .brand-next, .brand-previous {
+    width: 1.875rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .brand-next, .brand-previous {
+    display: none;
+  }
+}
+.brand-previous {
+  right: -3rem;
+}
+@media screen and (max-width: 450px) {
+  .brand-previous {
+    right: 0rem;
+  }
+}
+.brand-next {
+  left: -3rem;
+}
+@media screen and (max-width: 450px) {
+  .brand-next {
+    left: 0rem;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
