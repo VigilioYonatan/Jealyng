@@ -1,0 +1,262 @@
+@use '../template/variables' as var;
+// @use '../template/librerias' as lib;
+.btn{
+    padding: .5rem 1rem;
+    text-decoration: none;
+    color: white;
+    background-color: transparent;
+    border: 1px solid white; //
+    margin-top: 1rem;
+}
+
+@mixin contenido{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+    
+    
+}
+
+
+.wallpaper{
+    position: relative;
+
+    &-info{
+
+        background-color: rgba(39, 37, 37, 0.877);
+        padding:  2rem .5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &__title{
+            width:60%;
+            color: white; //
+            font-size: 3rem;
+            text-align: center;
+
+            @include var.tablet{
+                font-size: 2.3rem;
+            }
+            @include var.mini-tablet{
+                font-size: 2rem;
+            }
+            
+        }
+
+        &__text{
+  
+            color: white; //
+            @include var.tablet{
+                font-size: .9rem;
+            }
+        }
+
+
+    }
+
+
+    &-carousel{
+
+        position: relative;
+    }
+
+    &-next, &-previous{
+        width: 40px;
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        top: 40%;
+        z-index: 40;
+        fill: rgba(255, 255, 255, 0.294);
+        cursor: pointer;
+
+        @include var.mini-tablet{
+            width: 1.875rem;
+        }
+        @include var.celular{
+            display: none;
+        }
+    }
+    &-previous{
+        right: 1.25rem;
+    }
+    &-next{
+        left: 1.25rem;
+    }
+
+    &__img{
+        width: 100%;
+        height:45rem;
+        object-fit: cover;
+    }
+
+
+    &-categories{
+        width: 90%;
+        background-color: white; //color
+        display: flex;
+
+        @include var.mini-tablet{
+            width: 100%;
+        }
+        
+        &__card{
+            width: 25%;
+            display: flex;
+            align-items: center;    
+            justify-content: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid black;
+            text-decoration: none;
+
+            @include var.mini-tablet{
+                flex-direction: column;
+                padding: 1.5rem 0;
+            }
+
+            &--bleft{
+                border-left:  1px solid black;
+            }
+        }
+
+        &__title{
+            font-size: 1.3rem;
+            margin-left: .5em;
+            color: black;
+            @include var.mini-tablet{
+                font-size: 1rem;
+                margin-top:  1rem;
+                margin-left: 0;
+                text-align: center;
+            }
+        }
+ 
+        &__ico{
+            width: 2.5rem;
+            height: 2.5rem;
+            
+        }
+
+    }
+}
+
+.contenido{
+    @include contenido;
+    top: 25%;
+}
+
+.contenido2{
+    @include contenido;
+    bottom: -2rem;
+}
+
+// best seller 
+.best{
+    max-width: 1600px;
+    margin: 0 auto;
+    padding-top: 3.5rem;
+
+    &__title{
+        text-align:center;
+        font-size: 2rem;
+    }
+
+    &-cards{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    &-card{
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin:1rem ;
+
+        @include var.tablet{
+            width: 40%;
+        }
+
+
+        // hover
+        &:hover &__img2,  &:hover &__view{
+            opacity: 1;
+            transform: translateY(0rem);
+            transition: transform .5s;
+        }
+
+        &__img{
+            position: relative;
+            width: 100%;
+            height: 80%;
+            
+        }
+
+        &__image{
+            width: 100%;
+            height: 100%;
+        }
+
+        &__best{
+            display: block;
+            position: absolute;
+            top:  0;
+            background-color: #3F5C58; // color
+            padding: 0 1rem;
+            color: white; //color
+            font-size: .9rem;
+            z-index: 40;
+        }
+
+        &__img2{
+            opacity: 0;
+            position: relative;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;     
+        }
+
+        &__view{
+            display: block;
+            position: absolute;
+            bottom: 0;
+            z-index: 30;
+            width: 100%;
+            text-align: center;
+            padding: .5rem 0;
+            background-color: #2E3238; //color
+            color: white; //color
+            font-size: .9rem;
+            transition: all 1s;
+            transform: translateY(2.5rem);
+            
+        }
+
+
+        &-info{
+            height: 20%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1rem;
+
+            &__title{
+                font-size: 1.2rem;
+            }
+
+            &__price{
+
+            }
+        }
+    }
+}
