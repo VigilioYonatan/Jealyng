@@ -1,0 +1,121 @@
+@use '../../template/variables' as var;
+@use '../../template/librerias' as lib;
+  
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+body {
+  line-height: 1.5;
+  font-family: var.$f_light, sans-serif;
+}
+
+.footer {
+  background: var.$color-secondary;
+  padding: 70px 0;
+}
+
+.container {
+  max-width: 1170px;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-row {
+  width: 30%;
+  padding: 0 15px;
+
+  & h4{
+  font-size: 18px;
+  color: white;
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  font-weight: 600;
+  position: relative;
+
+  // @include var.hover {
+  //   &:hover{
+  //   background-color: var.$color-primary;
+  //   }
+  // }
+  
+
+   &::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: yellow;
+    height: 2.5px;
+    box-sizing: border-box;
+    width: 60px;
+    }
+  }
+
+  & ul {
+
+    & li{
+      list-style: none;
+
+
+    }
+
+  }
+
+}
+
+.footer-row ul li:not(:last-child) {
+  margin-bottom: 10px;
+}
+.footer-row ul li a {
+  font-size: 16px;
+  text-transform: capitalize;
+  color: whitesmoke;
+  text-decoration: none;
+  font-weight: 300;
+  color: white;
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-row ul li a:hover {
+  color: #ffffff;
+  padding-left: 8px;
+}
+.footer .social-links a{
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255,255,255,0.2);
+  margin: 0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
+.icon{
+  @include lib.social-links;
+}
+
+
+.footer .social-links a:hover {
+  color: #24262b;
+  background-color: #ffffff;
+}
+@media(max-width: 767px) {
+  .footer-row {
+    width: 50%;
+    margin-bottom: 30px;
+  }
+}
+@media(max-width: 574px) {
+  .footer-row {
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=index.css.map */
