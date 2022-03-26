@@ -1,0 +1,76 @@
+// .container{
+//     max-width: 100rem;
+//     margin: 0 auto;
+// }
+@use '../template/variables' as var;
+.formulario{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    @include var.tablet{
+        flex-direction:column;
+    }
+}
+
+.form{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include var.tablet{
+        padding: 2rem 0;
+    }
+    &__title{
+        font-size: 1.3rem;
+    }
+    &-prop{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: .5rem 0;
+        &__lbl{
+            margin-bottom: .2rem;
+        }
+
+        &-inp{
+            
+            display: flex;
+            align-items: center;
+            background-color: transparent; // color
+            padding: .5rem 0rem .5rem 1rem ;
+            width: 18.75rem;
+            border-radius:.5rem ;
+            border: 1px solid #3F5C58; //color
+            &__input{
+                background-color: transparent;
+                border: none;
+                outline: none;
+                margin: 0rem 1rem;
+            }
+        }
+    }
+
+    &__btn{
+        padding: .8rem 0rem;
+        text-decoration: none;
+        color: white;
+        background-color: black; //color
+        border: 1px solid white; //
+        margin-top: 1rem;
+        font-size: .9rem;
+        width: 150px;
+        text-align: center;
+        cursor: pointer;
+    }
+    
+
+}
+
+#eye-open{
+    width: 1.2rem;
+    fill: #3F5C58; //color
+    margin-left:.5rem ;
+    cursor: pointer;
+}
+
