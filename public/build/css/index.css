@@ -1,23 +1,23 @@
 :root {
-  --color-primary: white;
-  --color-secondary: gray;
+  --color-principal: #3F5C58;
+  --color-details: white;
 }
 
 @font-face {
-  font-family: "Poppins-Light";
-  src: url("build/fonts/Poppins-Light.ttf");
+  font-family: "Questrial-Regular";
+  src: url("../fonts/Questrial-Regular.ttf");
 }
 @font-face {
-  font-family: "Poppins-Regular";
-  src: url("build/fonts/Poppins-Regular.ttf");
+  font-family: "Poppins-Light";
+  src: url("../fonts/Poppins-Light.ttf");
 }
 @font-face {
   font-family: "Poppins-Medium";
-  src: url("build/fonts/Poppins-Medium.ttf");
+  src: url("../fonts/Poppins-Medium.ttf");
 }
 @font-face {
   font-family: "Poppins-SemiBold";
-  src: url("build/fonts/Poppins-SemiBold.ttf");
+  src: url("../fonts/Poppins-SemiBold.ttf");
 }
 @font-face {
   font-family: "Poppins-Bold";
@@ -704,18 +704,15 @@
   box-sizing: border-box;
 }
 
-body {
-  line-height: 1.5;
-  font-family: "Poppins-Light", sans-serif;
-}
-
 .footer {
-  background: var(--color-secondary);
+  background: var(--color-principal);
   padding: 70px 0;
+  line-height: 1.5;
+  font-family: "Questrial-Regular";
 }
 
 .container {
-  max-width: 1170px;
+  max-width: 1500px;
   margin: auto;
 }
 
@@ -725,15 +722,15 @@ body {
 }
 
 .footer-row {
-  width: 30%;
+  width: 25%;
   padding: 0 15px;
 }
 .footer-row h4 {
-  font-size: 18px;
-  color: white;
+  font-size: 17px;
+  color: var(--color-details);
   text-transform: capitalize;
   margin-bottom: 35px;
-  font-weight: 600;
+  font-weight: 350;
   position: relative;
 }
 .footer-row h4::before {
@@ -741,62 +738,47 @@ body {
   position: absolute;
   left: 0;
   bottom: -10px;
-  background-color: yellow;
-  height: 2.5px;
+  background-color: var(--color-details);
+  height: 2px;
   box-sizing: border-box;
   width: 60px;
 }
 .footer-row ul li {
   list-style: none;
 }
-
 .footer-row ul li:not(:last-child) {
   margin-bottom: 10px;
 }
-
 .footer-row ul li a {
-  font-size: 16px;
+  font-size: 15px;
+  line-height: 30px;
   text-transform: capitalize;
-  color: whitesmoke;
+  color: var(--color-details);
   text-decoration: none;
   font-weight: 300;
-  color: white;
+  color: var(--color-details);
   display: block;
   transition: all 0.3s ease;
 }
-
-.footer-row ul li a:hover {
-  color: #ffffff;
+.footer-row ul li:hover {
+  color: var(--color-details);
   padding-left: 8px;
-}
-
-.footer .social-links a {
-  display: inline-block;
-  height: 40px;
-  width: 40px;
-  background-color: rgba(255, 255, 255, 0.2);
-  margin: 0 10px 10px 0;
-  text-align: center;
-  line-height: 40px;
-  color: #ffffff;
-  transition: all 0.5s ease;
 }
 
 .icon {
   display: inline-block;
-  height: 40px;
-  width: 40px;
-  background-color: rgba(255, 255, 255, 0.2);
-  margin: 0 10px 10px 0;
+  height: 30px;
+  width: 30px;
+  background-color: var(--color-principal);
+  margin: 0 15px 10px 0;
   text-align: center;
   line-height: 40px;
-  fill: #ffffff;
+  fill: var(--color-details);
   transition: all 0.5s ease;
 }
-
-.footer .social-links a:hover {
+.icon a:hover {
   color: #24262b;
-  background-color: #ffffff;
+  background-color: var(--color-details);
 }
 
 @media (max-width: 767px) {
