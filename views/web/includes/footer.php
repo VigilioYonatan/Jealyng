@@ -6,8 +6,10 @@
                 <h4>Preguntas Frecuentes</h4>
                 <ul>
                     <li><a href="#">Como comprar en Jealyn</a></li>
-                    <li><a href="#">Guías de compra</a></li>
+                    <li><a href="#">Guias de compra</a></li>
+                    <li><a href="#">Términos y condiciones</a></li>
                     <li><a href="#">Cambios y devoluciones</a></li>
+                    <li><a href="#">Bases Legales</a></li>
                     <li><a href="#">Seguridad y privacidad</a></li>
                     <li><a href="#">Seguimiento de despacho</a></li>
                 </ul>
@@ -25,7 +27,8 @@
                 <ul>
                     <li><a href="#">Nosotros</a></li>
                     <li><a href="#">Nuestras tiendas</a></li>
-                    <li><a href="#">Trabaja con nosotros</a></li>
+                    <li><a href="#">Traba con nosotros</a></li>
+
                     <li><a href="#">Aliados comerciales</a></li>
                 </ul>
             </div>
