@@ -1,66 +1,74 @@
 :root{
-    --color-primary: white;
-    --color-secondary: gray;
-}
-$color-primary: #{var(--color-primary)};
-$color-secondary: #{var(--color-secondary)};
 
-//variables de fuentes
+    --color-principal: #3F5C58;
+    --color-details: white;
+
+}
+
+$color-principal: #{var(--color-principal)};
+$color-details: #{var(--color-details)};
+
+//---------- FUENTES ----------
 @font-face {
+
+    font-family: 'Questrial-Regular';
+    src: url('../fonts/Questrial-Regular.ttf');
+
+}
+
+@font-face {
+
     font-family: 'Poppins-Light';
-    src: url('build/fonts/Poppins-Light.ttf');
+    src: url('../fonts/Poppins-Light.ttf');
+
 }
+
 @font-face {
-    font-family: 'Poppins-Regular';
-    src: url('build/fonts/Poppins-Regular.ttf');
-}
-@font-face {
+
     font-family: 'Poppins-Medium';
-    src: url('build/fonts/Poppins-Medium.ttf');
+    src: url('../fonts/Poppins-Medium.ttf');
+
 }
+
 @font-face {
+
     font-family: 'Poppins-SemiBold';
-    src: url('build/fonts/Poppins-SemiBold.ttf');
+    src: url('../fonts/Poppins-SemiBold.ttf');
+
 }
+
 @font-face {
+
     font-family: 'Poppins-Bold';
     src: url('build/fonts/Poppins-Bold.ttf');
+
 }
 
-//variables fuentes
+//---------- VARIABLES DE LAS FUENTES ----------
+$f_regular: 'Questrial-Regular';
 $f_light : 'Poppins-Light';
-$f_regular : 'Poppins-Regular';
 $f_medium : 'Poppins-Medium';
 $f_semibold : 'Poppins-SemiBold';
 $f_bold : 'Poppins-Bold';
 
+//---------- MEDIDAS ------------
 @mixin laptop {
     @media screen and (max-width:1250px){
         @content;
     }
 }
-
 @mixin tablet {
     @media screen and (max-width:850px){
         @content;
     }
 }
-
 @mixin mini-tablet {
     @media screen and (max-width:650px){
         @content;
     }
 }
-
 @mixin celular {
     @media screen and (max-width:450px){
         @content;
     }
 }
-
-//mixin para contenidos hover
-// @mixin hover {
-//     @media (hover:hover){
-//         @content;
-//     }
-// }
