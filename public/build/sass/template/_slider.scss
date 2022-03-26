@@ -19,7 +19,8 @@
 .glider{
     overflow-y:hidden;
     -webkit-overflow-scrolling:touch;
-    -ms-overflow-style:none
+    -ms-overflow-style:none;
+    scrollbar-width: none;
 }
 
 .glider::-webkit-scrollbar{opacity:0;height:0}
