@@ -1,12 +1,23 @@
+@use '../template/variables' as var;
+
+//---------- ICONOS DE REDES SOCIALES ----------
 @mixin social-links {
-        display: inline-block;
-        height: 40px;
-        width: 40px;
-        background-color: rgba(255,255,255,0.2);
-        margin: 0 10px 10px 0;
-        text-align: center;
-        line-height: 40px;
-        fill: #ffffff;
-        transition: all 0.5s ease;
+
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    background-color: var.$color-principal;
+    margin: 0 15px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    fill: var.$color-details;
+    transition: all 0.5s ease;
+
+    & a:hover {
+
+        color: #24262b;
+        background-color: var.$color-details;
+
+    }
 
 }
