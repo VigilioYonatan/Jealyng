@@ -3,7 +3,7 @@
 
 .footer {
 
-  background: var.$color-principal;
+  background: var.$color-primary;
   padding: 70px 0;
   line-height: 1.5;
   font-family: var.$f_regular;
@@ -32,7 +32,7 @@
   & h4 {
 
     font-size: 17px;
-    color: var.$color-details;
+    color: var.$color-secondary;
     text-transform: capitalize;
     margin-bottom: 35px;
     font-weight: 350;
@@ -44,7 +44,7 @@
       position: absolute;
       left: 0;
       bottom: -10px;
-      background-color: var.$color-details;
+      background-color: var.$color-secondary;
       height: 2px;
       box-sizing: border-box;
       width: 60px;
@@ -70,10 +70,10 @@
         font-size: 15px;
         line-height: 30px;
         text-transform: capitalize;
-        color: var.$color-details;
+        color: var.$color-secondary;
         text-decoration: none;
         font-weight: 300;
-        color: var.$color-details;
+        color: var.$color-secondary;
         display: block;
         transition: all 0.3s ease;
 
@@ -81,7 +81,7 @@
 
       &:hover {
 
-        color: var.$color-details;
+        color: var.$color-secondary;
         padding-left: 8px; 
 
       }

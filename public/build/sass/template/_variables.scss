@@ -1,12 +1,24 @@
 :root{
 
-    --color-principal: #3F5C58;
-    --color-details: white;
+    --color-primary: #3F5C58;
+    --color-secondary: white;
+    --color-terciary: black;
+    --color-quarty: #2E3238;
+
+    --color-fonts-primary: black;
+    --color-fonts-secondary: #3F5C58;
+    --color-fonts-terciary: white;
+    --color-fonts-quarty: #2E3238;
+
+    --color-error: #9B2727;
+    --color-sucess: #008000;
 
 }
 
-$color-principal: #{var(--color-principal)};
-$color-details: #{var(--color-details)};
+$color-primary: #{var(--color-primary)};
+$color-secondary: #{var(--color-secondary)};
+$color-terciary: #{var(--color-terciary)};
+$color-quarty: #{var(--color-quarty)};
 
 //---------- FUENTES ----------
 @font-face {
@@ -69,6 +81,12 @@ $f_bold : 'Poppins-Bold';
 }
 @mixin celular {
     @media screen and (max-width:450px){
+        @content;
+    }
+}
+
+@mixin hover {
+    @media (hover:hover){
         @content;
     }
 }

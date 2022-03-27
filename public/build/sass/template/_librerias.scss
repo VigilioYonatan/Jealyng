@@ -6,17 +6,17 @@
     display: inline-block;
     height: 30px;
     width: 30px;
-    background-color: var.$color-principal;
+    background-color: var.$color-primary;
     margin: 0 15px 10px 0;
     text-align: center;
     line-height: 40px;
-    fill: var.$color-details;
+    fill: var.$color-secondary;
     transition: all 0.5s ease;
 
     & a:hover {
 
         color: #24262b;
-        background-color: var.$color-details;
+        background-color: var.$color-secondary;
 
     }
 
@@ -79,6 +79,6 @@
     @include msg;
 }
 .msg-success{
-    background-color: var.$color-principal;
+    background-color: var.$color-primary;
     @include msg;
 }
