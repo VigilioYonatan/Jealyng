@@ -1,3 +1,4 @@
+const formularioContenedor = document.querySelector('.formulario');
 const form = document.getElementById('formulario');
 const nombre = form.children[1].children[1].children[1];
 const correo = form.children[2].children[1].children[1];
@@ -88,8 +89,13 @@ function validarFormulario(values) {
     if (errorNombre.length <= 0 &&
         errorCorreo.length <= 0 &&
         errorPassword.length <= 0 &&
-        errorPassword2.length <= 0)
+        errorPassword2.length <= 0) {
+        form.classList.add('hidden');
+        form.classList.remove('form');
+        loading(formularioContenedor)
         apiRegistrar(values);
+    }
+
 
 }
 
@@ -136,12 +142,19 @@ async function apiRegistrar(values) {
         })
         const respuesta = await response.json();
         if (respuesta.existe) {
+            form.classList.remove('hidden');
+            form.classList.add('form');
             msgError(respuesta.mensaje);
             form.children[2].children[1].style.cssText = 'border:2px solid rgb(155, 39, 39)';
+            const spinner = document.querySelector('.spinner-loading');
+            spinner.remove();
             return;
         }
         if (respuesta.registrado) {
-            msgSuccess(respuesta.mensaje);
+            const spinner = document.querySelector('.spinner-loading');
+            spinner.remove();
+            form.remove();
+            success(formularioContenedor, respuesta.mensaje);
         }
     } catch (error) {
         console.log(error);
