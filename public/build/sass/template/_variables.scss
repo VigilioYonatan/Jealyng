@@ -20,6 +20,14 @@ $color-secondary: #{var(--color-secondary)};
 $color-terciary: #{var(--color-terciary)};
 $color-quarty: #{var(--color-quarty)};
 
+$color-fonts-primary: #{var(--color-fonts-primary)};
+$color-fonts-secondary: #{var(--color-fonts-secondary)};
+$color-fonts-terciary: #{var(--color-fonts-terciary)};
+$color-fonts-quarty: #{var(--color-fonts-quarty)};
+
+$color-error: #{var(--color-error)};
+$color-sucess: #{var(--color-sucess)};
+
 //---------- FUENTES ----------
 @font-face {
 
