@@ -56,7 +56,7 @@ class UsuarioController
                 $respuesta->guardar();
                 $email = new EmailClass($respuesta->email_user, $respuesta->nombre_user, $respuesta->token_user);
                 $email->RecuperarPassword();
-                echo json_encode(["respuesta" => $respuesta]);
+                echo json_encode(["respuesta" => "Revisa tu correo electrónico para recuperar tu cuenta..."]);
             }
         }
     }

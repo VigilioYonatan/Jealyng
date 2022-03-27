@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/includes/header.php'; 
+<?php require_once __DIR__ . '/includes/header.php';
 ?>
 <!-- wallpaper  -->
 <section class="wallpaper">
@@ -45,7 +45,7 @@
         <div class="wallpaper-info">
             <h3 class="wallpaper-info__title">The Anual Holiday Sale</h3>
             <p class="wallpaper-info__text">I'm a title. Click here to add your own text and edit me. </p>
-            <a class="btn" href="#">Shop Now</a>
+            <a class="btn btn-primary" href="#">Shop Now</a>
         </div>
     </div>
     <!-- fin wallpaper info -->

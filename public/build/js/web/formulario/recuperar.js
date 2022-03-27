@@ -1,8 +1,8 @@
+const formularioContenedor = document.querySelector('.formulario');
 olvideContraseña.addEventListener('click', e => {
     e.preventDefault();
     const form = e.target.parentElement.parentElement;
     const formularioContainer = e.target.parentElement.parentElement.parentElement;
-    console.log(formularioContainer);
     form.classList.add('hidden');
     form.classList.remove('form');
     let html = `
@@ -19,27 +19,44 @@ olvideContraseña.addEventListener('click', e => {
                 </div>
                 <button class="form__btn">Recuperar</button>
                 <div class="form-link">
-                    <a class="form-link__link" href="/login">Acceder</a>
+                    <a class="form-link__link" href='#' id='btnAcceder'>Acceder</a>
                 </div>
             `;
     const formulario = document.createElement('form');
     formulario.className = 'form';
+    formulario.id = 'formularioRecuperar';
     formulario.innerHTML = html;
     formulario.appendChild(form);
     formularioContainer.prepend(formulario);
+
+    const btnAcceder = document.getElementById('btnAcceder');
+
+    btnAcceder.addEventListener('click', (e) => {
+        e.preventDefault();
+        form.classList.remove('hidden');
+        form.classList.add('form');
+        formularioRecuperar.remove();
+
+    })
 
     formulario.addEventListener('submit', e => {
         e.preventDefault();
         let correoErrores = [];
         const correo = formulario.children[1].children[1].children[1].value;
-        // correo no debe estar vacio
-        if (correo.length <= 0) correoErrores = [...correoErrores, 'Correo Electrónico no debe estar vacio'];
-        //solo correos validos
         const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!regexCorreo.test(correo)) correoErrores = [...correoErrores, 'Correo Inválido'];
+        // correo no debe estar vacio
+        if (correo.length <= 0) {
+            correoErrores = [...correoErrores, 'Correo Electrónico no debe estar vacio'];
+        } else if (!regexCorreo.test(correo)) {
+            correoErrores = [...correoErrores, 'Correo Inválido'];
+        }
         //si están mal los inputs      
         imprimirErrores(correoErrores, formulario.children[1]);
         if (correoErrores.length <= 0) {
+            const formularioRecuperar = document.querySelector('#formularioRecuperar');
+            formularioRecuperar.classList.add('hidden');
+            formularioRecuperar.classList.remove('form');
+            loading(formularioContenedor)
             apiRecuperar(correo);
         }
     });
@@ -47,7 +64,6 @@ olvideContraseña.addEventListener('click', e => {
 
 
 async function apiRecuperar(correo) {
-    console.log(correo);
     const url = 'http://localhost:3000/apiRecuperar';
 
     const formData = new FormData();
@@ -58,9 +74,22 @@ async function apiRecuperar(correo) {
             body: formData
         });
         const respuesta = await response.json();
+        const formularioRecuperar = document.querySelector('#formularioRecuperar');
         console.log(respuesta);
         if (respuesta.correoInvalido) {
+
+            formularioRecuperar.classList.remove('hidden');
+            formularioRecuperar.classList.add('form');
+            const spinner = document.querySelector('.spinner-loading');
+            spinner.remove();
             msgError(respuesta.correoInvalido);
+            return;
+        }
+        if (respuesta.respuesta) {
+            formularioRecuperar.remove();
+            const spinner = document.querySelector('.spinner-loading');
+            spinner.remove();
+            success(formularioContenedor, respuesta.respuesta)
             return;
         }
     } catch (error) {
