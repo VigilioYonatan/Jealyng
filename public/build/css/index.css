@@ -482,7 +482,7 @@ template {
 }
 .header div {
   text-align: right;
-  width: 98%;
+  width: 95%;
   height: 70px;
 }
 .header a {
@@ -492,13 +492,24 @@ template {
   padding: 20px;
 }
 
+.logo {
+  font-family: "Questrial-Regular";
+  color: var(--color-fonts-terciary);
+  font-size: 18px;
+  position: absolute;
+  display: block;
+  box-sizing: border-box;
+  padding: 20px;
+  left: -84%;
+}
+
 .buscador {
-  left: -60%;
+  left: -35%;
   position: absolute;
   padding: 20px;
 }
 .buscador input {
-  width: 500px;
+  width: 800px;
   height: 30px;
   padding: 0 20px;
   font-size: 18px;
@@ -506,6 +517,8 @@ template {
   outline: none;
   border: 1px;
   border-radius: 5px;
+  font-size: 16px;
+  font-family: "Questrial-Regular";
 }
 
 .login {
@@ -532,27 +545,59 @@ template {
 }
 
 .navegation-var {
-  font-family: "Questrial-Regular";
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--color-secondary);
 }
-.navegation-var ul {
-  text-align: right;
-  list-style: none;
-  padding: 0;
+.navegation-var nav {
   height: 60px;
-  width: 98%;
+  width: 100%;
+  padding-left: 2vw;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
-.navegation-var ul li {
-  display: inline-block;
+.navegation-var nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
   text-align: center;
 }
-.navegation-var ul li a {
-  text-decoration: none;
-  color: var(--color-primary);
-  padding: 20px;
+.navegation-var nav ul li {
+  list-style: none;
+  width: 180px;
+}
+.navegation-var nav ul li ul {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 50;
+  background-color: var(--color-secondary);
+  display: none;
+}
+.navegation-var nav ul li ul li {
+  width: 180px;
+  position: relative;
+}
+.navegation-var nav ul li ul li ul {
+  position: absolute;
+  top: 0;
+  left: 180px;
+}
+.navegation-var nav ul li:hover > ul {
   display: block;
 }
-.navegation-var ul li a:hover {
-  background-color: gray;
+.navegation-var a {
+  text-decoration: none;
+  color: var(--color-fonts-secondary);
+  font-size: 15px;
+  font-family: "Questrial-Regular";
+  padding: 12px 20px;
+  display: block;
+}
+.navegation-var a:hover {
+  background: var(--color-secondary);
 }
 
 .btn {
@@ -1100,6 +1145,9 @@ template {
 }
 
 .footer {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   background: var(--color-primary);
   padding: 70px 0;
   line-height: 1.5;

@@ -2,7 +2,9 @@
 @use '../../template/librerias' as lib;
 
 .footer {
-
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   background: var.$color-primary;
   padding: 70px 0;
   line-height: 1.5;

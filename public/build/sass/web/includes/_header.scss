@@ -1,6 +1,7 @@
 @use '../../template/variables' as var;
 @use '../../template/librerias' as lib;
 
+// HEADER
 .header {
 
     background-color: var.$color-primary;
@@ -10,12 +11,13 @@
     & div {
 
         text-align: right;
-        width: 98%;
+        width: 95%;
         height: 70px;
 
     }
     
     & a {
+
         color: var.$color-secondary;
         display: inline-block;
         width: 60px;
@@ -25,15 +27,27 @@
 
 }
 
+.logo {
+
+    font-family: var.$f_regular;
+    color: var.$color-fonts-terciary;
+    font-size: 18px;
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+    padding: 20px;
+    left: -84%;
+}
+
 .buscador {
     
-    left: -60%;
+    left: -35%;
     position: absolute;
     padding: 20px;
 
     & input {
 
-        width: 500px;
+        width: 800px;
         height: 30px;
         padding: 0 20px;
         font-size: 18px;
@@ -41,6 +55,8 @@
         outline: none;
         border: 1px;
         border-radius: 5px;
+        font-size: 16px;
+        font-family: var.$f_regular;
     }
 
 }
@@ -55,49 +71,98 @@
 }
 
 .icon {
-
+    
     @include lib.social-links;
 
 }
+// FIN HEADER
 
+
+
+// BARRA DE NAVEGACION
 .navegation-var {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var.$color-secondary;
 
-    font-family: var.$f_regular;
+    nav {
 
-    & ul {
-
-        text-align: right;
-        list-style: none;
-        padding: 0;
         height: 60px;
-        width: 98%;
+        width: 100%;
+        padding-left: 2vw;
+        align-items: center;
+        display: flex;
+        justify-content: center;
 
-        & li {
+        & ul {
 
-            display: inline-block;
+            list-style: none;
+            display: flex;
+            align-items: center;
             text-align: center;
 
-            & a {
+            & li {
 
-                text-decoration: none;
-                color: var.$color-primary;
-                padding: 20px;
-                display: block;
+                list-style: none;
+                width: 180px;
+
+                & ul{
+
+                    display: flex;
+                    flex-direction: column;
+                    position: absolute;
+                    z-index: 50;
+                    background-color: var.$color-secondary;
+                    display: none;
+
+                    & li {
+
+                        width: 180px;
+                        position: relative;
+
+                        & ul {
+
+                            position: absolute;
+                            top: 0;
+                            left: 180px;
+                            
+                        }
+
+                    }
+
+                }
 
                 &:hover {
 
-                    background-color: gray;
+                    & > ul {
+
+                        display: block;
+                    }
 
                 }
 
             }
+            
+        }
+
+    }
+
+    a {
+
+        text-decoration: none;
+        color: var.$color-fonts-secondary;
+        font-size: 15px;
+        font-family: var.$f_regular;
+        padding: 12px 20px;
+        display: block;
+
+        &:hover {
+
+            background: var.$color-secondary;
 
         }
 
     }
 }
-
-
-
-    
-    
+// FIN BARRA DE NAVEGACION
