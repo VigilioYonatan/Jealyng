@@ -1,6 +1,103 @@
 @use '../../template/variables' as var;
 @use '../../template/librerias' as lib;
+/*
+.header {
+
+    background-color: var.$color-principal;
+    display: block;
+    box-sizing: border-box;
+
+    & div {
+
+        text-align: right;
+        width: 98%;
+        height: 70px;
+
+    }
+    
+    & a {
+        color: var.$color-details;
+        display: inline-block;
+        width: 60px;
+        padding: 20px;
+
+    }
+
+}
+
+.buscador {
+    
+    left: -60%;
+    position: absolute;
+    padding: 20px;
+
+    & input {
+
+        width: 500px;
+        height: 30px;
+        padding: 0 20px;
+        font-size: 18px;
+        color: black;
+        outline: none;
+        border: 1px;
+        border-radius: 5px;
+    }
+
+}
+
+.login {
+
+    font-family: var.$f_regular;
+    font-size: 15px;
+    text-decoration: none;   
+    display: block;
+
+}
+
+.icon {
+
+    @include lib.social-links;
+
+}
+
+.navegation-var {
+
+    font-family: var.$f_regular;
+
+    & ul {
+
+        text-align: right;
+        list-style: none;
+        padding: 0;
+        height: 60px;
+        width: 98%;
+
+        & li {
+
+            display: inline-block;
+            text-align: center;
+
+            & a {
+
+                text-decoration: none;
+                color: var.$color-principal;
+                padding: 20px;
+                display: block;
+
+                &:hover {
+
+                    background-color: gray;
+
+                }
+
+            }
+
+        }
+
+    }
+}
+*/
 
 
-
-  
+    
+    
