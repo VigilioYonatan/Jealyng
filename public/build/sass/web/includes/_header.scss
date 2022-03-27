@@ -1,9 +1,9 @@
 @use '../../template/variables' as var;
 @use '../../template/librerias' as lib;
-/*
+
 .header {
 
-    background-color: var.$color-principal;
+    background-color: var.$color-primary;
     display: block;
     box-sizing: border-box;
 
@@ -16,7 +16,7 @@
     }
     
     & a {
-        color: var.$color-details;
+        color: var.$color-secondary;
         display: inline-block;
         width: 60px;
         padding: 20px;
@@ -80,7 +80,7 @@
             & a {
 
                 text-decoration: none;
-                color: var.$color-principal;
+                color: var.$color-primary;
                 padding: 20px;
                 display: block;
 
@@ -96,7 +96,7 @@
 
     }
 }
-*/
+
 
 
     

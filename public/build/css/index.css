@@ -6,6 +6,8 @@ html {
 }
 
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -223,8 +225,16 @@ template {
 }
 
 :root {
-  --color-principal: #3F5C58;
-  --color-details: white;
+  --color-primary: #3F5C58;
+  --color-secondary: white;
+  --color-terciary: black;
+  --color-quarty: #2E3238;
+  --color-fonts-primary: black;
+  --color-fonts-secondary: #3F5C58;
+  --color-fonts-terciary: white;
+  --color-fonts-quarty: #2E3238;
+  --color-error: #9B2727;
+  --color-sucess: #008000;
 }
 
 @font-face {
@@ -302,7 +312,7 @@ template {
 }
 
 .msg-success {
-  background-color: var(--color-principal);
+  background-color: var(--color-primary);
   position: fixed;
   top: 3rem;
   right: 0;
@@ -465,103 +475,86 @@ template {
     box-shadow: 0 0 1px rgba(255, 255, 255, 0.25);
   }
 }
-/*
 .header {
-
-    background-color: var.$color-principal;
-    display: block;
-    box-sizing: border-box;
-
-    & div {
-
-        text-align: right;
-        width: 98%;
-        height: 70px;
-
-    }
-
-    & a {
-        color: var.$color-details;
-        display: inline-block;
-        width: 60px;
-        padding: 20px;
-
-    }
-
+  background-color: var(--color-primary);
+  display: block;
+  box-sizing: border-box;
+}
+.header div {
+  text-align: right;
+  width: 98%;
+  height: 70px;
+}
+.header a {
+  color: var(--color-secondary);
+  display: inline-block;
+  width: 60px;
+  padding: 20px;
 }
 
 .buscador {
-
-    left: -60%;
-    position: absolute;
-    padding: 20px;
-
-    & input {
-
-        width: 500px;
-        height: 30px;
-        padding: 0 20px;
-        font-size: 18px;
-        color: black;
-        outline: none;
-        border: 1px;
-        border-radius: 5px;
-    }
-
+  left: -60%;
+  position: absolute;
+  padding: 20px;
+}
+.buscador input {
+  width: 500px;
+  height: 30px;
+  padding: 0 20px;
+  font-size: 18px;
+  color: black;
+  outline: none;
+  border: 1px;
+  border-radius: 5px;
 }
 
 .login {
-
-    font-family: var.$f_regular;
-    font-size: 15px;
-    text-decoration: none;   
-    display: block;
-
+  font-family: "Questrial-Regular";
+  font-size: 15px;
+  text-decoration: none;
+  display: block;
 }
 
 .icon {
-
-    @include lib.social-links;
-
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  background-color: var(--color-primary);
+  margin: 0 15px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  fill: var(--color-secondary);
+  transition: all 0.5s ease;
+}
+.icon a:hover {
+  color: #24262b;
+  background-color: var(--color-secondary);
 }
 
 .navegation-var {
-
-    font-family: var.$f_regular;
-
-    & ul {
-
-        text-align: right;
-        list-style: none;
-        padding: 0;
-        height: 60px;
-        width: 98%;
-
-        & li {
-
-            display: inline-block;
-            text-align: center;
-
-            & a {
-
-                text-decoration: none;
-                color: var.$color-principal;
-                padding: 20px;
-                display: block;
-
-                &:hover {
-
-                    background-color: gray;
-
-                }
-
-            }
-
-        }
-
-    }
+  font-family: "Questrial-Regular";
 }
-*/
+.navegation-var ul {
+  text-align: right;
+  list-style: none;
+  padding: 0;
+  height: 60px;
+  width: 98%;
+}
+.navegation-var ul li {
+  display: inline-block;
+  text-align: center;
+}
+.navegation-var ul li a {
+  text-decoration: none;
+  color: var(--color-primary);
+  padding: 20px;
+  display: block;
+}
+.navegation-var ul li a:hover {
+  background-color: gray;
+}
+
 .btn {
   padding: 0.8rem 0rem;
   text-decoration: none;
@@ -1084,7 +1077,7 @@ template {
 }
 .form-link__link {
   text-decoration: none;
-  color: var(--color-principal);
+  color: var(--color-primary);
   margin: 2rem 1rem 0rem;
 }
 
@@ -1107,7 +1100,7 @@ template {
 }
 
 .footer {
-  background: var(--color-principal);
+  background: var(--color-primary);
   padding: 70px 0;
   line-height: 1.5;
   font-family: "Questrial-Regular";
@@ -1129,7 +1122,7 @@ template {
 }
 .footer-row h4 {
   font-size: 17px;
-  color: var(--color-details);
+  color: var(--color-secondary);
   text-transform: capitalize;
   margin-bottom: 35px;
   font-weight: 350;
@@ -1140,7 +1133,7 @@ template {
   position: absolute;
   left: 0;
   bottom: -10px;
-  background-color: var(--color-details);
+  background-color: var(--color-secondary);
   height: 2px;
   box-sizing: border-box;
   width: 60px;
@@ -1155,15 +1148,15 @@ template {
   font-size: 15px;
   line-height: 30px;
   text-transform: capitalize;
-  color: var(--color-details);
+  color: var(--color-secondary);
   text-decoration: none;
   font-weight: 300;
-  color: var(--color-details);
+  color: var(--color-secondary);
   display: block;
   transition: all 0.3s ease;
 }
 .footer-row ul li:hover {
-  color: var(--color-details);
+  color: var(--color-secondary);
   padding-left: 8px;
 }
 
@@ -1171,16 +1164,16 @@ template {
   display: inline-block;
   height: 30px;
   width: 30px;
-  background-color: var(--color-principal);
+  background-color: var(--color-primary);
   margin: 0 15px 10px 0;
   text-align: center;
   line-height: 40px;
-  fill: var(--color-details);
+  fill: var(--color-secondary);
   transition: all 0.5s ease;
 }
 .icon a:hover {
   color: #24262b;
-  background-color: var(--color-details);
+  background-color: var(--color-secondary);
 }
 
 @media (max-width: 767px) {
