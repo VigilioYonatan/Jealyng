@@ -9,7 +9,7 @@ class ActiveRecord
     protected static $db;
     protected static $tabla = '';
     protected static $columnasDB = [];
-
+    protected static $idTabla = '';
 
 
     public static function setDb($database)
@@ -55,7 +55,7 @@ class ActiveRecord
     {
         $atributos = [];
         foreach (static::$columnasDB as $columna) {
-            if ($columna === 'id') continue;
+            if ($columna === static::$idTabla) continue; //
             $atributos[$columna] = $this->$columna;
         }
         return $atributos;
@@ -165,7 +165,7 @@ class ActiveRecord
         // Consulta SQL
         $query = "UPDATE " . static::$tabla . " SET ";
         $query .=  join(', ', $valores);
-        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
+        $query .= " WHERE " . static::$idTabla . " = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 ";
 
         // Actualizar BD

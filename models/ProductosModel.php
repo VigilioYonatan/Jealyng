@@ -6,7 +6,8 @@ class ProductosModel extends ActiveRecord
 {
     protected static $db;
     protected static $tabla = 'productos'; // nombre tabla
-
+    protected static $idTabla = 'id_prod'; //id producto
+    public $id; //id
     //columnas de la tabla productos
     protected static $columnasDB = ['id_prod', 'nombre_prod', 'descripcion_prod', 'precio_prod', 'imagen_prod', 'stock_prod', 'id_categoria', 'id_marca', 'id_descuento', 'id_estado'];
 
@@ -22,5 +23,9 @@ class ProductosModel extends ActiveRecord
         $this->id_marca         = $args['id_marca']         ?? null;
         $this->id_descuento     = $args['id_descuento']     ?? null;
         $this->id_estado        = $args['id_estado']        ?? null;
+    }
+    public function getID()
+    {
+        $this->id =  $this->id_user;
     }
 }

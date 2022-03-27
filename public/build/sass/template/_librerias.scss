@@ -21,3 +21,64 @@
     }
 
 }
+
+.spanError{
+    background-color: #9b2727;
+    margin: .2rem 0;
+    width: 100%;
+    text-align: center;
+    padding: .3em 2em;
+    color: white;
+    font-size: .8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icoError{
+    margin-right: .5rem;
+    width: 1.25rem;
+
+}
+
+.hidden{
+    display: none;
+}
+
+.ico-form{
+    width: 1.25rem;
+    fill: black;
+}
+
+@mixin msg{
+    position: fixed;
+    top: 3rem;
+    right: 0;
+    color: white;
+    padding: .5rem 2rem;
+    animation: msg 5s;
+    display: flex;
+    align-items: center;
+    transform: translateX(38rem);
+}
+
+@keyframes  msg {
+    0%{
+        transform: translateX(38rem);
+    }20%{
+        transform: translateX(0rem);
+    }70%{
+        transform: translateX(0rem);
+    
+    }100%{
+        transform: translateX(38rem);
+    }
+}
+.msg-error{
+    background-color: #9b2727;
+    @include msg;
+}
+.msg-success{
+    background-color: var.$color-principal;
+    @include msg;
+}
