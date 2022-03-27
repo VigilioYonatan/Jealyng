@@ -36,17 +36,19 @@
         &-inp{
             
             display: flex;
-            align-items: center;
             background-color: transparent; // color
             padding: .5rem 0rem .5rem 1rem ;
-            width: 18.75rem;
+            
             border-radius:.5rem ;
             border: 1px solid #3F5C58; //color
+            position: relative;
             &__input{
                 background-color: transparent;
                 border: none;
                 outline: none;
+                min-width: 14.75rem;
                 margin: 0rem 1rem;
+                
             }
         }
     }
@@ -63,6 +65,20 @@
         text-align: center;
         cursor: pointer;
     }
+
+    &-link{
+        display: flex;
+
+        &__link{
+            text-decoration: none;
+            color: var.$color-principal;
+            margin: 2rem 1rem 0rem;
+
+            // @include var.hover{
+            //     text-decoration: dashed;
+            // }
+        }
+    }
     
 
 }
@@ -70,7 +86,17 @@
 #eye-open{
     width: 1.2rem;
     fill: #3F5C58; //color
-    margin-left:.5rem ;
     cursor: pointer;
+    position: absolute;
+    right: 5%;
+    bottom: 30%;
+}
+#eye-close{
+    width: 1.2rem;
+    fill: #3F5C58; //color
+    cursor: pointer;
+    position: absolute;
+    right: 5%;
+    bottom: 30%;
 }
 

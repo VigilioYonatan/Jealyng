@@ -5,7 +5,9 @@
             "name": "yonatan"
         }
     ],
-    "require": {},
+    "require": {
+        "phpmailer/phpmailer": "^6.6"
+    },
     "autoload": {
         "psr-4": {
             "Model\\" : "./models",

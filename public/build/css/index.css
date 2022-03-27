@@ -247,6 +247,73 @@ template {
   font-family: "Poppins-Bold";
   src: url("build/fonts/Poppins-Bold.ttf");
 }
+.spanError {
+  background-color: #9b2727;
+  margin: 0.2rem 0;
+  width: 100%;
+  text-align: center;
+  padding: 0.3em 2em;
+  color: white;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icoError {
+  margin-right: 0.5rem;
+  width: 1.25rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.ico-form {
+  width: 1.25rem;
+  fill: black;
+}
+
+@keyframes msg {
+  0% {
+    transform: translateX(38rem);
+  }
+  20% {
+    transform: translateX(0rem);
+  }
+  70% {
+    transform: translateX(0rem);
+  }
+  100% {
+    transform: translateX(38rem);
+  }
+}
+.msg-error {
+  background-color: #9b2727;
+  position: fixed;
+  top: 3rem;
+  right: 0;
+  color: white;
+  padding: 0.5rem 2rem;
+  animation: msg 5s;
+  display: flex;
+  align-items: center;
+  transform: translateX(38rem);
+}
+
+.msg-success {
+  background-color: var(--color-principal);
+  position: fixed;
+  top: 3rem;
+  right: 0;
+  color: white;
+  padding: 0.5rem 2rem;
+  animation: msg 5s;
+  display: flex;
+  align-items: center;
+  transform: translateX(38rem);
+}
+
 .glider, .glider-contain {
   margin: 0 auto;
   position: relative;
@@ -890,17 +957,17 @@ template {
 }
 .form-prop-inp {
   display: flex;
-  align-items: center;
   background-color: transparent;
   padding: 0.5rem 0rem 0.5rem 1rem;
-  width: 18.75rem;
   border-radius: 0.5rem;
   border: 1px solid #3F5C58;
+  position: relative;
 }
 .form-prop-inp__input {
   background-color: transparent;
   border: none;
   outline: none;
+  min-width: 14.75rem;
   margin: 0rem 1rem;
 }
 .form__btn {
@@ -915,12 +982,31 @@ template {
   text-align: center;
   cursor: pointer;
 }
+.form-link {
+  display: flex;
+}
+.form-link__link {
+  text-decoration: none;
+  color: var(--color-principal);
+  margin: 2rem 1rem 0rem;
+}
 
 #eye-open {
   width: 1.2rem;
   fill: #3F5C58;
-  margin-left: 0.5rem;
   cursor: pointer;
+  position: absolute;
+  right: 5%;
+  bottom: 30%;
+}
+
+#eye-close {
+  width: 1.2rem;
+  fill: #3F5C58;
+  cursor: pointer;
+  position: absolute;
+  right: 5%;
+  bottom: 30%;
 }
 
 * {
