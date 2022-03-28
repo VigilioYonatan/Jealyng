@@ -99,34 +99,11 @@ function validarFormulario(values) {
 
 }
 
-function imprimirBuenas(lugar) {
-    lugar.children[1].style.cssText = 'border:2px solid green';
-}
-
-function imprimirErrores(error, lugar) {
-    limpiarError(lugar);
-    error.forEach(text => {
-        html = `<span class='spanError'>
-        <svg class='icoError'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
-        ${text}</span>`;
-        const div = document.createElement('div');
-        div.innerHTML = html;
-
-        lugar.appendChild(div.firstElementChild);
-        lugar.children[1].style.cssText = 'border:2px solid rgb(155, 39, 39)';
-    })
-
-}
-
-function limpiarError(lugar) {
-    while (lugar.children[2]) {
-        lugar.removeChild(lugar.children[2]);
-    }
-}
 
 // api registrar 
 async function apiRegistrar(values) {
-
+    // traendo spiner
+    const spinner = document.querySelector('.spinner-loading');
     // destructuring obj 
     const { nombre, correo, password, password2 } = values;
 
@@ -146,17 +123,18 @@ async function apiRegistrar(values) {
             form.classList.add('form');
             msgError(respuesta.mensaje);
             form.children[2].children[1].style.cssText = 'border:2px solid rgb(155, 39, 39)';
-            const spinner = document.querySelector('.spinner-loading');
+
             spinner.remove();
             return;
         }
         if (respuesta.registrado) {
-            const spinner = document.querySelector('.spinner-loading');
             spinner.remove();
             form.remove();
             success(formularioContenedor, respuesta.mensaje);
         }
     } catch (error) {
-        console.log(error);
+        spinner.remove();
+        form.remove();
+        getError(formularioContenedor, 'Ups.. Hubo un error en nuestro sistema :c');
     }
 }

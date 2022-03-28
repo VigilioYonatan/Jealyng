@@ -24,6 +24,18 @@ function success(container, mensaje) {
     div.innerHTML = html;
     container.prepend(div.firstElementChild);
 }
+//success
+function getError(container, mensaje) {
+    let html = `<div class='success-container'>
+                    <h4 class='success-container__title'>Upss...</h4>
+                    <span class='success-container__txt'>${mensaje}</span>
+                    <svg class='success-container__icoError' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM232 152C232 138.8 242.8 128 256 128s24 10.75 24 24v128c0 13.25-10.75 24-24 24S232 293.3 232 280V152zM256 400c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 385.9 273.4 400 256 400z"/></svg>
+                    <a class='enlace__error' href='/'>Ir a inicio</a>
+                </div>`;
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    container.prepend(div.firstElementChild);
+}
 
 //cargando
 
@@ -50,4 +62,43 @@ function loading(container) {
     div.innerHTML = html;
     container.prepend(div.firstElementChild);
 
+}
+
+//imprimir errores formulario
+
+function imprimirErrores(error, lugar) {
+    limpiarError(lugar);
+    error.forEach(text => {
+        html = `<span class='spanError'>
+        <svg class='icoError'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+        ${text}</span>`;
+        const div = document.createElement('div');
+        div.innerHTML = html;
+
+        lugar.appendChild(div.firstElementChild);
+        lugar.children[1].style.cssText = 'border:2px solid rgb(155, 39, 39)';
+    })
+
+}
+
+function imprimirBuenas(lugar) {
+    lugar.children[1].style.cssText = 'border:2px solid green';
+}
+
+//limpiar error
+function limpiarError(lugar) {
+    while (lugar.children[2]) {
+        lugar.removeChild(lugar.children[2]);
+    }
+}
+
+// para los fondos negros al abrir 
+function containerBlack(contenido, clase) {
+    const div = document.createElement('div');
+    div.className = 'container-black';
+    document.body.prepend(div);
+    div.addEventListener('click', () => {
+        contenido.classList.remove(clase);
+        div.remove();
+    })
 }

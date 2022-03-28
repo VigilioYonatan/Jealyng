@@ -33,35 +33,35 @@ $color-sucess: #{var(--color-sucess)};
 
     font-family: 'Questrial-Regular';
     src: url('../fonts/Questrial-Regular.ttf');
-
+    font-display: swap;
 }
 
 @font-face {
 
     font-family: 'Poppins-Light';
     src: url('../fonts/Poppins-Light.ttf');
-
+    font-display: swap;
 }
 
 @font-face {
 
     font-family: 'Poppins-Medium';
     src: url('../fonts/Poppins-Medium.ttf');
-
+    font-display: swap;
 }
 
 @font-face {
 
     font-family: 'Poppins-SemiBold';
     src: url('../fonts/Poppins-SemiBold.ttf');
-
+    font-display: swap;
 }
 
 @font-face {
 
     font-family: 'Poppins-Bold';
     src: url('build/fonts/Poppins-Bold.ttf');
-
+    font-display: swap;
 }
 
 //---------- VARIABLES DE LAS FUENTES ----------

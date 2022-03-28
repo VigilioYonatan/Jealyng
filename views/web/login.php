@@ -1,4 +1,4 @@
-<?php // require_once __DIR__ . '/includes/header.php'; 
+<?php require_once __DIR__ . '/includes/header2.php';
 ?>
 <section class="container">
     <div class="formulario">

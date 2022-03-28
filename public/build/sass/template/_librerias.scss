@@ -22,6 +22,22 @@
 
 }
 
+@mixin inputNone{
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: var.$f_regular;
+}
+
+.container-black{
+    background-color:rgba(0, 0, 0, 0.438);
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:50;
+    height:100%
+}
+
 .spanError{
     background-color:var.$color-error;
     margin: .2rem 0;
@@ -54,7 +70,7 @@
 
 @mixin msg{
     position: fixed;
-    top: 3rem;
+    top: 8rem;
     right: 0;
     color: white;
     padding: .5rem 2rem;
@@ -63,6 +79,7 @@
     align-items: center;
     transform: translateX(38rem);
     font-family: var.$f_regular;
+    z-index: 60;
     
 }
 
@@ -99,6 +116,7 @@
         font-size: 2rem;
         font-family: var.$f_regular;
         margin-bottom: .5rem;
+        text-align: center;
     }
     &__txt{
         font-size: 1.2rem;
@@ -113,6 +131,35 @@
         fill: var.$color-primary;
     }
 
+    &__icoError{
+        margin-top: .5rem;
+        width: 120px;
+        fill: var.$color-error;
+        padding: 2rem 0;
+    }
+
+}
+
+.success-container2{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 7rem 0;
+}
+
+.enlace__error{
+    color: var.$color-error;
+    margin: 2rem 1rem 0rem;
+    font-family: "Questrial-Regular";
+    text-decoration: none;
+    @include var.hover{
+        &:hover{
+            text-decoration: underline;
+        }
+        
+    }
 }
 
 // loading spinner 
