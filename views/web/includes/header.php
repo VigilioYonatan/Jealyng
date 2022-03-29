@@ -1,103 +1,61 @@
-<!-- HEADER -->
 <header class="header">
-    <div class="logo">
-       <h2>Jealyng</h2> 
+    <div class="container-header">
+        <a href="/" class="header__logo">Logo</a>
+        <div class="header-categorias">
+            <a class="header-categorias__hmb" id="hamburguer" href="#">
+                <svg class="header-categorias__ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path
+                        d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
+                </svg>
+            </a>
+            <span class="header-categorias__title">Menú de Categorias</span>
+
+        </div>
+        <div class="header-search">
+            <input class="header-search__inp" type="text" placeholder="Buscar productos">
+            <a class="header-search__ico" ref="#">
+                <svg width='20px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path
+                        d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" />
+                </svg>
+            </a>
+        </div>
+        <div class="header-info">
+            <!-- <a href=""><svg width='20px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                    d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z" />
+            </svg></a> -->
+            <a href="/login" class="header-info__login">
+                <svg class="header-info__ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                    <path
+                        d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm0 96c48.6 0 88 39.4 88 88s-39.4 88-88 88-88-39.4-88-88 39.4-88 88-88zm0 344c-58.7 0-111.3-26.6-146.5-68.2 18.8-35.4 55.6-59.8 98.5-59.8 2.4 0 4.8.4 7.1 1.1 13 4.2 26.6 6.9 40.9 6.9 14.3 0 28-2.7 40.9-6.9 2.3-.7 4.7-1.1 7.1-1.1 42.9 0 79.7 24.4 98.5 59.8C359.3 421.4 306.7 448 248 448z" />
+                </svg>
+                <span class="header-info__title">Login</span>
+            </a>
+            <a href="" class="header-info__cart"><svg class="header-info__ico" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 448 512">
+                    <path
+                        d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z" />
+                </svg></a>
+        </div>
+
+
     </div>
-    
-    <div class="buscador">
-        <input type="text" placeholder="Buscar">
-    </div> 
-    <div class="icons">
-        <a href="#"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c39.77 0 72 32.24 72 72S295.8 272 256 272c-39.76 0-72-32.24-72-72S216.2 128 256 128zM256 448c-52.93 0-100.9-21.53-135.7-56.29C136.5 349.9 176.5 320 224 320h64c47.54 0 87.54 29.88 103.7 71.71C356.9 426.5 308.9 448 256 448z"/></svg></a>
-        <a href="#"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M171.7 191.1H404.3L322.7 35.07C316.6 23.31 321.2 8.821 332.9 2.706C344.7-3.409 359.2 1.167 365.3 12.93L458.4 191.1H544C561.7 191.1 576 206.3 576 223.1C576 241.7 561.7 255.1 544 255.1L492.1 463.5C484.1 492 459.4 512 430 512H145.1C116.6 512 91 492 83.88 463.5L32 255.1C14.33 255.1 0 241.7 0 223.1C0 206.3 14.33 191.1 32 191.1H117.6L210.7 12.93C216.8 1.167 231.3-3.409 243.1 2.706C254.8 8.821 259.4 23.31 253.3 35.07L171.7 191.1zM191.1 303.1C191.1 295.1 184.8 287.1 175.1 287.1C167.2 287.1 159.1 295.1 159.1 303.1V399.1C159.1 408.8 167.2 415.1 175.1 415.1C184.8 415.1 191.1 408.8 191.1 399.1V303.1zM271.1 303.1V399.1C271.1 408.8 279.2 415.1 287.1 415.1C296.8 415.1 304 408.8 304 399.1V303.1C304 295.1 296.8 287.1 287.1 287.1C279.2 287.1 271.1 295.1 271.1 303.1zM416 303.1C416 295.1 408.8 287.1 400 287.1C391.2 287.1 384 295.1 384 303.1V399.1C384 408.8 391.2 415.1 400 415.1C408.8 415.1 416 408.8 416 399.1V303.1z"/></svg></a>
-    </div>  
+    </div>
+
 </header>
-<!-- FIN HEADER -->
-
-
-
-<!-- BARRA DE NAVEGACION -->
-<div class="navegation-var">
-    <nav>
-        <ul>
-            <li><a href="#">Moda</a>
-                <ul>
-                    <li><a href="#">Mujer</a>
-                        <ul >
-                            <li><a href="#">Abrigos</a></li>
-                            <li><a href="#">Casacas</a></li>
-                            <li><a href="#">Chompas</a></li>
-                            <li><a href="#">Poleras</a></li>
-                            <li><a href="#">Blusas</a></li>
-                            <li><a href="#">Polos</a></li>
-                            <li><a href="#">Tops</a></li>
-                            <li><a href="#">Faldas</a></li>
-                            <li><a href="#">Jeans</a></li>
-                            <li><a href="#">Pantalones</a></li>
-                            <li><a href="#">Shorts</a></li>
-                            <li><a href="#">Vestidos</a></li>
-                            <li><a href="#">Enterizos</a></li>
-                            <li><a href="#">Ropa de Baño</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Hombre</a>
-                        <ul>
-                            <li><a href="#">Abrigos</a></li>
-                            <li><a href="#">Casacas</a></li>
-                            <li><a href="#">Sacos</a></li>
-                            <li><a href="#">Chompas</a></li>
-                            <li><a href="#">Poleras</a></li>
-                            <li><a href="#">Camisas</a></li>
-                            <li><a href="#">Corbatas</a></li>
-                            <li><a href="#">Polos</a></li>
-                            <li><a href="#">Jeans</a></li>
-                            <li><a href="#">Joogers</a></li>
-                            <li><a href="#">Pantalones</a></li>
-                            <li><a href="#">Bermudas</a></li>
-                            <li><a href="#">Ropa de Baño</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Infantil</a>
-                        <ul>
-                            <li><a href="#">Casacas</a></li>
-                            <li><a href="#">Chompas</a></li>
-                            <li><a href="#">Blusas</a></li>
-                            <li><a href="#">Camisas</a></li>
-                            <li><a href="#">Faldas</a></li>
-                            <li><a href="#">Jeans</a></li>
-                            <li><a href="#">Pantalones</a></li>
-                            <li><a href="#">Vestidos</a></li>
-                            <li><a href="#">Conjuntos</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            <li><a href="#">Tecnología</a>
-                <ul>
-                    <li><a href="#">Laptops</a></li>
-                    <li><a href="#">Computadoras</a></li>
-                    <li><a href="#">Televisores</a></li>
-                    <li><a href="#">Equipos de Sonido</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Hogar</a>
-                <ul>
-                    <li><a href="#">Menaje Cocina</a></li>
-                    <li><a href="#">Menaje Comedor</a></li>
-                    <li><a href="#">Ropa de Cama</a></li>
-                    <li><a href="#">Decoración</a></li>
-                    <li><a href="#">Muebles de Sala</a></li>
-                    <li><a href="#">Muebles de Terraza</a></li>
-                    <li><a href="#">Muebles de Dormitorio</a></li>
-                    <li><a href="#">Roperos</a></li>
-                    <li><a href="#">Cómodas</a></li>
-                    <li><a href="#">Escritorios</a></li>
-                    <li><a href="#">Estantes y Libreros</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Ofertas</a></li>
-            <li><a href="#">Novedades</a></li>
+<nav class="navbar">
+    <div class="navbar-container">
+        <?php for ($i = 0; $i < 5; $i++) : ?>
+        <ul class="navbar-categorias">
+            <li class="navbar-categorias__list"><span class="navbar-categorias__title">Ropa</span></li>
+            <li class="navbar-categorias__list"><a class="navbar-categorias__link" href="">loremx2d sds</a></li>
+            <li class="navbar-categorias__list"><a class="navbar-categorias__link" href="">loremx2d sds</a></li>
+            <li class="navbar-categorias__list"><a class="navbar-categorias__link" href="">loremx2d sds</a></li>
+            <li class="navbar-categorias__list"><a class="navbar-categorias__link" href="">loremx2d sds</a></li>
+            <li class="navbar-categorias__list"><a class="navbar-categorias__link" href="">loremx2d sds</a></li>
+            <li class="navbar-categorias__list"><a class="navbar-categorias__link" href="">loremx2d sds</a></li>
         </ul>
-    </nav>
-</div>
-<!-- FIN BARRA DE NAVEGACION -->
-
+        <?php endfor; ?>
+    </div>
+</nav>

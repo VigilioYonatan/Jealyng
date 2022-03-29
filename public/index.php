@@ -15,6 +15,7 @@ $router->get('/login', [UsuarioController::class, 'login']);
 $router->post('/apiLogin', [UsuarioController::class, 'apiLogin']);
 $router->post('/apiRecuperar', [UsuarioController::class, 'apiRecuperar']);
 $router->get('/recuperar-cuenta', [UsuarioController::class, 'recuperarCuenta']);
+$router->post('/recuperar-cuenta-contraseña', [UsuarioController::class, 'recuperarCuentaContraseña']);
 $router->get('/productos', [UsuarioController::class, 'productos']);
 
 

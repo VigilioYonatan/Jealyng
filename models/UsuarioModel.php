@@ -56,6 +56,12 @@ class UsuarioModel extends ActiveRecord
         return $query->num_rows;
     }
 
+    public function hashearPassword($password)
+    {
+        $this->password_user = password_hash(self::$db->escape_string($password), PASSWORD_BCRYPT);
+    }
+
+
     // verificar si puso bien la contraseña 
 
 }

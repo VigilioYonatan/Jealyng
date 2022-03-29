@@ -66,12 +66,28 @@ class UsuarioController
         $token = htmlGet($_GET['token']) ?? null;
         if (!$token) header('Location: /');
         $resultado = UsuarioModel::where('token_user', $token);
-        if ($resultado) {
-            $resultado->getID();
-            $resultado->token_user = null;
-            $resultado->guardar();
+
+        $router->render('web/token/recuperarCuenta', ["resultado" => $resultado, "token" => $token]);
+    }
+
+    public static function recuperarCuentaContraseña()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $token = $_POST['token'];
+            $password = $_POST['password_user'];
+            $usuario = UsuarioModel::where('token_user', $token);
+            if ($usuario) {
+                $usuario->getId();
+                $usuario->token_user = null;
+                $usuario->hashearPassword($password);
+                $resultado = $usuario->guardar();
+                echo json_encode(["resultado" => $resultado, "mensaje" =>  "Ya tienes una nueva contraseña $usuario->nombre_user :D"]);
+            } else {
+                echo json_encode(["error" => "Chistosito, hubo un error xD"]);
+            }
+
+            // echo json_encode($resultado);
         }
-        $router->render('web/token/recuperarCuenta', ["hola" => $resultado]);
     }
 
 

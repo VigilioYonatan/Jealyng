@@ -64,6 +64,8 @@ olvideContraseña.addEventListener('click', e => {
 
 
 async function apiRecuperar(correo) {
+    const spinner = document.querySelector('.spinner-loading');
+
     const url = 'http://localhost:3000/apiRecuperar';
 
     const formData = new FormData();
@@ -80,19 +82,20 @@ async function apiRecuperar(correo) {
 
             formularioRecuperar.classList.remove('hidden');
             formularioRecuperar.classList.add('form');
-            const spinner = document.querySelector('.spinner-loading');
             spinner.remove();
             msgError(respuesta.correoInvalido);
             return;
         }
         if (respuesta.respuesta) {
             formularioRecuperar.remove();
-            const spinner = document.querySelector('.spinner-loading');
+
             spinner.remove();
             success(formularioContenedor, respuesta.respuesta)
             return;
         }
     } catch (error) {
-        console.log(error);
+        spinner.remove();
+        form.remove();
+        getError(formularioContenedor, 'Ups.. Hubo un error en nuestro sistema :c');
     }
 }
