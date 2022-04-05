@@ -73,16 +73,13 @@ async function apiActualizarFoto(inputFoto) {
         console.log(respuesta);
         if (respuesta.imagen) {
             const perfilImagen1 = document.querySelectorAll('.header-info-perfil__img');
-
+            const mostrarCard = document.querySelector('.mostrar-card');
             const imagenSpan = document.querySelector('.perfil-info-user__spanProfile');
             if (imagenSpan) {
-                imagenSpan.remove();
-
-                const newImagen = document.createElement('img');
-                newImagen.className = 'header-info-perfil__img';
-                newImagen.src = `build/img/usuarios/${respuesta.imagen}`;
-                const contenidoImprimirImagen = document.querySelector('.perfil-info-user__imgProfile');
-                contenidoImprimirImagen.appendChild(newImagen);
+                successProfile(mostrarCard, 'Cambiaste foto de Perfil correctamente', mostrarCard);
+                setTimeout(() => {
+                    window.open('http://localhost:3000/perfil', '_self');
+                }, 1000);
             }
 
             if (perfilImagen1) {
@@ -93,9 +90,10 @@ async function apiActualizarFoto(inputFoto) {
                 // traendo spiner
                 const spinner = document.querySelector('.spinner-loading');
                 spinner.remove();
-                const mostrarCard = document.querySelector('.mostrar-card');
+
                 limpiar(mostrarCard)
-                successProfile(mostrarCard, 'Cambiaste foto de Perfil correctamente');
+                successProfile(mostrarCard, 'Cambiaste foto de Perfil correctamente', mostrarCard);
+                document.body.style.cssText = 'overflow:visible'; // desocultar el scroll
             }
 
 
