@@ -82,7 +82,9 @@ async function apiActualizarPortada(inputFoto) {
                 spinner.remove();
                 const mostrarCard = document.querySelector('.mostrar-card');
                 limpiar(mostrarCard)
-                successProfile(mostrarCard, 'Cambiaste tu foto de portada correctamente');
+                successProfile(mostrarCard, 'Cambiaste tu foto de portada correctamente', mostrarCard);
+                document.body.style.cssText = 'overflow:visible'; // desocultar el scroll
+
             }
         }
     } catch (error) {

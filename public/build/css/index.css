@@ -945,6 +945,7 @@ template {
   }
 }
 .header-info-perfil {
+  position: relative;
   background-color: var(--color-terciary);
   border-radius: 50%;
   display: flex;
@@ -961,9 +962,26 @@ template {
 .header-info-perfil:active {
   outline: 1px solid #fff;
 }
+.header-info-perfil__wallpaper {
+  width: 100%;
+  height: 4.5rem;
+  object-fit: cover;
+  margin-bottom: 2.2rem;
+}
+.header-info-perfil__img2 {
+  position: absolute;
+  top: 2rem;
+  width: 75px;
+  height: 78px;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid #fff;
+}
 .header-info-perfil__img {
   width: inherit;
   height: inherit;
+  object-fit: cover;
 }
 .header-info-user {
   position: absolute;
@@ -971,7 +989,6 @@ template {
   right: -1rem;
   width: 14.75rem;
   background-color: var(--color-secondary);
-  padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -994,20 +1011,37 @@ template {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Questrial-Regular";
+  font-family: "Poppins-Medium";
   margin-top: 0.5rem;
+  color: var(--color-fonts-primary);
+}
+.header-info-user__title b {
+  font-family: "Questrial-Regular";
+  color: var(--color-fonts-secondary);
+  filter: brightness(1.7);
 }
 .header-info-user__section {
   display: flex;
   flex-direction: column;
-  margin-top: 0.5rem;
+  width: 100%;
 }
 .header-info-user__link {
+  width: 100%;
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 0rem;
   text-align: center;
   font-family: "Questrial-Regular";
   color: var(--color-terciary);
+}
+.header-info-user__link:active {
+  background-color: var(--color-terciary);
+  color: var(--color-fonts-terciary);
+}
+@media (hover: hover) {
+  .header-info-user__link:hover {
+    background-color: var(--color-terciary);
+    color: var(--color-fonts-terciary);
+  }
 }
 .header-info__ico {
   width: 1.25rem;
@@ -1097,6 +1131,10 @@ template {
   text-align: center;
   cursor: pointer;
   font-family: "Poppins-Light";
+}
+.btn:active {
+  background-color: var(--color-secondary);
+  color: var(--color-fonts-primary);
 }
 @media (hover: hover) {
   .btn-primary:hover {
@@ -1298,7 +1336,7 @@ template {
     width: 80%;
   }
 }
-.best-card:hover .best-card__img2, .best-card:hover .best-card__view {
+.best-card:hover .best-card__image, .best-card:hover .best-card__view {
   opacity: 1;
   transform: translateY(0rem);
   transition: transform 0.5s;
@@ -1310,21 +1348,26 @@ template {
 }
 .best-card__image {
   width: 100%;
-  height: 100%;
+  opacity: 0;
+}
+.best-card__image2 {
+  width: 100%;
 }
 .best-card__best {
+  position: relative;
   display: block;
   position: absolute;
-  top: 0;
+  top: -0.1rem;
+  left: 0.5rem;
   background-color: var(--color-error);
-  padding: 0.3rem 1.5rem;
+  padding: 0.3rem 0.8rem;
   color: #fff;
   font-size: 0.9rem;
   z-index: 40;
   font-family: "Poppins-Light";
+  border-radius: 0px 0px 5px 1px;
 }
 .best-card__img2 {
-  opacity: 0;
   position: relative;
   position: absolute;
   top: 0;
@@ -1490,6 +1533,12 @@ template {
 }
 .about-info__btn {
   background-color: #2E3238;
+}
+.about-info__btn:active {
+  transition: background-color 0.1s;
+  background-color: var(--color-secondary);
+  color: var(--color-fonts-primary);
+  border: 1px solid var(--color-fonts-secondary);
 }
 @media (hover: hover) {
   .about-info__btn:hover {
@@ -1754,7 +1803,7 @@ template {
 }
 
 .category {
-  width: 30%;
+  width: 20%;
   display: flex;
   justify-content: center;
 }
@@ -1765,7 +1814,7 @@ template {
 }
 
 .contenido-card {
-  width: 70%;
+  width: 80%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -1778,8 +1827,15 @@ template {
 .contenido-card__title {
   color: var(--color-fonts-primary);
   font-size: 1.5rem;
-  font-family: "Poppins-Medium";
+  font-family: "Poppins-Light";
   padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.contenido-card__subtitle {
+  font-size: 0.8rem;
+  color: rgba(190, 188, 188, 0.903);
 }
 
 .pro-cards {
@@ -1795,6 +1851,15 @@ template {
 
 .filtros__title {
   font-family: "Questrial-Regular";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+  color: var(--color-fonts-primary);
+}
+.filtros__title b {
+  font-size: 0.9rem;
+  color: #b6b4b4;
 }
 
 .filtro-section {
@@ -1803,7 +1868,10 @@ template {
   position: relative;
 }
 .filtro-section__title {
-  font-family: "Poppins-Medium";
+  font-family: "Poppins-Light";
+  color: #b6b4b4;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
 }
 
 .ico-colleccion {
@@ -1821,7 +1889,10 @@ template {
 }
 .listados__category {
   font-family: "Questrial-Regular";
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: var(--color-fonts-primary);
+  margin: 0.2rem 0;
 }
 
 .mostrar-card {
@@ -1845,6 +1916,15 @@ template {
   align-items: center;
   justify-content: center;
   display: none;
+}
+.mostrar-card-container3 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 2rem;
+  border-radius: 0.2rem;
+  background-color: var(--color-secondary);
+  align-items: center;
 }
 .mostrar-card-container2 {
   position: relative;
@@ -1990,6 +2070,7 @@ template {
   padding: 4rem 6rem;
   background-color: var(--color-secondary);
   margin: 0rem 1rem;
+  width: 60%;
 }
 .mostrar-card__imagenes {
   width: 50%;
@@ -2255,9 +2336,51 @@ template {
 .eliminar__infos span {
   color: var(--color-fonts-primary);
   text-align: center;
+  margin: 0.5rem 0;
 }
 .eliminar__infos span b {
   color: var(--color-primary);
+  filter: brightness(1.7);
+}
+
+.paginador {
+  margin-top: 1rem;
+}
+.paginador ul {
+  display: flex;
+}
+.paginador ul .paginador-list {
+  margin: 0rem 0.2rem;
+  list-style: none;
+  background-color: var(--color-primary);
+  width: 2.2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-fonts-terciary);
+  border: 1px solid var(--color-fonts-primary);
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .paginador ul .paginador-list:hover {
+    filter: brightness(1.5);
+  }
+}
+.paginador ul .paginador-list a {
+  text-decoration: none;
+  fill: #fff;
+  color: #fff;
+  width: 2.2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paginador ul .selected {
+  color: var(--color-fonts-primary);
+  background-color: transparent;
+  cursor: alias;
 }
 
 .perfil {
@@ -2285,6 +2408,9 @@ template {
   max-height: 12.5rem;
   cursor: pointer;
 }
+.perfil-info-user__wallpaper:active {
+  display: flex;
+}
 @media (hover: hover) {
   .perfil-info-user__wallpaper:hover .perfil-info-user__cameraWall {
     display: flex;
@@ -2308,6 +2434,11 @@ template {
   font-family: "Questrial-Regular";
   padding: 0.5rem 1rem;
   display: none;
+}
+@media screen and (max-width: 850px) {
+  .perfil-info-user__cameraWall {
+    display: block;
+  }
 }
 .perfil-info-user__profile {
   display: flex;
@@ -2352,6 +2483,11 @@ template {
   fill: #fff;
   display: none;
 }
+@media screen and (max-width: 850px) {
+  .perfil-info-user__camera {
+    display: block;
+  }
+}
 .perfil-info-user__title {
   color: var(--color-terciary);
   font-family: "Questrial-Regular";
@@ -2367,6 +2503,9 @@ template {
   color: var(--color-fonts-primary);
   font-family: "Questrial-Regular";
   padding: 0.5rem 0;
+}
+.perfil-info-user__cat:active {
+  border-bottom: 2px solid var(--color-primary);
 }
 @media (hover: hover) {
   .perfil-info-user__cat:hover {

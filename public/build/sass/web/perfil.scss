@@ -27,6 +27,10 @@
                 max-height: 12.5rem;
                 cursor: pointer;
 
+                &:active {
+                    display: flex;
+                }
+
                 @include var.hover {
                     &:hover .perfil-info-user__cameraWall {
                         display: flex;
@@ -53,6 +57,10 @@
                 font-family: var.$f_regular;
                 padding: .5rem 1rem;
                 display: none;
+
+                @include var.tablet {
+                    display: block;
+                }
             }
 
             &__profile {
@@ -74,6 +82,8 @@
                 align-items: center;
                 justify-content: center;
                 background-color: var.$color-terciary;
+
+
 
                 @include var.hover {
                     &:hover .perfil-info-user__camera {
@@ -107,6 +117,10 @@
                 padding: .2rem 0;
                 fill: #fff;
                 display: none;
+
+                @include var.tablet {
+                    display: block;
+                }
             }
 
 
@@ -129,6 +143,11 @@
                 color: var.$color-fonts-primary;
                 font-family: var.$f_regular;
                 padding: .5rem 0;
+
+                &:active {
+                    border-bottom: 2px solid var.$color-primary;
+
+                }
 
                 @include var.hover {
                     &:hover {

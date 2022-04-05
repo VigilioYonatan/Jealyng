@@ -14,6 +14,11 @@
     cursor: pointer;
     font-family: var.$f_light;
 
+    &:active {
+        background-color: var.$color-secondary;
+        color: var.$color-fonts-primary;
+    }
+
     &-primary:hover {
         @include var.hover {
             background-color: var.$color-secondary;
@@ -235,7 +240,7 @@
 
 
         // hover
-        &:hover &__img2,
+        &:hover &__image,
         &:hover &__view {
             opacity: 1;
             transform: translateY(0rem);
@@ -251,29 +256,38 @@
 
         &__image {
             width: 100%;
-            height: 100%;
+            opacity: 0;
+        }
+
+        &__image2 {
+            width: 100%;
+
         }
 
         &__best {
+            position: relative;
             display: block;
             position: absolute;
-            top: 0;
+            top: -.1rem;
+            left: .5rem;
             background-color: var.$color-error; // color
-            padding: .3rem 1.5rem;
+            padding: .3rem .8rem;
             color: #fff; //color
             font-size: .9rem;
             z-index: 40;
             font-family: var.$f_light;
+            border-radius: 0px 0px 5px 1px;
         }
 
         &__img2 {
-            opacity: 0;
+
             position: relative;
             position: absolute;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
+
         }
 
         &__view {
@@ -295,6 +309,7 @@
             @include var.tablet {
                 transform: translateY(0rem);
             }
+
 
         }
 
@@ -435,6 +450,12 @@
         &__btn {
             background-color: #2E3238; //color
 
+            &:active {
+                transition: background-color .1s;
+                background-color: var.$color-secondary;
+                color: var.$color-fonts-primary;
+                border: 1px solid var.$color-fonts-secondary;
+            }
 
             @include var.hover {
                 &:hover {

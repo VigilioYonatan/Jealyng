@@ -164,6 +164,7 @@
 
 
         &-perfil {
+            position: relative;
             background-color: var.$color-terciary;
             border-radius: 50%;
             display: flex;
@@ -181,9 +182,28 @@
                 outline: 1px solid #fff;
             }
 
+            &__wallpaper {
+                width: 100%;
+                height: 4.5rem;
+                object-fit: cover;
+                margin-bottom: 2.2rem;
+            }
+
+            &__img2 {
+                position: absolute;
+                top: 2rem;
+                width: 75px;
+                height: 78px;
+                object-fit: cover;
+                border-radius: 50%;
+                background-color: #fff;
+                border: 1px solid #fff;
+            }
+
             &__img {
                 width: inherit;
                 height: inherit;
+                object-fit: cover;
             }
         }
 
@@ -193,7 +213,7 @@
             right: -1rem;
             width: 14.75rem;
             background-color: var.$color-secondary;
-            padding: 1rem 2rem;
+
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -218,24 +238,44 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                font-family: var.$f_regular;
+                font-family: var.$f_medium;
                 margin-top: .5rem;
+                color: var.$color-fonts-primary;
 
+                & b {
+                    font-family: var.$f_regular;
+                    color: var.$color-fonts-secondary;
+                    filter: brightness(1.7);
+                }
             }
 
             &__section {
                 display: flex;
                 flex-direction: column;
-                margin-top: .5rem;
+
+                width: 100%;
 
             }
 
             &__link {
+                width: 100%;
                 text-decoration: none;
-                padding: .5rem 1rem;
+                padding: .2rem 0rem;
                 text-align: center;
                 font-family: var.$f_regular;
-                color: var.$color-terciary
+                color: var.$color-terciary;
+
+                &:active {
+                    background-color: var.$color-terciary;
+                    color: var.$color-fonts-terciary;
+                }
+
+                @include var.hover {
+                    &:hover {
+                        background-color: var.$color-terciary;
+                        color: var.$color-fonts-terciary;
+                    }
+                }
             }
         }
 
