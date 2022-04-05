@@ -2,7 +2,7 @@
 ?>
 
 <?php if ($resultado) : ?>
-<div class='success-container'>
+<div class='success-container2'>
     <h4 class='success-container__title'>Felicidades <?= $nombre; ?></h4>
     <span class='success-container__txt'>Cuenta verificada Correctamente :D</span>
     <svg class='success-container__ico' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

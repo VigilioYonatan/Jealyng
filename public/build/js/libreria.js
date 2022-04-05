@@ -25,6 +25,17 @@ function success(container, mensaje) {
     container.prepend(div.firstElementChild);
 }
 //success
+function successProfile(container, mensaje) {
+    let html = `<div class='success-container3'>
+                    <h4 class='success-container__title'>Felicidades</h4>
+                    <span class='success-container__txt'>${mensaje}</span>
+                    <svg class='success-container__ico' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M223.1 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 223.1 256zM274.7 304H173.3C77.61 304 0 381.7 0 477.4C0 496.5 15.52 512 34.66 512h286.4c-1.246-5.531-1.43-11.31-.2832-17.04l14.28-71.41c1.943-9.723 6.676-18.56 13.68-25.56l45.72-45.72C363.3 322.4 321.2 304 274.7 304zM371.4 420.6c-2.514 2.512-4.227 5.715-4.924 9.203l-14.28 71.41c-1.258 6.289 4.293 11.84 10.59 10.59l71.42-14.29c3.482-.6992 6.682-2.406 9.195-4.922l125.3-125.3l-72.01-72.01L371.4 420.6zM629.5 255.7l-21.1-21.11c-14.06-14.06-36.85-14.06-50.91 0l-38.13 38.14l72.01 72.01l38.13-38.13C643.5 292.5 643.5 269.7 629.5 255.7z"/></svg>
+                </div>`;
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    container.appendChild(div.firstElementChild);
+}
+//success
 function getError(container, mensaje) {
     let html = `<div class='success-container'>
                     <h4 class='success-container__title'>Upss...</h4>
@@ -81,6 +92,7 @@ function imprimirErrores(error, lugar) {
 
 }
 
+
 function imprimirBuenas(lugar) {
     lugar.children[1].style.cssText = 'border:2px solid green';
 }
@@ -91,14 +103,154 @@ function limpiarError(lugar) {
         lugar.removeChild(lugar.children[2]);
     }
 }
+//limpiar 
+function limpiar(lugar) {
+    while (lugar.firstElementChild) {
+        lugar.removeChild(lugar.firstElementChild);
+    }
+}
 
 // para los fondos negros al abrir 
-function containerBlack(contenido, clase) {
+function containerBlack(contenido, clase, hmb) {
     const div = document.createElement('div');
     div.className = 'container-black';
     document.body.prepend(div);
     div.addEventListener('click', () => {
         contenido.classList.remove(clase);
+        hmb.children[1].classList.add('hidden');
+        hmb.children[0].classList.remove('hidden');
         div.remove();
+    })
+}
+
+
+// modal black
+function modalBlack() {
+    const div = document.createElement('div');
+    div.className = 'container-black2';
+    document.body.prepend(div);
+
+}
+
+// abrirImagen
+function abrirImagen(mensaje) {
+    const { titulo, mess, alerta } = mensaje;
+    const html = `
+    <form class="mostrar-card">
+    <div class="mostrar-card__container">
+        <h3 class="mostrar-card__title">${titulo}</h3>          
+        <label class="mostrar-card__lbl" for="inputFoto"><b>${mess}</b>
+        <svg class="mostrar-card__ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M447.1 32h-384C28.64 32-.0091 60.65-.0091 96v320c0 35.35 28.65 64 63.1 64h384c35.35 0 64-28.65 64-64V96C511.1 60.65 483.3 32 447.1 32zM111.1 96c26.51 0 48 21.49 48 48S138.5 192 111.1 192s-48-21.49-48-48S85.48 96 111.1 96zM446.1 407.6C443.3 412.8 437.9 416 432 416H82.01c-6.021 0-11.53-3.379-14.26-8.75c-2.73-5.367-2.215-11.81 1.334-16.68l70-96C142.1 290.4 146.9 288 152 288s9.916 2.441 12.93 6.574l32.46 44.51l93.3-139.1C293.7 194.7 298.7 192 304 192s10.35 2.672 13.31 7.125l128 192C448.6 396 448.9 402.3 446.1 407.6z"/></svg>
+        </label>
+        <span class="mostrar-card__alert"><b>${alerta}</b></span>
+        <input class="mostrar-card__file" type="file"  id="inputFoto">
+        <button class="form__btn">
+        <svg  class="ico-form2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+                d="M362.7 19.32C387.7-5.678 428.3-5.678 453.3 19.32L492.7 58.75C517.7 83.74 517.7 124.3 492.7 149.3L444.3 197.7L314.3 67.72L362.7 19.32zM421.7 220.3L188.5 453.4C178.1 463.8 165.2 471.5 151.1 475.6L30.77 511C22.35 513.5 13.24 511.2 7.03 504.1C.8198 498.8-1.502 489.7 .976 481.2L36.37 360.9C40.53 346.8 48.16 333.9 58.57 323.5L291.7 90.34L421.7 220.3z" />
+        </svg>Actualizar</button>
+        <span class="mostrar-card__close">X</span>
+    </div>
+       
+</form>`;
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    document.body.prepend(div.firstElementChild);
+
+}
+//imprimir error Imagen
+function imprimirErrorImagen(error, lugar) {
+    limpiarErrorImagen(lugar);
+    error.forEach(text => {
+        html = `<span class='spanError'>
+        <svg class='icoError'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+        ${text}</span>`;
+        const div = document.createElement('div');
+        div.innerHTML = html;
+
+        lugar.appendChild(div.firstElementChild);
+    })
+
+}
+
+//limpiar error Imagen
+function limpiarErrorImagen(lugar) {
+    while (lugar.children[2]) {
+        lugar.removeChild(lugar.children[2]);
+    }
+}
+
+// mensaje eliminar
+function abrirCard(nombre, carpeta, imagen) {
+    const html = `
+        <div class="mostrar-card">
+            <div class="mostrar-card__containerCard">
+                <div class="eliminar">
+                    <span class="eliminar__title">Estas seguro de eliminar a ${nombre} ?</span>
+                    <img class="eliminar__img" src="../build/img/${carpeta}/${imagen}">
+                    <div class="eliminar__btn">
+                        <button class="eliminar__btnYes">Si</button>
+                        <button class="eliminar__btnNo">No</button>
+                    </div> 
+                </div>
+               <span class="mostrar-card__close">x</span>
+            </div>
+        </div>`;
+    document.body.style.cssText = 'overflow:hidden'; // ocultar el scroll
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    document.body.prepend(div.firstElementChild);
+
+    modalBlack()
+    const modal = document.querySelector('.mostrar-card');
+    const btnCerrar = document.querySelector('.mostrar-card__close');
+    const contenidoBlack = document.querySelector('.container-black2');
+    const no = document.querySelector('.eliminar__btnNo');
+    btnCerrar.addEventListener('click', e => {
+        document.body.style.cssText = 'overflow:visible'; // desocultar el scroll
+        modal.remove();
+        contenidoBlack.remove();
+
+    })
+    no.addEventListener('click', e => {
+        document.body.style.cssText = 'overflow:visible'; // desocultar el scroll
+        modal.remove();
+        contenidoBlack.remove();
+
+    })
+}
+
+
+function listaVacia(info) {
+    const { tabla, body, mensaje, colspan } = info;
+    if (tabla.length <= 0) {
+        const td = document.createElement('td');
+        td.className = 'eliminar-vacio';
+        td.textContent = mensaje;
+        td.colSpan = colspan
+        body.appendChild(td);
+    }
+}
+
+
+
+// mensaje actualizar
+function abrirActualizar(html) {
+
+    document.body.style.cssText = 'overflow:hidden'; // ocultar el scroll
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    document.body.prepend(div.firstElementChild);
+
+    modalBlack()
+    const modal = document.querySelector('.mostrar-card');
+    const btnCerrar = document.querySelector('.mostrar-card__close');
+    const contenidoBlack = document.querySelector('.container-black2');
+
+    btnCerrar.addEventListener('click', e => {
+        document.body.style.cssText = 'overflow:visible'; // desocultar el scroll
+        modal.remove();
+        contenidoBlack.remove();
+
     })
 }

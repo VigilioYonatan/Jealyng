@@ -34,7 +34,7 @@
   & h4 {
 
     font-size: 17px;
-    color: var.$color-secondary;
+    color: #fff;
     text-transform: capitalize;
     margin-bottom: 35px;
     font-weight: 350;
@@ -72,10 +72,10 @@
         font-size: 15px;
         line-height: 30px;
         text-transform: capitalize;
-        color: var.$color-secondary;
+       
         text-decoration: none;
         font-weight: 300;
-        color: var.$color-secondary;
+        color: #fff;
         display: block;
         transition: all 0.3s ease;
 
@@ -83,7 +83,7 @@
 
       &:hover {
 
-        color: var.$color-secondary;
+        color: var.$color-quarty;
         padding-left: 8px; 
 
       }
@@ -97,7 +97,7 @@
 .icon{
 
   @include lib.social-links;
-
+ 
 }
 
 @media(max-width: 767px) {

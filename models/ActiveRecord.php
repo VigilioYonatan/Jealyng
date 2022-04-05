@@ -10,7 +10,7 @@ class ActiveRecord
     protected static $tabla = '';
     protected static $columnasDB = [];
     protected static $idTabla = '';
-
+    protected static $carpeta = '';
 
     public static function setDb($database)
     {
@@ -107,7 +107,7 @@ class ActiveRecord
     // Busca un registro por su id
     public static function find($id)
     {
-        $query = "SELECT * FROM " . static::$tabla  . " WHERE id = ${id}";
+        $query = "SELECT * FROM " . static::$tabla  . " WHERE " . static::$idTabla . " = ${id}";
         $resultado = self::consultarSQL($query);
         return array_shift($resultado);
     }
@@ -127,6 +127,14 @@ class ActiveRecord
         $resultado = self::consultarSQL($query);
 
         return array_shift($resultado);
+    }
+    // Busca registros por  
+    public static function whereAll($columna, $token)
+    {
+        $query = "SELECT * FROM " . static::$tabla  . " WHERE ${columna} = '${token}'";
+        $resultado = self::consultarSQL($query);
+
+        return $resultado;
     }
 
     // crea un nuevo registro
@@ -176,15 +184,27 @@ class ActiveRecord
     // Eliminar un Registro por su ID
     public function eliminar()
     {
-        $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
+        $query = "DELETE FROM "  . static::$tabla . " WHERE " . static::$idTabla . " = " . self::$db->escape_string($this->id) . " LIMIT 1";
         $resultado = self::$db->query($query);
         return $resultado;
     }
 
-    public function buscador($columna, $buscar)
+    public static function buscador($columna, $buscar)
     {
         $query = "SELECT * FROM " . static::$tabla . " WHERE  $columna LIKE '%$buscar%'";
         $resultado = self::consultarSQL($query);
         return $resultado;
+    }
+
+    public function crearCarpeta()
+    {
+        if (!is_dir('./build/img/' . static::$carpeta)) {
+            mkdir('./build/img/' . static::$carpeta);
+        }
+    }
+
+    public function eliminarImagen($imagen)
+    {
+        unlink('./build/img/' . static::$carpeta . $imagen);
     }
 }

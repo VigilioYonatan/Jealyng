@@ -24,12 +24,12 @@ class EmailClass
         $mail->isSMTP();
         $mail->Host = 'smtp.office365.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'jealynsac@outlook.com';
-        $mail->Password = 'jhonathan123gamer';
+        $mail->Username = '1236890@senati.pe';
+        $mail->Password = 'Dokixd123';
         $mail->SMTPSecure = 'STARTTLS';
         $mail->Port = 587;
 
-        $mail->setFrom('jealynsac@outlook.com', 'jealyng SAC');
+        $mail->setFrom('1236890@senati.pe', 'jealyng SAC');
 
         $mail->addAddress($this->email, $this->nombre);
         $mail->Subject  = 'Confirmar cuenta en Jealyng S.A.C';
@@ -59,12 +59,12 @@ class EmailClass
         $mail->isSMTP();
         $mail->Host = 'smtp.office365.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'jealynsac@outlook.com';
-        $mail->Password = 'jhonathan123gamer';
+        $mail->Username = '1236890@senati.pe';
+        $mail->Password = 'Dokixd123';
         $mail->SMTPSecure = 'STARTTLS';
         $mail->Port = 587;
 
-        $mail->setFrom('jealynsac@outlook.com', 'jealyng SAC');
+        $mail->setFrom('1236890@senati.pe', 'jealyng SAC');
 
         $mail->addAddress($this->email, $this->nombre);
         $mail->Subject  = 'Recuperar contraseña en Jealyng S.A.C';
