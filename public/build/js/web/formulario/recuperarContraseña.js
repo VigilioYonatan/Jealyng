@@ -68,7 +68,6 @@ function validarFormulario(values) {
         errorPassword2.length <= 0) {
         console.log('hola');
         form.classList.add('hidden');
-        form.classList.remove('form');
         loading(formularioContenedor)
         apiRecuperarContraseña(values);
     }

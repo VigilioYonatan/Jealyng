@@ -5,6 +5,8 @@ const password = form.children[2].children[1].children[1];
 const eyeOpen = document.getElementById('eye-open');
 const eyeClose = document.getElementById('eye-close');
 
+
+
 form.addEventListener('submit', e => {
     e.preventDefault(); // evitar que recargue pagina
 
@@ -86,17 +88,33 @@ async function apiLogin(values) {
         const respuesta = await response.json();
         console.log(respuesta);
         if (respuesta.login) {
+            form.children[1].children[1].style.cssText = 'border: 2px solid rgb(155, 39, 39)';
+            form.children[2].children[1].style.cssText = 'border: 2px solid rgb(155, 39, 39)';
             msgError(respuesta.login)
             return;
         }
         if (respuesta.passwordInvalido) {
+            form.children[2].children[1].style.cssText = 'border: 2px solid rgb(155, 39, 39)';
             msgError(respuesta.passwordInvalido);
+            return;
+        }
+        if (respuesta.noActivado) {
+            form.children[1].children[1].style.cssText = 'border: 2px solid rgb(155, 39, 39)';
+            form.children[2].children[1].style.cssText = 'border: 2px solid rgb(155, 39, 39)';
+            msgError(respuesta.noActivado)
             return;
         }
         if (respuesta.logueado) {
             msgSuccess(respuesta.logueado);
             setTimeout(() => {
                 window.open('/', '_self');
+            }, 3000)
+            return;
+        }
+        if (respuesta.logeoAdmin) {
+            msgSuccess(respuesta.logeoAdmin);
+            setTimeout(() => {
+                window.open('/admin', '_self');
             }, 3000)
             return;
         }

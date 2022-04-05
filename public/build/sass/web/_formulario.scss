@@ -1,67 +1,94 @@
-@use '../template/variables' as var;
+@use '../template/variables'as var;
 // .container{
 //     max-width: 100rem;
 //     margin: 0 auto;
 // }
 
-.formulario{
+.formulario {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding:3rem 0;
-    @include var.tablet{
-        flex-direction:column;
+    padding: 3rem 0;
+
+    @include var.tablet {
+        flex-direction: column;
+    }
+
+    &-img {
+
+        &__img {
+            box-shadow: 0px 0px 8px -1px var.$color-terciary;
+        }
+
     }
 }
 
-.form{
+.form {
     width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    @include var.tablet{
+
+    @include var.tablet {
         padding: 2rem 0;
     }
-    &__title{
+
+    &__title {
         font-size: 1.5rem;
         font-family: var.$f_regular;
         color: var.$color-fonts-primary;
         text-align: center;
     }
-    &-prop{
+
+    &-prop {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: .5rem 0;
-        &__lbl{
+
+        &__lbl {
             margin-bottom: .2rem;
             font-family: var.$f_regular;
             color: var.$color-fonts-primary;
         }
 
-        &-inp{
-            
+        &-inp {
+
             display: flex;
             background-color: transparent; // color
-            padding: .5rem 0rem .5rem 1rem ;
-            
-            border-radius:.5rem ;
+            padding: .5rem 0rem .5rem 1rem;
+
+            border-radius: .5rem;
             border: 1px solid var.$color-terciary; //color
             position: relative;
             font-family: var.$f_regular;
             color: var.$color-fonts-primary;
-            &__input{
+
+            &__input {
                 background-color: transparent;
                 border: none;
                 outline: none;
                 min-width: 14.75rem;
                 margin: 0rem 1rem;
-                
+                color: var.$color-fonts-primary;
+            }
+
+
+            &__select {
+                background-color: transparent;
+                color: var.$color-fonts-primary;
+                border: 1px solid var.$color-terciary;
+                padding: .5rem 2rem;
+                max-width: 15.25rem;
+                border-radius: 1rem;
+                font-family: var.$f_regular;
             }
         }
+
+        &-inpSelect {}
     }
 
-    &__btn{
+    &__btn {
         padding: .8rem 0rem;
         text-decoration: none;
         color: var.$color-fonts-terciary;
@@ -71,10 +98,14 @@
         font-size: .9rem;
         width: 150px;
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
         font-family: var.$f_light;
-        @include var.hover{
-            &:hover{
+
+        @include var.hover {
+            &:hover {
                 background-color: var.$color-secondary;
                 border: 1px solid var.$color-terciary;
                 color: var.$color-fonts-primary;
@@ -82,35 +113,32 @@
         }
     }
 
-    &-link{
+    .ico-form {
+        width: 1.25rem;
+        fill: var.$color-terciary;
+    }
+
+    &-link {
         display: flex;
 
-        &__link{
+        &__link {
             text-decoration: none;
-            color: var.$color-fonts-quarty;
+            color: var.$color-fonts-primary;
             margin: 2rem 1rem 0rem;
             font-family: var.$f_regular;
 
-            @include var.hover{
-                &:hover{
+            @include var.hover {
+                &:hover {
                     text-decoration: underline;
                 }
             }
         }
     }
-    
+
 
 }
 
-#eye-open{
-    width: 1.2rem;
-    fill: #3F5C58; //color
-    cursor: pointer;
-    position: absolute;
-    right: 5%;
-    bottom: 30%;
-}
-#eye-close{
+#eye-open {
     width: 1.2rem;
     fill: #3F5C58; //color
     cursor: pointer;
@@ -119,3 +147,11 @@
     bottom: 30%;
 }
 
+#eye-close {
+    width: 1.2rem;
+    fill: #3F5C58; //color
+    cursor: pointer;
+    position: absolute;
+    right: 5%;
+    bottom: 30%;
+}

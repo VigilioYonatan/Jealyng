@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . '/includes/header.php';
 ?>
 <!-- productps -->
-<section style="display: flex;" class="products">
+<section class="products">
     <!-- categorias  -->
     <div class="category">
         <div class="filtros" id="filtros">
@@ -51,123 +51,34 @@
     </div>
     <!-- fin categorias  -->
     <!-- cards -->
-    <div class="pro-cards" class="cards">
-        <div class="best-card">
-            <picture class="best-card__img">
-                <img class="best-card__image" src="./build/img/pro11.webp" alt="">
-                <span class="best-card__best">Bestseller</span>
-                <div class="best-card__img2">
-                    <img class="best-card__image" src="./build/img/pro1.webp" alt="">
-                    <span class="best-card__view">Quick View</span>
+    <div class="contenido-card">
+        <h3 class="contenido-card__title">Todos los productos</h3>
+        <div class="pro-cards" class="cards" id="cards">
+            <?php for ($i = 0; $i < 15; $i++) : ?>
+            <div class="best-card">
+                <picture class="best-card__img">
+                    <img class="best-card__image" src="./build/img/pro11.webp" alt="">
+                    <span class="best-card__best">Bestseller</span>
+                    <div class="best-card__img2">
+                        <img class="best-card__image" src="./build/img/pro1.webp" alt="">
+                        <span class="best-card__view" data-id="<?= uniqid(); ?>">Quick View</span>
+                    </div>
+                </picture>
+                <div class="best-card-info">
+                    <span class="best-card-info__title">Im a product</span>
+                    <span class="best-card-info__price">$85.00</span>
                 </div>
-            </picture>
-            <div class="best-card-info">
-                <span class="best-card-info__title">Im a product</span>
-                <span class="best-card-info__price">$85.00</span>
             </div>
+            <?php endfor; ?>
         </div>
-        <div class="best-card">
-            <picture class="best-card__img">
-                <img class="best-card__image" src="./build/img/pro11.webp" alt="">
-                <span class="best-card__best">Bestseller</span>
-                <div class="best-card__img2">
-                    <img class="best-card__image" src="./build/img/pro1.webp" alt="">
-                    <span class="best-card__view">Quick View</span>
-                </div>
-            </picture>
-            <div class="best-card-info">
-                <span class="best-card-info__title">Im a product</span>
-                <span class="best-card-info__price">$85.00</span>
-            </div>
-        </div>
-        <div class="best-card">
-            <picture class="best-card__img">
-                <img class="best-card__image" src="./build/img/pro11.webp" alt="">
-                <span class="best-card__best">Bestseller</span>
-                <div class="best-card__img2">
-                    <img class="best-card__image" src="./build/img/pro1.webp" alt="">
-                    <span class="best-card__view">Quick View</span>
-                </div>
-            </picture>
-            <div class="best-card-info">
-                <span class="best-card-info__title">Im a product</span>
-                <span class="best-card-info__price">$85.00</span>
-            </div>
-        </div>
-        <div class="best-card">
-            <picture class="best-card__img">
-                <img class="best-card__image" src="./build/img/pro11.webp" alt="">
-                <span class="best-card__best">Bestseller</span>
-                <div class="best-card__img2">
-                    <img class="best-card__image" src="./build/img/pro1.webp" alt="">
-                    <span class="best-card__view">Quick View</span>
-                </div>
-            </picture>
-            <div class="best-card-info">
-                <span class="best-card-info__title">Im a product</span>
-                <span class="best-card-info__price">$85.00</span>
-            </div>
-        </div>
-        <div class="best-card">
-            <picture class="best-card__img">
-                <img class="best-card__image" src="./build/img/pro11.webp" alt="">
-                <span class="best-card__best">Bestseller</span>
-                <div class="best-card__img2">
-                    <img class="best-card__image" src="./build/img/pro1.webp" alt="">
-                    <span class="best-card__view">Quick View</span>
-                </div>
-            </picture>
-            <div class="best-card-info">
-                <span class="best-card-info__title">Im a product</span>
-                <span class="best-card-info__price">$85.00</span>
-            </div>
-        </div>
-        <div class="best-card">
-            <picture class="best-card__img">
-                <img class="best-card__image" src="./build/img/pro11.webp" alt="">
-                <span class="best-card__best">Bestseller</span>
-                <div class="best-card__img2">
-                    <img class="best-card__image" src="./build/img/pro1.webp" alt="">
-                    <span class="best-card__view">Quick View</span>
-                </div>
-            </picture>
-            <div class="best-card-info">
-                <span class="best-card-info__title">Im a product</span>
-                <span class="best-card-info__price">$85.00</span>
-            </div>
-        </div>
-        <div class="best-card">
-            <picture class="best-card__img">
-                <img class="best-card__image" src="./build/img/pro11.webp" alt="">
-                <span class="best-card__best">Bestseller</span>
-                <div class="best-card__img2">
-                    <img class="best-card__image" src="./build/img/pro1.webp" alt="">
-                    <span class="best-card__view">Quick View</span>
-                </div>
-            </picture>
-            <div class="best-card-info">
-                <span class="best-card-info__title">Im a product</span>
-                <span class="best-card-info__price">$85.00</span>
-            </div>
-        </div>
-        <div class="best-card">
-            <picture class="best-card__img">
-                <img class="best-card__image" src="./build/img/pro11.webp" alt="">
-                <span class="best-card__best">Bestseller</span>
-                <div class="best-card__img2">
-                    <img class="best-card__image" src="./build/img/pro1.webp" alt="">
-                    <span class="best-card__view">Quick View</span>
-                </div>
-            </picture>
-            <div class="best-card-info">
-                <span class="best-card-info__title">Im a product</span>
-                <span class="best-card-info__price">$85.00</span>
-            </div>
-        </div>
+
+    </div>
 
     </div>
     <!-- fin cards  -->
 </section>
 <!-- fin productos  -->
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
+<script src="./build/js/web/slider/slider.js"></script>
 <script src="./build/js/web/shop/price.js"></script>
+<script src="./build/js/web/shop/card.js"></script>

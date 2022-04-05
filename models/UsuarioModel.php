@@ -7,9 +7,10 @@ class UsuarioModel extends ActiveRecord
 
     protected static $tabla = 'usuario'; // nombre tabla
     protected static $idTabla = 'id_user'; //id usuario
+    protected static $carpeta = 'usuarios/'; //carpeta usuarios
     public $id; //id
     //columnas de la tabla usuario
-    protected static $columnasDB = ['id_user', 'nombre_user', 'apellidoMaterno_user', 'apellidoPaterno_user', 'email_user', 'password_user', 'nacimiento_user', 'telefono_user', 'id_departamento', 'id_provincia', 'id_distrito', 'direccion_user', 'imagen_user', 'estado_user', 'token_user', 'id_rol'];
+    protected static $columnasDB = ['id_user', 'nombre_user', 'apellidoMaterno_user', 'apellidoPaterno_user', 'email_user', 'password_user', 'nacimiento_user', 'telefono_user', 'id_departamento', 'id_provincia', 'id_distrito', 'direccion_user', 'imagen_user', 'wallpaper_user', 'estado_user', 'token_user', 'id_rol'];
 
     //constructor 
     public function __construct($args = [])
@@ -27,6 +28,7 @@ class UsuarioModel extends ActiveRecord
         $this->id_distrito =            $args['id_distrito']            ?? 1;
         $this->direccion_user =         $args['direccion_user']         ?? null;
         $this->imagen_user =            $args['imagen_user']            ?? null;
+        $this->wallpaper_user =         $args['wallpaper_user']         ?? 'wallpaperDefecto.jpeg';
         $this->estado_user =            $args['estado_user']            ?? null;
         $this->token_user =             $args['token_user']             ?? null;
         $this->id_rol =                 $args['id_rol']                ?? 1;
@@ -56,12 +58,20 @@ class UsuarioModel extends ActiveRecord
         return $query->num_rows;
     }
 
+    // hash password
     public function hashearPassword($password)
     {
         $this->password_user = password_hash(self::$db->escape_string($password), PASSWORD_BCRYPT);
     }
 
-
-    // verificar si puso bien la contraseña 
-
+    public function crearNombreImagen($imagen)
+    {
+        $tipoImagen = pathinfo($imagen['name'], PATHINFO_EXTENSION);
+        $this->imagen_user = md5(uniqid(rand(), true)) . ".$tipoImagen";
+    }
+    public function crearNombrePortada($imagen)
+    {
+        $tipoImagen = pathinfo($imagen['name'], PATHINFO_EXTENSION);
+        $this->wallpaper_user = md5(uniqid(rand(), true)) . ".$tipoImagen";
+    }
 }

@@ -91,7 +91,6 @@ function validarFormulario(values) {
         errorPassword.length <= 0 &&
         errorPassword2.length <= 0) {
         form.classList.add('hidden');
-        form.classList.remove('form');
         loading(formularioContenedor)
         apiRegistrar(values);
     }
@@ -118,9 +117,9 @@ async function apiRegistrar(values) {
             body: formData
         })
         const respuesta = await response.json();
+        console.log(respuesta);
         if (respuesta.existe) {
             form.classList.remove('hidden');
-            form.classList.add('form');
             msgError(respuesta.mensaje);
             form.children[2].children[1].style.cssText = 'border:2px solid rgb(155, 39, 39)';
 

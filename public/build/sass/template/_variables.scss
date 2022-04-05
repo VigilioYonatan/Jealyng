@@ -1,4 +1,4 @@
-:root{
+:root {
 
     --color-primary: #3F5C58;
     --color-secondary: white;
@@ -12,6 +12,8 @@
 
     --color-error: #9B2727;
     --color-sucess: #008000;
+
+    --admin-color: #3F5C58;
 
 }
 
@@ -27,6 +29,23 @@ $color-fonts-quarty: #{var(--color-fonts-quarty)};
 
 $color-error: #{var(--color-error)};
 $color-sucess: #{var(--color-sucess)};
+$admin-color:#{var( --admin-color)};
+
+
+// dark mode
+[data-theme="dark"] {
+    --color-primary: #3F5C58;
+    --color-secondary: #282828;
+    --color-terciary: rgb(255, 255, 255);
+    --color-quarty: #2E3238;
+
+    --color-fonts-primary: rgb(255, 255, 255);
+    --color-fonts-secondary: #3F5C58;
+    --color-fonts-terciary: rgb(7, 7, 7);
+    --color-fonts-quarty: #2E3238;
+
+    --admin-color: #fff;
+}
 
 //---------- FUENTES ----------
 @font-face {
@@ -73,28 +92,31 @@ $f_bold : 'Poppins-Bold';
 
 //---------- MEDIDAS ------------
 @mixin laptop {
-    @media screen and (max-width:1250px){
+    @media screen and (max-width:1250px) {
         @content;
     }
 }
+
 @mixin tablet {
-    @media screen and (max-width:850px){
+    @media screen and (max-width:850px) {
         @content;
     }
 }
+
 @mixin mini-tablet {
-    @media screen and (max-width:650px){
+    @media screen and (max-width:650px) {
         @content;
     }
 }
+
 @mixin celular {
-    @media screen and (max-width:450px){
+    @media screen and (max-width:450px) {
         @content;
     }
 }
 
 @mixin hover {
-    @media (hover:hover){
+    @media (hover:hover) {
         @content;
     }
 }

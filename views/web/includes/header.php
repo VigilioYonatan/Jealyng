@@ -1,11 +1,15 @@
 <header class="header">
     <div class="container-header">
-        <a href="/" class="header__logo">Logo</a>
+        <a href="/" class="header__logo">Jealyng</a>
         <div class="header-categorias">
             <a class="header-categorias__hmb" id="hamburguer" href="#">
                 <svg class="header-categorias__ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
                         d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z" />
+                </svg>
+                <svg class="header-categorias__ico hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                    <path
+                        d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z" />
                 </svg>
             </a>
             <span class="header-categorias__title">Menú de Categorias</span>
@@ -21,10 +25,44 @@
             </a>
         </div>
         <div class="header-info">
-            <!-- <a href=""><svg width='20px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path
-                    d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z" />
-            </svg></a> -->
+            <a href="/login" class="header-info__login" id="mode">
+                <svg class="header-info__ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path
+                        d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z" />
+                </svg>
+                <svg class="header-info__ico hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path
+                        d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z" />
+                </svg>
+            </a>
+            <?php
+            if (isset($_SESSION['id'])) :
+                $usuario = selectSqlBYid($_SESSION['id']);
+            ?>
+            <a class="header-info-perfil" href="#" id="perfil_imagen">
+                <?php if (empty($usuario['imagen_user'])) : ?>
+                <span><?= $usuario['nombre_user'][0] ?></span>
+                <?php else : ?>
+                <img class="header-info-perfil__img" src="./build/img/usuarios/<?= $usuario['imagen_user'] ?>" alt="">
+                <?php endif; ?>
+            </a>
+            <div class="header-info-user" id="perfilInfo">
+                <?php if (empty($usuario['imagen_user'])) : ?>
+                <span class="header-info-user__perfil"><?= $usuario['nombre_user'][0] ?></span>
+                <?php else : ?>
+                <img class=" header-info-perfil__img" src="./build/img/usuarios/<?= $usuario['imagen_user'] ?>" alt="">
+                <?php endif; ?>
+                <span class="header-info-user__title">Hola <b><?= $usuario['nombre_user'] ?></b></span>
+                <div class="header-info-user__section">
+                    <?php if (isset($_SESSION['admin'])) : ?>
+                    <a class="header-info-user__link" href="/admin">Admin</a>
+                    <?php endif; ?>
+                    <a class="header-info-user__link" href="/perfil">Mi Perfil</a>
+                    <a class="header-info-user__link" href="#">Mis Pedidos</a>
+                    <a class="header-info-user__link" href="/salir">Salir</a>
+                </div>
+            </div>
+            <?php else : ?>
             <a href="/login" class="header-info__login">
                 <svg class="header-info__ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
                     <path
@@ -32,30 +70,33 @@
                 </svg>
                 <span class="header-info__title">Login</span>
             </a>
-            <a href="" class="header-info__cart"><svg class="header-info__ico" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 448 512">
+            <?php endif; ?>
+            <a href="" class="header-info__cart">
+                <svg class="header-info__ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
                         d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z" />
-                </svg></a>
+                </svg>
+            </a>
         </div>
 
-
-    </div>
     </div>
 
 </header>
 <nav class="navbar">
     <div class="navbar-container">
-        <?php for ($i = 0; $i < 5; $i++) : ?>
+        <?php foreach (categoria() as $cat) : ?>
         <ul class="navbar-categorias">
-            <li class="navbar-categorias__list"><span class="navbar-categorias__title">Ropa</span></li>
-            <li class="navbar-categorias__list"><a class="navbar-categorias__link" href="">loremx2d sds</a></li>
-            <li class="navbar-categorias__list"><a class="navbar-categorias__link" href="">loremx2d sds</a></li>
-            <li class="navbar-categorias__list"><a class="navbar-categorias__link" href="">loremx2d sds</a></li>
-            <li class="navbar-categorias__list"><a class="navbar-categorias__link" href="">loremx2d sds</a></li>
-            <li class="navbar-categorias__list"><a class="navbar-categorias__link" href="">loremx2d sds</a></li>
-            <li class="navbar-categorias__list"><a class="navbar-categorias__link" href="">loremx2d sds</a></li>
+            <li class="navbar-categorias__list"><a href="/tienda?categoria=<?= $cat['nombre_categoria']; ?>"
+                    class="navbar-categorias__title"><?= $cat['nombre_categoria']; ?></span>
+            </li>
+            <?php $subcategoria = subcategoria($cat['id_categoria']); ?>
+
+            <?php foreach ($subcategoria as $sub) : ?>
+            <li class="navbar-categorias__list"><a class="navbar-categorias__link"
+                    href="/tienda?producto=<?= $sub['nombre_subcat'] ?>"><?= $sub['nombre_subcat'] ?></a>
+            </li>
+            <?php endforeach; ?>
         </ul>
-        <?php endfor; ?>
+        <?php endforeach; ?>
     </div>
 </nav>

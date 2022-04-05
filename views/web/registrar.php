@@ -59,7 +59,7 @@
             </div>
         </form>
         <picture class="formulario-img">
-            <img src="./build/img/Woman Interior.webp" alt="">
+            <img class="formulario-img__img" src="./build/img/Woman Interior.webp" alt="">
         </picture>
     </div>
 </section>
