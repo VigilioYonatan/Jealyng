@@ -41,6 +41,8 @@ $router->get('/apiBuscarProductos', [ProductosController::class, 'apiBuscarProdu
 $router->post('/apiGetSubcategorias', [ProductosController::class, 'apiGetSubcategorias']);
 //tienda
 $router->get('/tienda', [ProductosController::class, 'tienda']);
+$router->get('/producto', [ProductosController::class, 'producto']);
 $router->get('/apiConsultarIdProducto', [ProductosController::class, 'apiConsultarIdProducto']);
+$router->get('/apiBuscadorNombreProducto', [ProductosController::class, 'apiBuscadorNombreProducto']);
 
 $router->comprobarRutas();

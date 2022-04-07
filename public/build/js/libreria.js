@@ -266,3 +266,20 @@ function abrirActualizar(html) {
 
     })
 }
+
+
+function sliderCard(slider) {
+    // sliderss
+    var gliderCard = new Glider(document.querySelector(slider), {
+        slidesToShow: 1, // empieza como modo celular . muestra el tamaño de la imagen
+        slidesToScroll: 1, // cuando le das siguiente los pasos que va dar
+        draggable: false, // arrastable
+        dots: '.carousel__indicadores',  // indicador de abajo
+        arrows: {
+            prev: '.wallpaper-next',  //boton anterior
+            next: '.wallpaper-previous' //boton siguiente
+        }
+    });
+
+
+}

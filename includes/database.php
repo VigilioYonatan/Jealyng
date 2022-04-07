@@ -10,4 +10,4 @@ if (!$cnx) {
     echo "<script>alert('Error en la base de datos')</script>";
 }
 
-$cnx->query("SET NAMES 'utf8'");
+mysqli_query($cnx, "SET NAMES 'utf8'");

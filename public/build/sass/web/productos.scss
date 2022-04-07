@@ -3,6 +3,8 @@
 .products {
     display: flex;
     padding: 2rem 0;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .category {
@@ -145,6 +147,13 @@
         align-items: center;
     }
 
+    &-container4 {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
     &-container2 {
         position: relative;
         display: flex;
@@ -183,7 +192,17 @@
             width: 100%;
             max-height: 30.75rem;
             object-fit: cover;
-            margin-right: 5rem;
+            // margin-right: 5rem;
+        }
+
+        &__elm {
+            margin: 0 3rem;
+        }
+
+        &__list {}
+
+        &__elm {
+            position: relative;
         }
 
 
@@ -632,6 +651,7 @@
         display: flex;
 
         & .paginador-list {
+
             margin: 0rem .2rem;
             list-style: none;
             background-color: var.$color-primary;

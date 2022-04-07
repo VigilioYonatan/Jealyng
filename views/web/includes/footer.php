@@ -63,3 +63,4 @@
 <!-- FIN FOOTER -->
 <script src="./build/js/libreria.js"></script>
 <script src="./build/js/web/header.js"></script>
+<script src="./build/js/web/shop/carrito.js"></script>

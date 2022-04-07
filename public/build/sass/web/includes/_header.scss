@@ -72,10 +72,11 @@
     }
 
     &-search {
+        position: relative;
         display: flex;
         align-items: center;
         width: 500px;
-        background-color: white;
+        background-color: var.$color-secondary;
         padding: .3rem 0rem .3rem .5rem;
         border-radius: .3rem;
         margin: 0rem 2rem;
@@ -97,6 +98,7 @@
 
         &__inp {
             @include lib.inputNone;
+            color: var.$color-fonts-primary;
             width: 100%;
 
             @include var.tablet {
@@ -109,6 +111,7 @@
             padding: 0rem 1rem;
             border-left: 1px solid rgb(59, 58, 58);
             cursor: pointer;
+            fill: var.$color-terciary;
 
             @include var.tablet {
                 padding: 0;
@@ -116,6 +119,101 @@
                 fill: #fff;
             }
         }
+
+        &__buscador {
+            width: 100%;
+            position: absolute;
+            top: 1.9rem;
+            left: 0;
+            background-color: var.$color-secondary;
+            padding-bottom: 1rem;
+            border-radius: 0px 0px .5rem .5rem;
+            display: none;
+            box-shadow: 1px 3px 0px rgba(0, 0, 0, 0.367);
+        }
+
+        &__tipo {
+            display: flex;
+            flex-direction: column;
+
+
+
+        }
+
+        &__type {
+            width: 100%;
+            display: flex;
+
+
+            & b {
+                width: 10%;
+                display: flex;
+                justify-content: center;
+                color: var.$color-fonts-primary;
+
+                &:nth-child(2) {
+                    width: 50%;
+                }
+
+                &:nth-child(3) {
+                    width: 15%;
+                }
+
+                &:nth-child(4) {
+                    width: 25%;
+                }
+            }
+        }
+
+        &__pro {
+            width: 100%;
+            display: flex;
+            text-decoration: none;
+            color: var.$color-fonts-primary;
+            align-items: center;
+
+            @include var.hover {
+                &:hover {
+                    color: var.$color-fonts-terciary;
+                    background-color: var.$color-terciary;
+
+                }
+            }
+
+
+            & span {
+                width: 10%;
+                text-align: center;
+                line-height: 3.5rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                &:nth-child(2) {
+                    width: 50%;
+                }
+
+                &:nth-child(4) {
+                    width: 25%;
+                }
+
+            }
+
+            & img {
+                width: 15%;
+                height: 3rem;
+                object-fit: cover;
+            }
+
+
+        }
+
+        &__no {
+            text-align: center;
+            padding: 2rem 0;
+            color: var.$color-fonts-primary;
+        }
+
 
     }
 
@@ -301,8 +399,18 @@
 
 
         &__cart {
+            position: relative;
             fill: white;
             margin: 0rem 2rem;
+            text-decoration: none;
+
+            & b {
+                position: absolute;
+                top: .5rem;
+                left: .35rem;
+                color: black;
+                font-size: .9rem;
+            }
         }
     }
 }
@@ -330,26 +438,37 @@
         justify-content: center;
         padding: 2rem 4rem;
         background-color: var.$color-secondary;
+        flex-wrap: wrap;
+
+        @include var.mini-tablet {
+            padding: 2rem 1rem;
+            justify-content: baseline;
+        }
     }
 
     &-categorias {
-        width: 30%;
+        // width: 10%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        flex-wrap: wrap;
-        margin: 0 .5rem;
+
+        margin: 0 1rem 2rem;
+
+        @include var.mini-tablet {
+            align-items: baseline;
+        }
 
         &__title {
             font-family: var.$f_medium;
-            margin: .3rem 0;
+            margin-bottom: .3rem;
             color: var.$color-primary;
+            text-decoration: none;
         }
 
         &__list {
             list-style: none;
             display: flex;
-            margin: .1rem 0;
+            margin-bottom: .2rem;
         }
 
         &__link {

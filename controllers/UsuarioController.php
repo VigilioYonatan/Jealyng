@@ -84,7 +84,7 @@ class UsuarioController
 
     public static function recuperarCuenta(Router $router)
     {
-        $token = htmlGet($_GET['token']) ?? null;
+        $token = htmlGet($_GET['token']);
         if (!$token) header('Location: /');
         $resultado = UsuarioModel::where('token_user', $token);
 
@@ -141,7 +141,7 @@ class UsuarioController
     public static function confirmarCuenta(Router $router)
     {
         //existe token o null
-        $token = $_GET['token'] ?? null;
+        $token = htmlGet($_GET['token']);
         //si no existe directo al inicio
         if (!$token) {
             header('Location: /');
@@ -232,8 +232,8 @@ class UsuarioController
             $imagen = $_FILES['imagen_user'];
             $usuario->crearNombreImagen($imagen);
 
-            $imgRender = new RenderizarImagenClass($imagen['tmp_name']);
-            $imgRender->renderizar('usuarios', $usuario->imagen_user,'0.5');
+            $imgRender = new RenderizarImagenClass($imagen);
+            $imgRender->renderizar('usuarios', $usuario->imagen_user, '0.5');
             $usuario->guardar();
 
             echo json_encode(["imagen" => $usuario->imagen_user]);
@@ -254,8 +254,8 @@ class UsuarioController
             $imagen = $_FILES['wallpaper_user'];
             $usuario->crearNombrePortada($imagen);
 
-            $imgRender = new RenderizarImagenClass($imagen['tmp_name']);
-            $imgRender->renderizar('usuarios', $usuario->wallpaper_user,'0.5');
+            $imgRender = new RenderizarImagenClass($imagen);
+            $imgRender->renderizar('usuarios', $usuario->wallpaper_user, '0.8');
             $usuario->guardar();
 
             echo json_encode(["portada" => $usuario->wallpaper_user]);

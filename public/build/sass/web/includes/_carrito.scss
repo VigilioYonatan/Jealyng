@@ -1,0 +1,115 @@
+@use '../../template/variables'as var;
+
+/* carrito float  */
+.cart-float {
+    position: relative;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    z-index: 50;
+    background-color: var.$color-secondary;
+    padding: 1rem 4rem;
+    transition: transform .5s;
+    transform: translateX(27rem);
+    box-shadow: 0px 0px 1px var.$color-terciary;
+}
+
+.cart-float__title {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var.$color-fonts-primary;
+}
+
+.cart-info {
+    display: flex;
+    align-items: center;
+
+}
+
+.cards-cards {}
+
+.cart-info__info {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+
+}
+
+.cart-info__img {
+    width: 120px;
+}
+
+.cart-info__qty {
+    /* align-self: center; */
+    display: flex;
+    align-items: center;
+}
+
+.cart-info__spn {}
+
+.cart-info__btn {
+    background-color: var(--color-principal);
+    border: none;
+    padding: .2rem .7rem;
+    font-size: 1.5rem;
+    margin: 0em .3em;
+    cursor: pointer;
+}
+
+.cart-total {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin-bottom: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0 1rem;
+
+    & .cart-info__empty {
+        display: block;
+        padding: 0rem 5rem;
+        margin-top: 2rem;
+    }
+
+    &__link {
+        background-color: rgb(156, 22, 22);
+        padding: .5em 0rem;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1rem;
+        margin: .1em 0;
+
+
+    }
+
+    &__link--pay {
+        background-color: var.$color-primary;
+        color: var(--color-terciary);
+        color: #fff;
+    }
+
+
+    &__total {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    & button {
+        background-color: var.$color-error;
+        padding: .5em 0;
+        color: #fff;
+        border: none;
+        margin: .5rem 0;
+    }
+}
+
+.showCart {
+    transition: transform .5s;
+    transform: translateX(0rem);
+}

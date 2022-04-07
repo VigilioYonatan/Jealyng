@@ -65,8 +65,8 @@ class ProductosModel extends ActiveRecord
         INNER JOIN categoria cat on pro.id_categoria = cat.id_categoria
         INNER JOIN subcategoria sub on pro.id_subcategoria = sub.id_subcat
         INNER JOIN marca on pro.id_marca = marca.id_marca
-        INNER JOIN descuento ON pro.id_descuento = descuento.id_descuento
-        INNER JOIN estadoproducto on pro.id_estado = estadoproducto.id_estadoPro WHERE pro.nombre_prod LIKE'%$nombre%'");
+        INNER JOIN descuento de ON pro.id_descuento = de.id_descuento
+        INNER JOIN estadoproducto on pro.id_estado = estadoproducto.id_estadoPro WHERE pro.nombre_prod LIKE'%$nombre%' ");
         $producto = [];
 
         while ($row = $query->fetch_assoc()) {
@@ -77,13 +77,21 @@ class ProductosModel extends ActiveRecord
     }
 
     // tienda
-    public function tiendaSubcategoria($nombre)
+    public function tiendaSubcategoria($sub, $cat, $desde, $porPagina, $condicion, $descuento)
+
     {
         $query = self::$db->query("SELECT * FROM productos
+        INNER JOIN categoria cat on productos.id_categoria = cat.id_categoria
          INNER JOIN subcategoria on productos.id_subcategoria = subcategoria.id_subcat
-          INNER JOIN descuento on productos.id_descuento = descuento.id_descuento
-           WHERE subcategoria.nombre_subcat = '$nombre'");
+         INNER JOIN estadoproducto est on productos.id_estado = est.id_estadoPro
+          INNER JOIN descuento de on productos.id_descuento = de.id_descuento
+           WHERE  cat.nombre_categoria =  '$cat' AND subcategoria.nombre_subcat LIKE '%$sub%'
+             AND est.nombre_estadoPro LIKE '%$condicion%' AND de.nombre_descuento LIKE '%$descuento%' LIMIT $desde, $porPagina");
 
+
+        // if ($query->num_rows < 1) {
+        //     header('Location: /');
+        // }
         $tiendaSub = [];
 
         while ($row = $query->fetch_assoc()) {
@@ -108,5 +116,34 @@ class ProductosModel extends ActiveRecord
 
 
         return  $row;
+    }
+    // paginador 
+
+    public function paginador($sub, $cat, $condicion, $descuento)
+    {
+        $query = self::$db->query("SELECT COUNT(*) AS total FROM productos
+         INNER JOIN categoria cat on productos.id_categoria = cat.id_categoria
+        INNER JOIN estadoproducto est on productos.id_estado = est.id_estadoPro 
+        INNER JOIN subcategoria on productos.id_subcategoria = subcategoria.id_subcat
+        INNER JOIN descuento de on productos.id_descuento = de.id_descuento
+        WHERE  cat.nombre_categoria =  '$cat' AND subcategoria.nombre_subcat LIKE '%$sub%'  
+        AND est.nombre_estadoPro LIKE '%$condicion%' AND de.nombre_descuento LIKE '%$descuento%' ");
+        $resultado = $query->fetch_assoc();
+        return $resultado['total'];
+    }
+
+    public function nombreProducto($nombre)
+    {
+        $query = self::$db->query("SELECT pro.id_prod, pro.nombre_prod, pro.descripcion_prod, pro.precio_prod, pro.imagen_prod,pro.imagen2_prod,pro.stock_prod, pro.id_categoria,pro.id_subcategoria,pro.id_marca, pro.id_descuento, pro.id_estado,  nombre_categoria, nombre_subcat,nombre_marca,nombre_descuento,nombre_estadoPro FROM productos pro 
+        INNER JOIN categoria cat on pro.id_categoria = cat.id_categoria
+        INNER JOIN subcategoria sub on pro.id_subcategoria = sub.id_subcat
+        INNER JOIN marca on pro.id_marca = marca.id_marca
+        INNER JOIN descuento ON pro.id_descuento = descuento.id_descuento
+        INNER JOIN estadoproducto on pro.id_estado = estadoproducto.id_estadoPro WHERE pro.nombre_prod LIKE '%$nombre%' LIMIT 1");
+
+
+        $rowProducto = $query->fetch_assoc();
+
+        return   $rowProducto;
     }
 }

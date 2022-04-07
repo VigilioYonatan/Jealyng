@@ -6,64 +6,65 @@
     <!-- categorias  -->
     <div class="category">
         <div class="filtros" id="filtros">
-            <h3 class="filtros__title">Filter By</h3>
+            <span class="filtros__title"><?= !isset($get) ? $category : $get;  ?><b>(filtros)</b></span>
             <div class="filtro-section">
-                <span class="filtro-section__title">Collection</span>
-                <svg viewBox="0 0 16 16" class="ico-colleccion">
-                    <path fill="currentColor"
-                        d="M12.159 7.2h-8.319c-0.442 0-0.48 0.358-0.48 0.8s0.038 0.8 0.48 0.8h8.319c0.442 0 0.481-0.358 0.481-0.8s-0.038-0.8-0.481-0.8z">
-                    </path>
-                </svg>
+                <span class="filtro-section__title">Condición</span>
                 <div class="listados">
-                    <span class="listados__category">All</span>
-                    <span class="listados__category">Ropas</span>
-                    <span class="listados__category">Zapatillas</span>
-                    <span class="listados__category">Calzados</span>
-                    <span class="listados__category">Ropas</span>
-                    <span class="listados__category">Zapatillas</span>
-                    <span class="listados__category">Calzados</span>
+                    <a class="listados__category" href="/tienda?categoria=<?= $category;  ?>">Todos</a>
+                    <?php foreach (selectSql('estadoproducto') as $est) : ?>
+                    <a href=" /tienda?categoria=<?= $category;  ?>&producto=<?= $get;  ?>&condicion=<?= $est['nombre_estadoPro'];  ?>"
+                        class="listados__category"><?= $est['nombre_estadoPro']; ?></a>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <div class="filtro-section">
-                <span class="filtro-section__title">Price</span>
-                <div class="filter-category filter-category-range">
-                    <input class="filter-category__range" type="range" min="0" max="100" value="20">
-                    <div class="filter-category__value"></div>
-                </div>
-            </div>
-            <div class="filtro-section">
-                <span class="filtro-section__title">Collection</span>
-                <svg viewBox="0 0 16 16" class="ico-colleccion">
-                    <path fill="currentColor"
-                        d="M12.159 7.2h-8.319c-0.442 0-0.48 0.358-0.48 0.8s0.038 0.8 0.48 0.8h8.319c0.442 0 0.481-0.358 0.481-0.8s-0.038-0.8-0.481-0.8z">
-                    </path>
-                </svg>
+                <span class="filtro-section__title">Precio</span>
                 <div class="listados">
-                    <span class="listados__category">All</span>
-                    <span class="listados__category">Ropas</span>
-                    <span class="listados__category">Zapatillas</span>
-                    <span class="listados__category">Calzados</span>
-                    <span class="listados__category">Ropas</span>
-                    <span class="listados__category">Zapatillas</span>
-                    <span class="listados__category">Calzados</span>
+                    <a href="" class="listados__category">Hasta S/.30</a>
+                    <a href="" class="listados__category">Hasta S/.30</a>
+                    <a href="" class="listados__category">Hasta S/.30</a>
                 </div>
             </div>
+            <div class="filtro-section">
+                <span class="filtro-section__title">Descuentos</span>
+                <div class="listados">
+                    <?php foreach (filtroDescuento($category, $get) as $descuento) : ?>
+                    <a href="/tienda?categoria=<?= $category; ?>&producto=<?= $get; ?>&descuento=<?= $descuento['nombre_descuento'] ?>"
+                        class="listados__category">
+                        <?= $descuento['nombre_descuento'] > 0.0 ? "Desde " . $descuento['nombre_descuento'] * 100 . "%"  : '' ?></a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="filtro-section">
+                <span class="filtro-section__title">Otras Sub-Categorias</span>
+                <div class="listados">
+                    <?php foreach (filtroSubcategorias($category) as $subcate) : ?>
+                    <?php if ($subcate['nombre_subcat'] != $get) : ?>
+                    <a href="/tienda?categoria=<?= $category ?>&producto=<?= $subcate['nombre_subcat'] ?>"
+                        class="listados__category"><?= $subcate['nombre_subcat'] ?></a>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
         </div>
     </div>
     <!-- fin categorias  -->
     <!-- cards -->
     <div class="contenido-card">
-        <h3 class="contenido-card__title"><?= $get ?></h3>
+        <h3 class="contenido-card__title"><?= $category;  ?><?= !empty($get) ? "($get)" : ''; ?><span
+                class="contenido-card__subtitle">(<?= $total; ?>
+                resultados)</span></h3>
         <div class="pro-cards" class="cards" id="cards">
 
             <?php if (!empty($subCat)) :
                 foreach ($subCat as $subCat => $key) : ?>
             <div class="best-card" data-id="<?= $key['id_prod'] ?>">
                 <picture class="best-card__img">
-                    <img class="best-card__image" src="./build/img/productos/<?= $key['imagen_prod'] ?>" alt="">
+                    <img class="best-card__image2" src="./build/img/productos/<?= $key['imagen_prod'] ?>" alt="">
                     <?php if ($key['nombre_descuento'] > 0) : ?>
                     <span class="best-card__best">
-                        %<?= $key['nombre_descuento'] * 100 ?> descuento</span>
+                        - %<?= $key['nombre_descuento'] * 100 ?></span>
                     <?php endif; ?>
                     <div class="best-card__img2">
                         <img class="best-card__image" src="./build/img/productos/<?= $key['imagen2_prod'] ?>" alt="">
@@ -72,9 +73,9 @@
                 </picture>
                 <div class="best-card-info">
                     <span class="best-card-info__title"><?= $key['nombre_prod'] ?></span>
-                    <span class="best-card-info__price">Antes: S/. <?= $key['precio_prod'] ?></span>
+                    <span class="best-card-info__price">Antes: S/. <?= number_format($key['precio_prod'], 2) ?></span>
                     <span class="best-card-info__desc">Ahora: S/.
-                        <?= $key['precio_prod'] - ($key['precio_prod'] * $key['nombre_descuento']) ?></span>
+                        <?= number_format($key['precio_prod'] - ($key['precio_prod'] * $key['nombre_descuento']), 2) ?></span>
                 </div>
             </div>
             <?php endforeach; ?>
@@ -82,7 +83,51 @@
             <span>No hay productos por ahora :c</span>
             <?php endif; ?>
         </div>
-
+        <div class="paginador">
+            <ul>
+                <?php if ($pagina != 1) : ?>
+                <li class="paginador-list"><a
+                        href="/tienda?categoria=<?= $category; ?>&producto=<?= $get; ?><?php echo isset($_GET['condicion']) ? "&condicion=$_GET[condicion]" : null; ?><?php echo isset($_GET['descuento']) ? "&descuento=$_GET[descuento]" : null; ?>&pagina=<?= 1; ?>">
+                        <svg width='10px' viewBox="0 0 448 512">
+                            <path
+                                d="M77.25 256l137.4-137.4c12.5-12.5 12.5-32.75 0-45.25s-32.75-12.5-45.25 0l-160 160c-12.5 12.5-12.5 32.75 0 45.25l160 160C175.6 444.9 183.8 448 192 448s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25L77.25 256zM269.3 256l137.4-137.4c12.5-12.5 12.5-32.75 0-45.25s-32.75-12.5-45.25 0l-160 160c-12.5 12.5-12.5 32.75 0 45.25l160 160C367.6 444.9 375.8 448 384 448s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 0-45.25L269.3 256z" />
+                        </svg>
+                    </a></li>
+                <li class="paginador-list"><a
+                        href="/tienda?categoria=<?= $category; ?>&producto=<?= $get; ?><?php echo isset($_GET['condicion']) ? "&condicion=$_GET[condicion]" : null; ?><?php echo isset($_GET['condicion']) ? "&condicion=$_GET[condicion]" : null; ?><?php echo isset($_GET['descuento']) ? "&descuento=$_GET[descuento]" : null; ?>&pagina=<?= $pagina - 1; ?>">
+                        <svg width='10px' viewBox="0 0 448 512">
+                            <path
+                                d="M77.25 256l137.4-137.4c12.5-12.5 12.5-32.75 0-45.25s-32.75-12.5-45.25 0l-160 160c-12.5 12.5-12.5 32.75 0 45.25l160 160C175.6 444.9 183.8 448 192 448s16.38-3.125 22.62-9.375c12.5-12.5 12.5-32.75 " />
+                        </svg>
+                    </a></li>
+                <?php endif; ?>
+                <?php for ($i = 1; $i <= $pagina; $i++) : ?>
+                <?php if ($i == $pagina) : ?>
+                <li class="paginador-list selected"><?= $i ?></li>
+                <?php else : ?>
+                <li class="paginador-list"><a
+                        href=" /tienda?categoria=<?= $category; ?>&producto=<?= $get; ?><?php echo isset($_GET['condicion']) ? "&condicion=$_GET[condicion]" : null; ?><?php echo isset($_GET['condicion']) ? "&condicion=$_GET[condicion]" : null; ?><?php echo isset($_GET['descuento']) ? "&descuento=$_GET[descuento]" : null; ?>&pagina=<?= $i; ?>"><?= $i ?></a>
+                </li>
+                <?php endif; ?>
+                <?php endfor; ?>
+                <?php if ($pagina != $totalPaginas && $totalPaginas > 1) : ?>
+                <li class="paginador-list"><a
+                        href="/tienda?categoria=<?= $category; ?>&producto=<?= $get; ?><?php echo isset($_GET['condicion']) ? "&condicion=$_GET[condicion]" : null; ?><?php echo isset($_GET['condicion']) ? "&condicion=$_GET[condicion]" : null; ?><?php echo isset($_GET['descuento']) ? "&descuento=$_GET[descuento]" : null; ?>&pagina=<?= $pagina + 1; ?>">
+                        <svg width='10px' viewBox="0 0 448 512">
+                            <path
+                                d="M246.6 233.4l-160-160c-12.5-12.5-32.75-12.5-45.25 0s-12.5 32.75 0 45.25L178.8 256l-137.4 137.4c-12.5 12.5-12.5 32.75 0 45.25C47.63 444.9 55.81 448 64 448s16.38-3.125 22.62-9.375l160-160C259.1 266.1 259.1 245.9">
+                        </svg>
+                    </a></li>
+                <li class="paginador-list"><a
+                        href=" /tienda?categoria=<?= $category; ?>&producto=<?= $get; ?><?php echo isset($_GET['condicion']) ? "&condicion=$_GET[condicion]" : null; ?><?php echo isset($_GET['condicion']) ? "&condicion=$_GET[condicion]" : null; ?><?php echo isset($_GET['descuento']) ? "&descuento=$_GET[descuento]" : null; ?>&pagina=<?= $totalPaginas; ?>">
+                        <svg width='10px' viewBox="0 0 448 512">
+                            <path
+                                d="M246.6 233.4l-160-160c-12.5-12.5-32.75-12.5-45.25 0s-12.5 32.75 0 45.25L178.8 256l-137.4 137.4c-12.5 12.5-12.5 32.75 0 45.25C47.63 444.9 55.81 448 64 448s16.38-3.125 22.62-9.375l160-160C259.1 266.1 259.1 245.9 246.6 233.4zM438.6 233.4l-160-160c-12.5-12.5-32.75-12.5-45.25 0s-12.5 32.75 0 45.25L370.8 256l-137.4 137.4c-12.5 12.5-12.5 32.75 0 45.25C239.6 444.9 247.8 448 256 448s16.38-3.125 22.62-9.375l160-160C451.1 266.1 451.1 245.9 438.6 233.4z" />
+                        </svg>
+                    </a></li>
+                <?php endif; ?>
+            </ul>
+        </div>
     </div>
 
     </div>
@@ -90,6 +135,6 @@
 </section>
 <!-- fin productos  -->
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
-<script src="./build/js/web/slider/slider.js"></script>
+<script src=" ./build/js/web/slider/slider.js"></script>
 <script src="./build/js/web/shop/price.js"></script>
 <script src="./build/js/web/shop/card.js"></script>

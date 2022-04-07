@@ -16,13 +16,25 @@
 
         </div>
         <div class="header-search">
-            <input class="header-search__inp" type="text" placeholder="Buscar productos">
+            <input class="header-search__inp" type="text" id="buscador" placeholder="Buscar productos">
             <a class="header-search__ico" ref="#">
                 <svg width='20px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path
                         d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" />
                 </svg>
             </a>
+            <div class="header-search__buscador">
+                <div href="/producto?nombre=" class="header-search__tipo" id="contendorBuscador">
+                    <div class="header-search__type">
+                        <b>ID</b>
+                        <b>Nombre</b>
+                        <b>Imagen</b>
+                        <b>Precio</b>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
         <div class="header-info">
             <a href="/login" class="header-info__login" id="mode">
@@ -43,14 +55,20 @@
                 <?php if (empty($usuario['imagen_user'])) : ?>
                 <span><?= $usuario['nombre_user'][0] ?></span>
                 <?php else : ?>
-                <img class="header-info-perfil__img" src="./build/img/usuarios/<?= $usuario['imagen_user'] ?>" alt="">
+                <img class="header-info-perfil__img" src="./build/img/usuarios/<?= $usuario['imagen_user'] ?>"
+                    alt="<?= $usuario['nombre_user'] ?>">
                 <?php endif; ?>
             </a>
             <div class="header-info-user" id="perfilInfo">
+                <!-- wallpaper  -->
+                <img class="header-info-perfil__wallpaper" src="./build/img/usuarios/<?= $usuario['wallpaper_user'] ?>"
+                    alt="">
+                <!-- perfil foto  -->
                 <?php if (empty($usuario['imagen_user'])) : ?>
                 <span class="header-info-user__perfil"><?= $usuario['nombre_user'][0] ?></span>
                 <?php else : ?>
-                <img class=" header-info-perfil__img" src="./build/img/usuarios/<?= $usuario['imagen_user'] ?>" alt="">
+                <img class=" header-info-perfil__img2" src="./build/img/usuarios/<?= $usuario['imagen_user'] ?>"
+                    alt="<?= $usuario['nombre_user'] ?>">
                 <?php endif; ?>
                 <span class="header-info-user__title">Hola <b><?= $usuario['nombre_user'] ?></b></span>
                 <div class="header-info-user__section">
@@ -71,13 +89,51 @@
                 <span class="header-info__title">Login</span>
             </a>
             <?php endif; ?>
-            <a href="" class="header-info__cart">
+            <a href="" id="btn-carrito" class="header-info__cart">
                 <svg class="header-info__ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                     <path
                         d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z" />
+
                 </svg>
+                <b>0</b>
             </a>
+            <div class="cart-float" id="carrito">
+                <span class="cart-float__title">Mi Carrito <b></b></span>
+                <div class="cart-cards">
+                    <!-- <?php
+                    //if (!empty($_SESSION['carrito'])) :
+                        //foreach ($_SESSION['carrito'] as $carrito) : ?>
+                    <picture class="cart-info" data-id="< //$carrito['id_producto'] ?>">
+                        <img class="cart-info__img" src="./productos/ // $carrito['imagen'] ?> " alt="">
+                        <div class="cart-info__info">
+                            <span class="cart-info__spn">Nombre: <b> //$carrito['nombre'] ?></b></span>
+                            <span class="cart-info__spn">precio: <b> //$carrito['precio'] ?></b></span>
+                            <div class="cart-info__qty">
+                                <span class="cart-info__spn">cantidad: </span>
+                                <button class="cart-info__btn" data-action="añadir">+</button>
+                                <b> // $carrito['cantidad'] ?></b>
+                                <button class="cart-info__btn" data-action="quitar">-</button>
+                            </div>
+                        </div> -->
+                    </picture>
+                    <?php //endforeach; ?>
+                    <?php //else : ?>
+                    <span class="cart-info__empty">Está vacio</span>
+                    <?php //endif; ?>
+
+                </div>
+                <div class="cart-total">
+                    <span class="cart-total__total">Total: $<b>1000</b></span>
+                    <a class="mostrar-card__masinfo" href="#">Más informacion</a>
+                    <a class="cart-total__link cart-total__link--pay" href="#">Pagar</a>
+                    <button id="btnCloseCart">Cerrar</button>
+
+
+
+                </div>
+            </div>
         </div>
+
 
     </div>
 
@@ -93,7 +149,7 @@
 
             <?php foreach ($subcategoria as $sub) : ?>
             <li class="navbar-categorias__list"><a class="navbar-categorias__link"
-                    href="/tienda?producto=<?= $sub['nombre_subcat'] ?>"><?= $sub['nombre_subcat'] ?></a>
+                    href="/tienda?categoria=<?= $cat['nombre_categoria'] ?>&producto=<?= $sub['nombre_subcat'] ?>"><?= $sub['nombre_subcat'] ?></a>
             </li>
             <?php endforeach; ?>
         </ul>
