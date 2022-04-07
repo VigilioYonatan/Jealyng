@@ -63,3 +63,39 @@ function selectSqlBYid($id)
 
     return $row;
 }
+
+
+//fitro descuento
+function filtroDescuento($categoria, $subcat)
+{
+    global $cnx;
+
+    $query = $cnx->query("SELECT DISTINCT descuento.nombre_descuento FROM productos
+                        INNER JOIN categoria cat on productos.id_categoria = cat.id_categoria
+                        INNER JOIN subcategoria on productos.id_subcategoria =subcategoria.id_subcat
+                        INNER JOIN descuento on productos.id_descuento = descuento.id_descuento
+                        WHERE productos.id_descuento = descuento.id_descuento AND cat.nombre_categoria = '$categoria' AND  subcategoria.nombre_subcat LIKE '%$subcat%' ORDER BY descuento.nombre_descuento ASC");
+
+    $descuentos = [];
+
+    while ($row = $query->fetch_assoc()) :
+        array_push($descuentos, $row);
+    endwhile;
+
+    return $descuentos;
+}
+//fitro subcategorias
+function filtroSubcategorias($cat)
+{
+    global $cnx;
+
+    $query = $cnx->query("SELECT sub.nombre_subcat FROM subcategoria sub INNER JOIN categoria cat on sub.id_categoria = cat.id_categoria WHERE cat.nombre_categoria = '$cat'");
+
+    $subcat = [];
+
+    while ($row = $query->fetch_assoc()) :
+        array_push($subcat, $row);
+    endwhile;
+
+    return $subcat;
+}

@@ -191,7 +191,7 @@ class ActiveRecord
 
     public static function buscador($columna, $buscar)
     {
-        $query = "SELECT * FROM " . static::$tabla . " WHERE  $columna LIKE '%$buscar%'";
+        $query = "SELECT * FROM " . static::$tabla . " WHERE  $columna LIKE '%$buscar%' LIMIT 5";
         $resultado = self::consultarSQL($query);
         return $resultado;
     }

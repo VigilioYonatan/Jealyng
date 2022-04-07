@@ -34,9 +34,9 @@ class ProductosController
             $producto->crearNombreImagen($imagen);
             $producto->crearNombreImagen2($imagen2);
 
-            $imagen = new RenderizarImagenClass($imagen['tmp_name']);
+            $imagen = new RenderizarImagenClass($imagen);
             $imagen->renderizar('productos', $producto->imagen_prod, '0.9');
-            $imagen = new RenderizarImagenClass($imagen2['tmp_name']);
+            $imagen = new RenderizarImagenClass($imagen2);
             $imagen->renderizar('productos', $producto->imagen2_prod, '0.9');
             $resultado = $producto->guardar();
             $productoInfo = $producto->getAllInfo();
@@ -59,7 +59,7 @@ class ProductosController
 
                 $resultado->crearCarpeta();
                 $producto->crearNombreImagen($imagen);
-                $imagen = new RenderizarImagenClass($imagen['tmp_name']);
+                $imagen = new RenderizarImagenClass($imagen);
                 $imagen->renderizar('productos', $producto->imagen_prod, '0.9');
                 $resultado = $producto->guardar();
             } else {
@@ -104,15 +104,51 @@ class ProductosController
 
     public static  function tienda(Router $router)
     {
-        $productoGet = $_GET['producto'];
+        session_start();
+        $productoGet = htmlGet($_GET['producto'] ?? '');
+        $categoriaGet = htmlGet($_GET['categoria']);
+        if (!$categoriaGet) header('Location: /');
+        if (!$productoGet && !$categoriaGet) header('Location: /');
 
-        if (!$productoGet) header('Location: /');
+        $condicion = $_GET['condicion'] ?? ''; // condicion
+        $descuento = $_GET['descuento'] ?? ''; // condicion
+
+        // paginador 
         $productos = new ProductosModel;
-        $sub = $productos->tiendaSubcategoria($productoGet);
+        $total = $productos->paginador($productoGet, $categoriaGet, $condicion, $descuento);
+        $porPagina = 32;
+
+        if (empty($_GET['pagina'])) {
+            $pagina = 1;
+        } else {
+            $pagina = $_GET['pagina'];
+        }
+        $desde = ($pagina - 1) * $porPagina;
+        $totalPaginas = ceil($total / $porPagina);
+
+
+        $sub = $productos->tiendaSubcategoria($productoGet, $categoriaGet, $desde, $porPagina, $condicion, $descuento);
         // if (!$sub) header('Location: /');
         $router->render('web/tienda', [
             "subCat" => $sub,
-            "get" => $productoGet
+            "category" => $categoriaGet,
+            "get" => $productoGet,
+            "pagina" => $pagina,
+            "totalPaginas" => $totalPaginas,
+            "total" => $total
+        ]);
+    }
+
+    public static function producto(Router $router)
+    {
+        $nombre = $_GET['nombre'];
+        $newNombre = explode('-', $nombre);
+        $nombreProducto = implode(' ', $newNombre);
+
+        $producto = new ProductosModel;
+        $row = $producto->nombreProducto($nombreProducto);
+        $router->render('web/producto', [
+            "producto" =>  $row
         ]);
     }
 
@@ -123,6 +159,15 @@ class ProductosController
         $productos = new ProductosModel;
 
         $producto = $productos->productoId($id);
+        echo json_encode(["producto" => $producto]);
+    }
+
+    public static function apiBuscadorNombreProducto()
+    {
+        $nombre = htmlGet($_GET['nombre']);
+        $productos = new ProductosModel;
+
+        $producto = $productos->buscador('nombre_prod', $nombre);
         echo json_encode(["producto" => $producto]);
     }
 }

@@ -279,6 +279,20 @@
             border-radius: 0px 0px 5px 1px;
         }
 
+        &__best2 {
+            display: block;
+            position: absolute;
+            top: 0rem;
+            left: .5rem;
+            background-color: var.$color-error; // color
+            padding: .5rem 1rem;
+            color: #fff; //color
+            font-size: .9rem;
+            z-index: 40;
+            font-family: var.$f_light;
+            border-radius: 0px 0px 5px 1px;
+        }
+
         &__img2 {
 
             position: relative;

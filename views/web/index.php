@@ -157,9 +157,10 @@
 <section class="best">
     <h3 class="best__title">Bestsellers</h3>
     <div class="best-cards">
+        <?php for ($i = 0; $i < 4; $i++) : ?>
         <div class="best-card">
             <picture class="best-card__img">
-                <img class="best-card__image" src="./build/img/pro11.webp" alt="">
+                <img class="best-card__image2" src="./build/img/pro11.webp" alt="">
                 <span class="best-card__best">Bestseller</span>
                 <div class="best-card__img2">
                     <img class="best-card__image" src="./build/img/pro1.webp" alt="">
@@ -171,48 +172,7 @@
                 <span class="best-card-info__price">$85.00</span>
             </div>
         </div>
-        <div class="best-card">
-            <picture class="best-card__img">
-                <img class="best-card__image" src="./build/img/pro11.webp" alt="">
-                <span class="best-card__best">Bestseller</span>
-                <div class="best-card__img2">
-                    <img class="best-card__image" src="./build/img/pro1.webp" alt="">
-                    <span class="best-card__view">Quick View</span>
-                </div>
-            </picture>
-            <div class="best-card-info">
-                <span class="best-card-info__title">Im a product</span>
-                <span class="best-card-info__price">$85.00</span>
-            </div>
-        </div>
-        <div class="best-card">
-            <picture class="best-card__img">
-                <img class="best-card__image" src="./build/img/pro11.webp" alt="">
-                <span class="best-card__best">Bestseller</span>
-                <div class="best-card__img2">
-                    <img class="best-card__image" src="./build/img/pro1.webp" alt="">
-                    <span class="best-card__view">Quick View</span>
-                </div>
-            </picture>
-            <div class="best-card-info">
-                <span class="best-card-info__title">Im a product</span>
-                <span class="best-card-info__price">$85.00</span>
-            </div>
-        </div>
-        <div class="best-card">
-            <picture class="best-card__img">
-                <img class="best-card__image" src="./build/img/pro11.webp" alt="">
-                <span class="best-card__best">Bestseller</span>
-                <div class="best-card__img2">
-                    <img class="best-card__image" src="./build/img/pro1.webp" alt="">
-                    <span class="best-card__view">Quick View</span>
-                </div>
-            </picture>
-            <div class="best-card-info">
-                <span class="best-card-info__title">Im a product</span>
-                <span class="best-card-info__price">$85.00</span>
-            </div>
-        </div>
+        <?php endfor; ?>
     </div>
 </section>
 <!-- fin best cards  -->

@@ -10,7 +10,7 @@ function debugear($var)
 
 // para limpiar los metodos get
 
-function htmlGet($var)
+function htmlGet($var): string
 {
     $resultado = htmlspecialchars($var);
     return $resultado;
