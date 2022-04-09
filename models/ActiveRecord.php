@@ -136,6 +136,14 @@ class ActiveRecord
 
         return $resultado;
     }
+    // Busca registros por  
+    public static function whereAllLimit($limit)
+    {
+        $query = "SELECT * FROM " . static::$tabla  . " ORDER BY " . static::$idTabla . " DESC  LIMIT $limit";
+        $resultado = self::consultarSQL($query);
+
+        return $resultado;
+    }
 
     // crea un nuevo registro
     public function crear()
@@ -195,6 +203,24 @@ class ActiveRecord
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
+
+    // cuenta las columnas
+    public static function contar()
+    {
+        $query = self::$db->query("SELECT count(*) as total FROM " . static::$tabla . "");
+        $row = $query->fetch_assoc();
+        return array_shift($row);
+    }
+
+    //traer elementos buscador por pagina
+    public static function buscadorPage($desde, $porPagina)
+    {
+        $query = "SELECT * FROM " . static::$tabla . " LIMIT $desde, $porPagina";
+        $resultado = self::consultarSQL($query);
+        return $resultado;
+    }
+
+
 
     public function crearCarpeta()
     {

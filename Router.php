@@ -19,7 +19,7 @@ class Router
 
     public function comprobarRutas()
     {
-        
+
 
         $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
         $method = $_SERVER['REQUEST_METHOD'];
@@ -30,11 +30,11 @@ class Router
             $fn = $this->postRoutes[$currentUrl] ?? null;
         }
 
-        if ( $fn ) {
+        if ($fn) {
             // Call user fn va a llamar una función cuando no sabemos cual sera
             call_user_func($fn, $this); // This es para pasar argumentos
         } else {
-            echo "Página No Encontrada o Ruta no válida";
+            header('Location:/error');
         }
     }
 
@@ -50,6 +50,5 @@ class Router
         include_once __DIR__ . "/views/$view.php";
         $contenido = ob_get_clean(); // Limpia el Buffer
         include_once __DIR__ . '/views/layout.php';
-
     }
 }

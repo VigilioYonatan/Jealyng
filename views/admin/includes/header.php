@@ -35,7 +35,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="/admin/usuarios">
                     <span class="icon-admin">
                         <svg class="ico-admin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
                             <path

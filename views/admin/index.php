@@ -3,8 +3,8 @@
 <div class="cardBox">
     <div class="card">
         <div>
-            <div class="numbers">1,504</div>
-            <div class="cardName">Usuarios</div>
+            <div class="numbers"><?= $totalUsuario; ?></div>
+            <div class="cardName"><?= $totalUsuario < 1 ? 'Usuarios' : 'Usuario'; ?></div>
         </div>
 
         <div class="icon-adminBx">
@@ -19,7 +19,7 @@
 
     <div class="card">
         <div>
-            <div class="numbers">80</div>
+            <div class="numbers"><?= $totalProductos ?></div>
             <div class="cardName">Productos</div>
         </div>
 
@@ -147,25 +147,19 @@
         </div>
 
         <table>
-            <?php for ($i = 0; $i < 5; $i++) : ?>
+            <?php foreach ($usuarioReciente as $user) : ?>
             <tr>
                 <td width="60px">
-                    <div class="imgBx"><img src="build/img/Reaper.jpg" alt=""></div>
+                    <div class="imgBx"><img src="build/img/usuarios/<?= $user->imagen_user ?>" alt=""></div>
                 </td>
                 <td>
-                    <h4>David <br> <span>Italy</span></h4>
+                    <h4><?= $user->nombre_user ?> <?= $user->apellidoPaterno_user ?><br>
+                        <span><?= $user->email_user ?></span><br>
+                        <b><?= $user->fechaCreado_user ?></b>
+                    </h4>
                 </td>
             </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="build/img/Reaper.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Amit <br> <span>India</span></h4>
-                </td>
-            </tr>
-            <?php endfor; ?>
+            <?php endforeach; ?>
 
         </table>
     </div>
