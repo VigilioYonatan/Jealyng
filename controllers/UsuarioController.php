@@ -6,6 +6,7 @@ use Classes\EmailClass;
 use Model\UsuarioModel;
 use MVC\Router;
 use Classes\RenderizarImagenClass;
+use Model\ProductosModel;
 
 class UsuarioController
 {
@@ -20,6 +21,12 @@ class UsuarioController
         session_start();
         $_SESSION = [];
         header('Location: /');
+    }
+    public static function error(Router $router)
+    {
+        session_start();
+
+        $router->render('web/error404');
     }
     public static function login(Router $router)
     {
@@ -261,6 +268,36 @@ class UsuarioController
             echo json_encode(["portada" => $usuario->wallpaper_user]);
         }
     }
+    public static function apiPerfilRol()
+    {
+        session_start();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario = UsuarioModel::find($_POST['id_user']);
+            $usuario->getId();
+            $usuario->id_rol = $_POST['id_rol'];
+            $resultado = $usuario->guardar();
+            echo json_encode(["usuario" => $resultado]);
+        }
+    }
+    public static function apiEliminarPerfil()
+    {
+        session_start();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario = UsuarioModel::find($_POST['id_user']);
+            $usuario->getId();
+
+            if (!empty($usuario->imagen_user)) {
+                $usuario->eliminarImagen($usuario->imagen_user);
+            }
+            if (!empty($usuario->wallpaper_user)) {
+                $usuario->eliminarImagen($usuario->wallpaper_user);
+            }
+
+            $resultado = $usuario->eliminar();
+
+            echo json_encode(["eliminado" => $resultado]);
+        }
+    }
     public static function productos(Router $router)
     {
         session_start();
@@ -274,6 +311,14 @@ class UsuarioController
             header('Location: /');
         }
 
-        $router->render('admin/index');
+        $totalUsuario = UsuarioModel::contar();
+        $usuarioReciente = UsuarioModel::whereAllLimit('10');
+        $totalProductos = ProductosModel::contar();
+
+        $router->render('admin/index', [
+            "totalUsuario" => $totalUsuario,
+            "totalProductos" => $totalProductos,
+            "usuarioReciente" => $usuarioReciente
+        ]);
     }
 }

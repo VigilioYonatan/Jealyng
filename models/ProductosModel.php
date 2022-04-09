@@ -49,7 +49,7 @@ class ProductosModel extends ActiveRecord
                                     INNER JOIN subcategoria sub on pro.id_subcategoria = sub.id_subcat
                                     INNER JOIN marca on pro.id_marca = marca.id_marca
                                     INNER JOIN descuento ON pro.id_descuento = descuento.id_descuento
-                                    INNER JOIN estadoproducto on pro.id_estado = estadoproducto.id_estadoPro");
+                                    INNER JOIN estadoproducto on pro.id_estado = estadoproducto.id_estadoPro ORDER BY pro.id_prod  DESC LIMIT 10");
         $producto = [];
 
         while ($row = $query->fetch_assoc()) {
@@ -89,9 +89,9 @@ class ProductosModel extends ActiveRecord
              AND est.nombre_estadoPro LIKE '%$condicion%' AND de.nombre_descuento LIKE '%$descuento%' LIMIT $desde, $porPagina");
 
 
-        // if ($query->num_rows < 1) {
-        //     header('Location: /');
-        // }
+        if ($query->num_rows < 1) {
+            header('Location: /error');
+        }
         $tiendaSub = [];
 
         while ($row = $query->fetch_assoc()) {
@@ -141,7 +141,9 @@ class ProductosModel extends ActiveRecord
         INNER JOIN descuento ON pro.id_descuento = descuento.id_descuento
         INNER JOIN estadoproducto on pro.id_estado = estadoproducto.id_estadoPro WHERE pro.nombre_prod LIKE '%$nombre%' LIMIT 1");
 
-
+        if ($query->num_rows < 1) {
+            header('Location: /error');
+        }
         $rowProducto = $query->fetch_assoc();
 
         return   $rowProducto;

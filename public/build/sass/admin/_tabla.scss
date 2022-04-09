@@ -14,10 +14,13 @@
 }
 
 .detalles {
+
     width: 70%;
-    margin: 0 .5rem;
-    box-shadow: 0 0px 1px var.$color-terciary;
+    padding: 1rem 1rem;
+    box-shadow: 0 0px 5px var.$color-terciary;
     margin: 2rem 0;
+    border-radius: 1rem;
+
 
     @include var.tablet {
         width: 90%;
@@ -25,11 +28,11 @@
 }
 
 .tablas {
-    overflow: scroll;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    overflow: auto;
 
     &-search {
 
@@ -47,6 +50,58 @@
         }
     }
 
+    & table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+
+
+        & thead td {
+            font-weight: 600;
+        }
+
+        & tr {
+            color: var.$color-fonts-primary;
+            border-bottom: 1px solid var.$color-terciary;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            & td {
+                padding: 10px;
+
+
+
+                &:nth-child(1) {
+                    max-width: 6.125rem;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                &:nth-child(5) {
+                    display: flex;
+                    flex-direction: column;
+                    // align-items: center;
+
+                    & span {
+                        margin: .1rem 0;
+                        text-align: center;
+                        cursor: pointer;
+                    }
+                }
+
+
+            }
+        }
+
+        & tbody tr:hover {
+            background: var.$admin-color;
+            color: var.$color-secondary;
+        }
+    }
+
     &__title {
         text-align: center;
         color: var.$color-fonts-primary;
@@ -54,56 +109,7 @@
         font-size: 1.2rem;
         font-family: var.$f_medium;
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
 
-            & thead td {
-                font-weight: 600;
-            }
-
-            & tr {
-                color: var.$color-fonts-primary;
-                border-bottom: 1px solid var.$color-terciary;
-
-                &:last-child {
-                    border-bottom: none;
-                }
-
-                & td {
-                    padding: 10px;
-
-
-
-                    &:nth-child(1) {
-                        max-width: 6.125rem;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                    }
-
-                    &:nth-child(5) {
-                        display: flex;
-                        flex-direction: column;
-                        // align-items: center;
-
-                        & span {
-                            margin: .1rem 0;
-                            text-align: center;
-                            cursor: pointer;
-                        }
-                    }
-
-
-                }
-            }
-
-            & tbody tr:hover {
-                background: var.$admin-color;
-                color: var.$color-secondary;
-            }
-        }
 
     }
 
@@ -166,13 +172,13 @@
 .admin-form {
 
     margin: 0 .5rem;
-    box-shadow: 0 0px 1px var.$color-terciary;
+    box-shadow: 0 0px 5px var.$color-terciary;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 2rem 0;
     padding: 1rem 2rem;
-
+    border-radius: 1rem;
 
     @include var.tablet {
         margin: 2rem 0;

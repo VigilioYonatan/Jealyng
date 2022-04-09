@@ -10,6 +10,9 @@ $router = new Router();
 
 
 $router->get('/', [UsuarioController::class, 'inicio']);
+
+$router->get('/error', [UsuarioController::class, 'error']);
+
 $router->get('/salir', [UsuarioController::class, 'salir']);
 $router->get('/registrar', [UsuarioController::class, 'registrar']);
 $router->post('/apiRegistrar', [UsuarioController::class, 'apiRegistrar']);
@@ -27,10 +30,15 @@ $router->get('/apiUserDistritos', [UsuarioController::class, 'apiUserDistritos']
 $router->post('/apiPerfilDatos', [UsuarioController::class, 'apiPerfilDatos']);
 $router->post('/apiPerfilImagen', [UsuarioController::class, 'apiPerfilImagen']);
 $router->post('/apiPerfilWallpaper', [UsuarioController::class, 'apiPerfilWallpaper']);
+$router->post('/apiPerfilRol', [UsuarioController::class, 'apiPerfilRol']);
+$router->post('/apiEliminarPerfil', [UsuarioController::class, 'apiEliminarPerfil']);
 $router->get('/productos', [UsuarioController::class, 'productos']);
 
+// admin 
 $router->get('/admin', [UsuarioController::class, 'admin']);
 $router->get('/admin/productos', [AdminController::class, 'adminProductos']);
+$router->get('/admin/usuarios', [AdminController::class, 'adminUsuarios']);
+$router->get('/admin/marcas', [AdminController::class, 'adminMarcas']);
 
 
 $router->get('/apiListarProductos', [ProductosController::class, 'apiListarProductos']);

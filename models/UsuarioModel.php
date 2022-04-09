@@ -10,7 +10,7 @@ class UsuarioModel extends ActiveRecord
     protected static $carpeta = 'usuarios/'; //carpeta usuarios
     public $id; //id
     //columnas de la tabla usuario
-    protected static $columnasDB = ['id_user', 'nombre_user', 'apellidoMaterno_user', 'apellidoPaterno_user', 'email_user', 'password_user', 'nacimiento_user', 'telefono_user', 'id_departamento', 'id_provincia', 'id_distrito', 'direccion_user', 'imagen_user', 'wallpaper_user', 'estado_user', 'token_user', 'id_rol'];
+    protected static $columnasDB = ['id_user', 'nombre_user', 'apellidoMaterno_user', 'apellidoPaterno_user', 'email_user', 'password_user', 'nacimiento_user', 'telefono_user', 'id_departamento', 'id_provincia', 'id_distrito', 'direccion_user', 'imagen_user', 'wallpaper_user', 'estado_user', 'token_user', 'fechaCreado_user', 'id_rol'];
 
     //constructor 
     public function __construct($args = [])
@@ -31,6 +31,7 @@ class UsuarioModel extends ActiveRecord
         $this->wallpaper_user =         $args['wallpaper_user']         ?? 'wallpaperDefecto.jpeg';
         $this->estado_user =            $args['estado_user']            ?? null;
         $this->token_user =             $args['token_user']             ?? null;
+        $this->fechaCreado_user =       $args['fechaCreado_user']             ?? date('Y-m-d');
         $this->id_rol =                 $args['id_rol']                ?? 1;
     }
 
