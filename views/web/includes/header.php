@@ -17,7 +17,7 @@
         </div>
         <div class="header-search">
             <input class="header-search__inp" type="text" id="buscador" placeholder="Buscar productos">
-            <a class="header-search__ico" ref="#">
+            <a class="header-search__ico" id="icoBuscador" ref="#">
                 <svg width='20px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path
                         d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" />
@@ -77,7 +77,7 @@
                     <?php endif; ?>
                     <a class="header-info-user__link" href="/perfil">Mi Perfil</a>
                     <a class="header-info-user__link" href="#">Mis Pedidos</a>
-                    <a class="header-info-user__link" href="/salir">Salir</a>
+                    <a class="header-info-user__link header-info-user__link--logout" href="/salir">Salir</a>
                 </div>
             </div>
             <?php else : ?>
@@ -98,28 +98,41 @@
                 <b>0</b>
             </a>
             <div class="cart-float" id="carrito">
-                <span class="cart-float__title">Mi Carrito <b></b></span>
+                <span class="cart-float__title">
+                    <svg class="ico-form" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path
+                            d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z">
+                        </path>
+                    </svg>
+                    Mi Carrito
+                    <h4><?= isset($_SESSION['carrito']) ? count($_SESSION['carrito']) . " productos" : '';  ?>
+                    </h4>
+                </span>
                 <div class="cart-cards">
-                    <!-- <?php
-                    //if (!empty($_SESSION['carrito'])) :
-                        //foreach ($_SESSION['carrito'] as $carrito) : ?>
-                    <picture class="cart-info" data-id="< //$carrito['id_producto'] ?>">
-                        <img class="cart-info__img" src="./productos/ // $carrito['imagen'] ?> " alt="">
+                    <?php
+                    if (!empty($_SESSION['carrito'])) :
+                        foreach ($_SESSION['carrito'] as $carrito) :
+                    ?>
+                    <picture class="cart-info" data-id="<?= $carrito['id_prod'] ?>">
+                        <img class="cart-info__img" src="./build/img/productos/<?= $carrito['imagen'] ?> " alt="">
                         <div class="cart-info__info">
-                            <span class="cart-info__spn">Nombre: <b> //$carrito['nombre'] ?></b></span>
-                            <span class="cart-info__spn">precio: <b> //$carrito['precio'] ?></b></span>
+                            <span class="cart-info__spn">Nombre: <b> <?= $carrito['nombre'] ?></b></span>
+                            <span class="cart-info__spn">precio: <b> <?= $carrito['precio'] ?></b></span>
                             <div class="cart-info__qty">
                                 <span class="cart-info__spn">cantidad: </span>
                                 <button class="cart-info__btn" data-action="añadir">+</button>
-                                <b> // $carrito['cantidad'] ?></b>
+                                <b> <?= $carrito['cantidad'] ?></b>
                                 <button class="cart-info__btn" data-action="quitar">-</button>
                             </div>
-                        </div> -->
+                        </div>
                     </picture>
-                    <?php //endforeach; ?>
-                    <?php //else : ?>
-                    <span class="cart-info__empty">Está vacio</span>
-                    <?php //endif; ?>
+                    <?php endforeach;
+                        ?>
+                    <?php else :
+                    ?>
+                    <span class="cart-info__empty">Tu carrito está vacio</span>
+                    <?php endif;
+                    ?>
 
                 </div>
                 <div class="cart-total">
@@ -142,8 +155,8 @@
     <div class="navbar-container">
         <?php foreach (categoria() as $cat) : ?>
         <ul class="navbar-categorias">
-            <li class="navbar-categorias__list"><a href="/tienda?categoria=<?= $cat['nombre_categoria']; ?>"
-                    class="navbar-categorias__title"><?= $cat['nombre_categoria']; ?></span>
+            <li class="navbar-categorias__list"><a href="/categoria?nombre=<?= $cat['nombre_categoria']; ?>"
+                    class="navbar-categorias__title"><?= $cat['nombre_categoria']; ?></a>
             </li>
             <?php $subcategoria = subcategoria($cat['id_categoria']); ?>
 

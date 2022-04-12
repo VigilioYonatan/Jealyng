@@ -59,7 +59,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="/admin/marcas">
                     <span class="icon-admin">
                         <svg class="ico-admin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path
@@ -71,20 +71,25 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="/admin/categorias">
                     <span class="icon-admin">
-                        <ion-icon-admin name="settings-outline"></ion-icon-admin>
+                        <svg class="ico-admin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                            <path
+                                d="M384 32C419.3 32 448 60.65 448 96V416C448 451.3 419.3 480 384 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H384zM384 96H256V224H384V96zM384 288H256V416H384V288zM192 224V96H64V224H192zM64 416H192V288H64V416z" />
+                        </svg>
                     </span>
-                    <span class="title">Settings</span>
+                    <span class="title">Categorias</span>
                 </a>
             </li>
-
             <li>
-                <a href="#">
+                <a href="/admin/subcategorias">
                     <span class="icon-admin">
-                        <ion-icon-admin name="lock-closed-outline"></ion-icon-admin>
+                        <svg class="ico-admin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                            <path
+                                d="M160 48C160 21.49 181.5 0 208 0H256V80C256 88.84 263.2 96 272 96H304C312.8 96 320 88.84 320 80V0H368C394.5 0 416 21.49 416 48V176C416 202.5 394.5 224 368 224H208C181.5 224 160 202.5 160 176V48zM96 288V368C96 376.8 103.2 384 112 384H144C152.8 384 160 376.8 160 368V288H208C234.5 288 256 309.5 256 336V464C256 490.5 234.5 512 208 512H48C21.49 512 0 490.5 0 464V336C0 309.5 21.49 288 48 288H96zM416 288V368C416 376.8 423.2 384 432 384H464C472.8 384 480 376.8 480 368V288H528C554.5 288 576 309.5 576 336V464C576 490.5 554.5 512 528 512H368C341.5 512 320 490.5 320 464V336C320 309.5 341.5 288 368 288H416z" />
+                        </svg>
                     </span>
-                    <span class="title">Password</span>
+                    <span class="title">Subcategorias</span>
                 </a>
             </li>
 
@@ -96,7 +101,7 @@
                                 d="M160 416H96c-17.67 0-32-14.33-32-32V128c0-17.67 14.33-32 32-32h64c17.67 0 32-14.33 32-32S177.7 32 160 32H96C42.98 32 0 74.98 0 128v256c0 53.02 42.98 96 96 96h64c17.67 0 32-14.33 32-32S177.7 416 160 416zM502.6 233.4l-128-128c-12.51-12.51-32.76-12.49-45.25 0c-12.5 12.5-12.5 32.75 0 45.25L402.8 224H192C174.3 224 160 238.3 160 256s14.31 32 32 32h210.8l-73.38 73.38c-12.5 12.5-12.5 32.75 0 45.25s32.75 12.5 45.25 0l128-128C515.1 266.1 515.1 245.9 502.6 233.4z" />
                         </svg>
                     </span>
-                    <span class="title">Sign Out</span>
+                    <span class="title">Salir</span>
                 </a>
             </li>
         </ul>

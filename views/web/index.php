@@ -221,24 +221,11 @@
         </button>
 
         <div id="glider" class="brand-list">
+            <?php foreach ($marcas as $marca) : ?>
             <div class="brand__elem">
-                <img class="brand__img" src="./build/img/brand.webp" alt="">
+                <img class="brand__img" src="./build/img/marcas/<?= $marca->imagen_marca; ?>" alt="">
             </div>
-            <div class="brand__elem">
-                <img class="brand__img" src="./build/img/brand.webp" alt="">
-            </div>
-            <div class="brand__elem">
-                <img class="brand__img" src="./build/img/brand.webp" alt="">
-            </div>
-            <div class="brand__elem">
-                <img class="brand__img" src="./build/img/brand.webp" alt="">
-            </div>
-            <div class="brand__elem">
-                <img class="brand__img" src="./build/img/brand.webp" alt="">
-            </div>
-            <div class="brand__elem">
-                <img class="brand__img" src="./build/img/brand.webp" alt="">
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
     <!-- fin carousel  -->

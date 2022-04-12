@@ -18,6 +18,43 @@
 
 }
 
+.contenido-category {
+    width: 100%;
+
+    & .best-category {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
+        cursor: pointer;
+        border-radius: .5rem;
+        background-color: var.$color-card;
+        overflow: hidden;
+        text-decoration: none;
+        // padding: .5rem 0;
+
+        &__img {}
+
+
+        &__image2 {
+            width: 20rem;
+            height: 13rem;
+            object-fit: cover;
+        }
+
+        &-info {
+            padding: .5rem 0;
+
+            &__title {
+                font-size: 1rem;
+                color: var.$color-fonts-primary;
+            }
+        }
+    }
+}
+
+
 .contenido-card {
     width: 80%;
     display: flex;
@@ -29,18 +66,20 @@
     }
 
     &__title {
-        color: var.$color-fonts-primary;
-        font-size: 1.5rem;
-        font-family: var.$f_light;
+        color: var.$color-fonts-quarty;
+        font-size: 1.2rem;
+        font-family: var.$f_regular;
         padding: 1rem 0;
         display: flex;
         flex-direction: column;
         text-align: center;
+        letter-spacing: .1rem;
+        text-transform: uppercase;
     }
 
     &__subtitle {
         font-size: .8rem;
-        color: rgba(190, 188, 188, 0.903)
+        color: #bebcbce6;
     }
 }
 
@@ -79,8 +118,8 @@
     position: relative;
 
     &__title {
-        font-family: var.$f_light;
-        color: #b6b4b4;
+        font-family: var.$f_medium;
+        color: #8c8b8b;
         font-size: .9rem;
         margin-top: .5rem;
     }
@@ -120,7 +159,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    margin: 0 auto;
+    max-width: 87.5rem;
 
 
     &-upd {
@@ -209,6 +249,11 @@
 
         &__elm {
             margin: 0 3rem;
+
+            @include var.tablet {
+                margin: 0 -.5rem;
+            }
+
         }
 
         &__list {}
@@ -494,6 +539,19 @@
         @include var.mini-tablet {
             text-align: center;
             font-size: .7rem;
+        }
+    }
+
+    &__marca {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding-bottom: 1rem;
+
+        & span {
+            color: #abadad;
+            font-family: var.$f_light;
+            font-size: .8rem;
         }
     }
 

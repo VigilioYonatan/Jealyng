@@ -1,22 +1,28 @@
 :root {
-
-    --color-primary: #3F5C58;
+    --color-fondo: #EDEDED;
+    // --color-primary: #3F5C58;
+    --color-primary: #1732a0;
+    --color-card: #fff;
     --color-secondary: white;
     --color-terciary: black;
-    --color-quarty: #2E3238;
+    --color-quarty: #4d4949e6;
 
     --color-fonts-primary: black;
-    --color-fonts-secondary: #3F5C58;
+    // --color-fonts-secondary: #3F5C58;
+    --color-fonts-secondary: #00187D;
     --color-fonts-terciary: white;
-    --color-fonts-quarty: #2E3238;
+    --color-fonts-quarty: #4d4949e6;
 
     --color-error: #9B2727;
     --color-sucess: #008000;
 
-    --admin-color: #3F5C58;
+    --admin-color: #00187D;
+    // --admin-color: #3F5C58;
 
 }
 
+$color-fondo: #{var(--color-fondo)};
+$color-card: #{var(--color-card)};
 $color-primary: #{var(--color-primary)};
 $color-secondary: #{var(--color-secondary)};
 $color-terciary: #{var(--color-terciary)};
@@ -34,15 +40,19 @@ $admin-color:#{var( --admin-color)};
 
 // dark mode
 [data-theme="dark"] {
-    --color-primary: #3F5C58;
+    --color-fondo: #282828;
+    --color-card: #2D2D2F;
+    // --color-primary: #3F5C58;
+    --color-primary: #00187D;
     --color-secondary: #282828;
     --color-terciary: rgb(255, 255, 255);
     --color-quarty: #2E3238;
 
     --color-fonts-primary: rgb(255, 255, 255);
-    --color-fonts-secondary: #3F5C58;
+    --color-fonts-secondary: #00187D;
+    // --color-fonts-secondary: #3F5C58;
     --color-fonts-terciary: rgb(7, 7, 7);
-    --color-fonts-quarty: #2E3238;
+    --color-fonts-quarty: #fff;
 
     --admin-color: #fff;
 }

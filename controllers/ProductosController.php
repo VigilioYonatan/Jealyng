@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Classes\RenderizarImagenClass;
+use Model\CategoriaModel;
 use Model\ProductosModel;
 use Model\SubCategoriaModel;
 use MVC\Router;
@@ -78,15 +79,15 @@ class ProductosController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
-            $imagen = $_POST['imagen'];
-            $imagen2 = $_POST['imagen2'];
+            $producto = ProductosModel::find($id);
+            $imagen = $producto->imagen_prod;
+            $imagen2 =$producto->imagen2_prod;
 
-            $eliminar = new ProductosModel;
-            $eliminar->id_prod = $id;
-            $eliminar->getId();
-            $eliminar->eliminarImagen($imagen);
-            $eliminar->eliminarImagen($imagen2);
-            $eliminado = $eliminar->eliminar($id);
+            $producto->id_prod = $id;
+            $producto->getId();
+            $producto->eliminarImagen($imagen);
+            $producto->eliminarImagen($imagen2);
+            $eliminado = $producto->eliminar($id);
 
             echo json_encode(["eliminado" => $eliminado, "id" => $id]);
         }
@@ -141,6 +142,7 @@ class ProductosController
 
     public static function producto(Router $router)
     {
+        session_start();
         $nombre = $_GET['nombre'];
         $newNombre = explode('-', $nombre);
         $nombreProducto = implode(' ', $newNombre);
@@ -149,6 +151,24 @@ class ProductosController
         $row = $producto->nombreProducto($nombreProducto);
         $router->render('web/producto', [
             "producto" =>  $row
+        ]);
+    }
+    public static function categoria(Router $router)
+    {
+        session_start();
+        $categoria = $_GET['nombre'];
+        $cats = CategoriaModel::where('nombre_categoria', $_GET['nombre']);
+        $categorias = new SubCategoriaModel;
+        $catGroup = $categorias->subcategorias($categoria);
+        $productos = new ProductosModel;
+        $inner = "pro INNER JOIN descuento des ON pro.id_descuento = des.id_descuento INNER JOIN categoria cat ON pro.id_categoria = cat.id_categoria WHERE cat.nombre_categoria = '$categoria' AND des.nombre_descuento > 0.0 ORDER BY des.nombre_descuento DESC ";
+
+        $catDescuento = $productos->buscadorPageInner(0, 20, $inner);
+        $router->render('web/categoria', [
+            "cats" => $cats,
+            "categoria" => $categoria,
+            "categorias" =>  $catGroup,
+            "catDescuento" => $catDescuento
         ]);
     }
 

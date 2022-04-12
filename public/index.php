@@ -4,6 +4,8 @@ require_once __DIR__ . '/../includes/app.php';
 use MVC\Router;
 use Controller\UsuarioController;
 use Controller\AdminController;
+use Controller\CarritoController;
+use Controller\MarcaController;
 use Controller\ProductosController;
 
 $router = new Router();
@@ -39,6 +41,11 @@ $router->get('/admin', [UsuarioController::class, 'admin']);
 $router->get('/admin/productos', [AdminController::class, 'adminProductos']);
 $router->get('/admin/usuarios', [AdminController::class, 'adminUsuarios']);
 $router->get('/admin/marcas', [AdminController::class, 'adminMarcas']);
+$router->post('/admin/marcas', [AdminController::class, 'adminMarcas']);
+$router->get('/admin/subcategorias', [AdminController::class, 'adminSubcategorias']);
+$router->post('/admin/subcategorias', [AdminController::class, 'adminSubcategorias']);
+$router->get('/admin/categorias', [AdminController::class, 'adminCategorias']);
+$router->post('/admin/categorias', [AdminController::class, 'adminCategorias']);
 
 
 $router->get('/apiListarProductos', [ProductosController::class, 'apiListarProductos']);
@@ -47,10 +54,16 @@ $router->post('/apiAddProductos', [ProductosController::class, 'apiAddProductos'
 $router->post('/apiEliminarProductos', [ProductosController::class, 'apiEliminarProductos']);
 $router->get('/apiBuscarProductos', [ProductosController::class, 'apiBuscarProductos']);
 $router->post('/apiGetSubcategorias', [ProductosController::class, 'apiGetSubcategorias']);
+$router->post('/apiActualizarMarcas', [MarcaController::class, 'apiActualizarMarcas']);
+$router->post('/apiEliminarMarcas', [MarcaController::class, 'apiEliminarMarcas']);
 //tienda
 $router->get('/tienda', [ProductosController::class, 'tienda']);
 $router->get('/producto', [ProductosController::class, 'producto']);
+$router->get('/categoria', [ProductosController::class, 'categoria']);
 $router->get('/apiConsultarIdProducto', [ProductosController::class, 'apiConsultarIdProducto']);
 $router->get('/apiBuscadorNombreProducto', [ProductosController::class, 'apiBuscadorNombreProducto']);
+
+// carrito
+$router->post('/apiAddCarrito', [CarritoController::class, 'apiAddCarrito']);
 
 $router->comprobarRutas();

@@ -29,7 +29,7 @@ function categoria(): array
 function subcategoria($num): array
 {
     global $cnx;
-    $query = $cnx->query("SELECT * FROM `categoria` INNER JOIN subcategoria on categoria.id_categoria = subcategoria.id_categoria where categoria.id_categoria = $num");
+    $query = $cnx->query("SELECT * FROM categoria INNER JOIN subcategoria on categoria.id_categoria = subcategoria.id_categoria where categoria.id_categoria = $num");
 
     $subcategoria = [];
 
@@ -98,4 +98,15 @@ function filtroSubcategorias($cat)
     endwhile;
 
     return $subcat;
+}
+//fitro menosCosto
+function filtroMenor($MAX, $cat)
+{
+    global $cnx;
+
+    $query = $cnx->query("SELECT $MAX(productos.precio_prod - productos.precio_prod * de.nombre_descuento) as minimo FROM productos INNER JOIN descuento de on productos.id_descuento = de.id_descuento INNER JOIN categoria cat on productos.id_categoria = cat.id_categoria WHERE cat.nombre_categoria = '$cat'");
+
+    $row = $query->fetch_assoc();
+
+    return $row;
 }

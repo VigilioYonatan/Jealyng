@@ -134,7 +134,7 @@ class ProductosModel extends ActiveRecord
 
     public function nombreProducto($nombre)
     {
-        $query = self::$db->query("SELECT pro.id_prod, pro.nombre_prod, pro.descripcion_prod, pro.precio_prod, pro.imagen_prod,pro.imagen2_prod,pro.stock_prod, pro.id_categoria,pro.id_subcategoria,pro.id_marca, pro.id_descuento, pro.id_estado,  nombre_categoria, nombre_subcat,nombre_marca,nombre_descuento,nombre_estadoPro FROM productos pro 
+        $query = self::$db->query("SELECT pro.id_prod, pro.nombre_prod, pro.descripcion_prod, pro.precio_prod, pro.imagen_prod,pro.imagen2_prod,pro.stock_prod, pro.id_categoria,pro.id_subcategoria,pro.id_marca, pro.id_descuento, pro.id_estado,  nombre_categoria, nombre_subcat,nombre_marca,imagen_marca,nombre_descuento,nombre_estadoPro FROM productos pro 
         INNER JOIN categoria cat on pro.id_categoria = cat.id_categoria
         INNER JOIN subcategoria sub on pro.id_subcategoria = sub.id_subcat
         INNER JOIN marca on pro.id_marca = marca.id_marca
@@ -147,5 +147,21 @@ class ProductosModel extends ActiveRecord
         $rowProducto = $query->fetch_assoc();
 
         return   $rowProducto;
+    }
+
+    // carrito 
+    public function addCarritoProducto($id)
+    {
+        $query = self::$db->query("SELECT * FROM productos INNER JOIN descuento de on productos.id_descuento = de.id_descuento WHERE id_prod = '$id'");
+
+
+        // if ($query->num_rows < 1) {
+        //     header('Location: /error');
+        // }
+
+
+        $row = $query->fetch_assoc();
+
+        return  $row;
     }
 }

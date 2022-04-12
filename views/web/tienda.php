@@ -17,22 +17,19 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-            <div class="filtro-section">
-                <span class="filtro-section__title">Precio</span>
-                <div class="listados">
-                    <a href="" class="listados__category">Hasta S/.30</a>
-                    <a href="" class="listados__category">Hasta S/.30</a>
-                    <a href="" class="listados__category">Hasta S/.30</a>
-                </div>
-            </div>
+
             <div class="filtro-section">
                 <span class="filtro-section__title">Descuentos</span>
                 <div class="listados">
+                    <?php if (count(filtroDescuento($category, $get)) > 1) : ?>
                     <?php foreach (filtroDescuento($category, $get) as $descuento) : ?>
                     <a href="/tienda?categoria=<?= $category; ?>&producto=<?= $get; ?>&descuento=<?= $descuento['nombre_descuento'] ?>"
                         class="listados__category">
                         <?= $descuento['nombre_descuento'] > 0.0 ? "Desde " . $descuento['nombre_descuento'] * 100 . "%"  : '' ?></a>
                     <?php endforeach; ?>
+                    <?php else : ?>
+                    <span class="listados__category">No hay descuento</span>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="filtro-section">
@@ -68,7 +65,7 @@
                     <?php endif; ?>
                     <div class="best-card__img2">
                         <img class="best-card__image" src="./build/img/productos/<?= $key['imagen2_prod'] ?>" alt="">
-                        <span class="best-card__view">Quick View</span>
+                        <span class="best-card__view">Más información</span>
                     </div>
                 </picture>
                 <div class="best-card-info">

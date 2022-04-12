@@ -1,4 +1,58 @@
+@use '../template/variables'as var;
+
 .producto {
     width: 90%;
     padding-top: 2rem;
+}
+
+.categorias {
+
+    &__wallpaper {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 6rem;
+
+
+        & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        & span {
+            font-size: 2rem;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            text-align: center;
+            line-height: 6rem;
+            font-family: var.$f_medium;
+            z-index: 20;
+            color: #fff;
+            text-transform: uppercase;
+            text-shadow: 0px 0px 3px rgb(0, 0, 0);
+
+
+
+        }
+
+
+    }
+
+    &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        background-color: rgba(0, 0, 0, 0.039);
+    }
+
+
+
+
 }
