@@ -9,38 +9,61 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    z-index: 50;
+    z-index: 150;
+    width: 19.375rem;
     background-color: var.$color-secondary;
-    padding: 1rem 4rem;
+    padding: 1rem 1rem;
     transition: transform .5s;
     transform: translateX(27rem);
     box-shadow: 0px 0px 1px var.$color-terciary;
+}
+
+.cart-cards {
+    overflow: auto;
+    padding-bottom: 9rem;
 }
 
 .cart-float__title {
     text-align: center;
     font-size: 1.5rem;
     color: var.$color-fonts-primary;
+    font-family: var.$f_regular;
+
+    & h4 {
+        font-size: .8rem;
+        color: #9e9c9c;
+    }
 }
 
 .cart-info {
     display: flex;
     align-items: center;
-
+    margin: 0.7rem 0;
+    padding: 0rem .1rem;
 }
 
 .cards-cards {}
 
+.cart-info__empty {
+    display: block;
+    text-align: center;
+    padding: 3rem 0;
+}
+
 .cart-info__info {
     display: flex;
     flex-direction: column;
+    margin-left: .5rem;
     /* justify-content: center; */
     /* align-items: center; */
 
 }
 
 .cart-info__img {
-    width: 120px;
+    min-width: 100px;
+    // height: 6rem;
+    object-fit: cover;
+    box-shadow: 0px 0px 3px var.$color-fonts-primary;
 }
 
 .cart-info__qty {
@@ -49,10 +72,20 @@
     align-items: center;
 }
 
-.cart-info__spn {}
+.cart-info__spn {
+    font-size: .8rem;
+    font-family: var.$f_light;
+    color: rgb(158, 156, 156);
+    margin: .1rem 0rem;
+
+    & b {
+        color: var.$color-fonts-primary;
+    }
+}
 
 .cart-info__btn {
-    background-color: var(--color-principal);
+    background-color: var.$color-primary;
+    color: #fff;
     border: none;
     padding: .2rem .7rem;
     font-size: 1.5rem;
@@ -70,11 +103,13 @@
     bottom: 0;
     left: 0;
     margin: 0 1rem;
+    background-color: var.$color-secondary;
 
     & .cart-info__empty {
         display: block;
         padding: 0rem 5rem;
         margin-top: 2rem;
+
     }
 
     &__link {
@@ -92,6 +127,7 @@
         background-color: var.$color-primary;
         color: var(--color-terciary);
         color: #fff;
+        cursor: pointer;
     }
 
 
@@ -106,6 +142,7 @@
         color: #fff;
         border: none;
         margin: .5rem 0;
+        cursor: pointer;
     }
 }
 

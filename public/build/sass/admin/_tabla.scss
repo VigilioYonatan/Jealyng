@@ -168,6 +168,13 @@
 
 }
 
+.admin-container {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
 .admin-form {
 

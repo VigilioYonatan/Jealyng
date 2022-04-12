@@ -40,6 +40,10 @@
                     <span class="mostrar-card__stock">Stock: <b><?= $producto['stock_prod'] ?></b></span>
 
                 </div>
+                <div class="mostrar-card__marca">
+                    <span>Marca:</span>
+                    <img width="30px" src="./build/img/marcas/<?= $producto['imagen_marca'] ?>" alt="">
+                </div>
                 <div class="mostrar-card-desc">
                     <span class="mostrar-card-desc__title">Descripcion:</span>
                     <p class="mostrar-card-desc__txt">

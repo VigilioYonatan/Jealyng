@@ -2,6 +2,17 @@ const hamburguer = document.getElementById('hamburguer');
 const btnPerfil = document.getElementById('perfil_imagen');
 const perfilInfo = document.querySelector('#perfilInfo');
 const navbar = document.querySelector('.navbar');
+const icoBuscador = document.getElementById('icoBuscador');
+const input = document.querySelector('.header-search__inp')
+
+icoBuscador.addEventListener('click', e => {
+    e.preventDefault();
+    const logo = document.querySelector('.header__logo');
+    const search = document.querySelector('.header-search');
+    search.classList.toggle('input-responsive');
+    input.classList.toggle('show');
+    logo.classList.toggle('hidden');
+})
 // dark mode 
 const mode = document.querySelector('#mode');
 // buscador 
@@ -50,7 +61,7 @@ function imprimirBuscador(producto) {
     }
     producto.forEach(pro => {
         const { id_prod, nombre_prod, imagen_prod, precio_prod } = pro;
-        const regexName = /[$%&|<>#+-]/;
+        const regexName = /[$%&|<>#+-]/gi;
         const nombre = nombre_prod.replace(regexName, '_').split(' ').join('-')
         let html = `
         <a href='/producto?nombre=${nombre}' class="header-search__pro">

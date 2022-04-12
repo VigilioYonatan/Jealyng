@@ -245,7 +245,7 @@ body {
     grid-gap: 30px;
 }
 
-.cardBox .card {
+.card {
     position: relative;
     background: var.$color-secondary;
     padding: 30px;
@@ -256,31 +256,31 @@ body {
     box-shadow: 0 0px 5px var.$color-terciary;
 }
 
-.cardBox .card .numbers {
+ .card .numbers {
     position: relative;
     font-weight: 500;
     font-size: 2.5rem;
     color: var.$admin-color;
 }
 
-.cardBox .card .cardName {
+ .card .cardName {
     color: var.$color-fonts-primary;
     font-size: 1.1rem;
     margin-top: 5px;
 }
 
-.cardBox .card .iconBx {
+.card .iconBx {
     font-size: 3.5rem;
     color: var.$color-fonts-primary;
 }
 
-.cardBox .card:hover {
+.card:hover {
     background: var.$admin-color;
 }
 
-.cardBox .card:hover .numbers,
-.cardBox .card:hover .cardName,
-.cardBox .card:hover .ico-admin2 {
+ .card:hover .numbers,
+.card:hover .cardName,
+.card:hover .ico-admin2 {
     fill: var.$color-secondary;
     color: var.$color-secondary;
 }

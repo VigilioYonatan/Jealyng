@@ -3,6 +3,8 @@ const cardCard = document.querySelector('.cart-cards');
 const btnCarrito = document.querySelector('#btn-carrito');
 const btnCloseCart = document.querySelector('#btnCloseCart');
 const carrito = document.querySelector('#carrito');
+// agregar carrito
+
 btnCarrito.addEventListener('click', (e) => {
     e.preventDefault();
     carrito.classList.add('showCart');

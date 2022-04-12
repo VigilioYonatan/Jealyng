@@ -6,6 +6,7 @@ use Classes\EmailClass;
 use Model\UsuarioModel;
 use MVC\Router;
 use Classes\RenderizarImagenClass;
+use Model\MarcaModel;
 use Model\ProductosModel;
 
 class UsuarioController
@@ -14,7 +15,10 @@ class UsuarioController
     public static function inicio(Router $router)
     {
         session_start();
-        $router->render('web/index');
+        $marcas = MarcaModel::whereAllLimit(10);
+        $router->render('web/index', [
+            "marcas" => $marcas
+        ]);
     }
     public static function salir(Router $router)
     {
@@ -311,9 +315,9 @@ class UsuarioController
             header('Location: /');
         }
 
-        $totalUsuario = UsuarioModel::contar();
+        $totalUsuario = UsuarioModel::contar(null);
         $usuarioReciente = UsuarioModel::whereAllLimit('10');
-        $totalProductos = ProductosModel::contar();
+        $totalProductos = ProductosModel::contar(null);
 
         $router->render('admin/index', [
             "totalUsuario" => $totalUsuario,

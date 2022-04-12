@@ -126,6 +126,7 @@
             color: var.$color-fonts-primary;
             margin: 2rem 1rem 0rem;
             font-family: var.$f_regular;
+            text-align: center;
 
             @include var.hover {
                 &:hover {

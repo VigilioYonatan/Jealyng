@@ -205,9 +205,9 @@ class ActiveRecord
     }
 
     // cuenta las columnas
-    public static function contar()
+    public static function contar($inner)
     {
-        $query = self::$db->query("SELECT count(*) as total FROM " . static::$tabla . "");
+        $query = self::$db->query("SELECT count(*) as total FROM " . static::$tabla . " $inner");
         $row = $query->fetch_assoc();
         return array_shift($row);
     }
@@ -218,6 +218,16 @@ class ActiveRecord
         $query = "SELECT * FROM " . static::$tabla . " LIMIT $desde, $porPagina";
         $resultado = self::consultarSQL($query);
         return $resultado;
+    }
+    //traer elementos buscador por pagina
+    public static function buscadorPageInner($desde, $porPagina, $inner)
+    {
+        $query = self::$db->query("SELECT * FROM " . static::$tabla . " $inner LIMIT $desde, $porPagina");
+        $print = [];
+        while ($row = $query->fetch_assoc()) {
+            array_push($print, $row);
+        }
+        return $print;
     }
 
 
