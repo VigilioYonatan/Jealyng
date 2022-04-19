@@ -14,3 +14,14 @@
 .show {
     display: block;
 }
+
+.opacity {
+    background-color: #9B2727;
+    cursor: no-drop;
+}
+
+.mostrarNotificacion {
+    transform: translateX(22rem);
+    transition: transform 1s;
+
+}

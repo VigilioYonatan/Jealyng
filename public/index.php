@@ -5,6 +5,7 @@ use MVC\Router;
 use Controller\UsuarioController;
 use Controller\AdminController;
 use Controller\CarritoController;
+use Controller\ComentarioController;
 use Controller\MarcaController;
 use Controller\ProductosController;
 
@@ -59,11 +60,20 @@ $router->post('/apiEliminarMarcas', [MarcaController::class, 'apiEliminarMarcas'
 //tienda
 $router->get('/tienda', [ProductosController::class, 'tienda']);
 $router->get('/producto', [ProductosController::class, 'producto']);
+$router->post('/ApiComentario', [ComentarioController::class, 'ApiComentario']);
+$router->post('/ApiEliminarComentario', [ComentarioController::class, 'ApiEliminarComentario']);
+$router->get('/apiGetComentario', [ComentarioController::class, 'apiGetComentario']);
+$router->post('/actualizarComentario', [ComentarioController::class, 'actualizarComentario']);
 $router->get('/categoria', [ProductosController::class, 'categoria']);
 $router->get('/apiConsultarIdProducto', [ProductosController::class, 'apiConsultarIdProducto']);
 $router->get('/apiBuscadorNombreProducto', [ProductosController::class, 'apiBuscadorNombreProducto']);
 
 // carrito
+
+$router->get('/carrito', [CarritoController::class, 'carrito']);
+$router->get('/apiListCarrito', [CarritoController::class, 'apiListCarrito']);
 $router->post('/apiAddCarrito', [CarritoController::class, 'apiAddCarrito']);
+$router->post('/apiAumentarQTY', [CarritoController::class, 'apiAumentarQTY']);
+$router->post('/apiDisminuirQTY', [CarritoController::class, 'apiDisminuirQTY']);
 
 $router->comprobarRutas();

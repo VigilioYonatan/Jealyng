@@ -56,4 +56,3 @@
 <?php require_once __DIR__ . '/includes/footer.php';
 ?>
 <script src=" ./build/js/web/slider/slider.js"></script>
-<script src="./build/js/web/shop/card.js"></script>

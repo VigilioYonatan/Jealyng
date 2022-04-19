@@ -81,7 +81,7 @@ class ProductosController
             $id = $_POST['id'];
             $producto = ProductosModel::find($id);
             $imagen = $producto->imagen_prod;
-            $imagen2 =$producto->imagen2_prod;
+            $imagen2 = $producto->imagen2_prod;
 
             $producto->id_prod = $id;
             $producto->getId();
@@ -143,16 +143,27 @@ class ProductosController
     public static function producto(Router $router)
     {
         session_start();
-        $nombre = $_GET['nombre'];
+        $nombre = $_GET['nombre'] ?? null;
         $newNombre = explode('-', $nombre);
         $nombreProducto = implode(' ', $newNombre);
 
         $producto = new ProductosModel;
         $row = $producto->nombreProducto($nombreProducto);
+
+        $inner = " pro 
+                INNER JOIN categoria cat on pro.id_categoria = cat.id_categoria
+                INNER JOIN subcategoria sub on pro.id_subcategoria = sub.id_subcat
+                INNER JOIN marca on pro.id_marca = marca.id_marca
+                INNER JOIN descuento ON pro.id_descuento = descuento.id_descuento
+                INNER JOIN estadoproducto on pro.id_estado = estadoproducto.id_estadoPro WHERE sub.nombre_subcat = '$row[nombre_subcat]' AND cat.nombre_categoria ='$row[nombre_categoria]' ";
+        $relacionado = $producto->buscadorPageInner(0, 4, $inner);
         $router->render('web/producto', [
-            "producto" =>  $row
+            "producto" =>  $row,
+            "relacionado" => $relacionado
         ]);
     }
+
+
     public static function categoria(Router $router)
     {
         session_start();
@@ -164,6 +175,9 @@ class ProductosController
         $inner = "pro INNER JOIN descuento des ON pro.id_descuento = des.id_descuento INNER JOIN categoria cat ON pro.id_categoria = cat.id_categoria WHERE cat.nombre_categoria = '$categoria' AND des.nombre_descuento > 0.0 ORDER BY des.nombre_descuento DESC ";
 
         $catDescuento = $productos->buscadorPageInner(0, 20, $inner);
+
+
+
         $router->render('web/categoria', [
             "cats" => $cats,
             "categoria" => $categoria,

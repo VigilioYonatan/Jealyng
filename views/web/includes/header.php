@@ -95,56 +95,9 @@
                         d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z" />
 
                 </svg>
-                <b>0</b>
+                <b id="carritoTotal"></b>
             </a>
-            <div class="cart-float" id="carrito">
-                <span class="cart-float__title">
-                    <svg class="ico-form" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                        <path
-                            d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z">
-                        </path>
-                    </svg>
-                    Mi Carrito
-                    <h4><?= isset($_SESSION['carrito']) ? count($_SESSION['carrito']) . " productos" : '';  ?>
-                    </h4>
-                </span>
-                <div class="cart-cards">
-                    <?php
-                    if (!empty($_SESSION['carrito'])) :
-                        foreach ($_SESSION['carrito'] as $carrito) :
-                    ?>
-                    <picture class="cart-info" data-id="<?= $carrito['id_prod'] ?>">
-                        <img class="cart-info__img" src="./build/img/productos/<?= $carrito['imagen'] ?> " alt="">
-                        <div class="cart-info__info">
-                            <span class="cart-info__spn">Nombre: <b> <?= $carrito['nombre'] ?></b></span>
-                            <span class="cart-info__spn">precio: <b> <?= $carrito['precio'] ?></b></span>
-                            <div class="cart-info__qty">
-                                <span class="cart-info__spn">cantidad: </span>
-                                <button class="cart-info__btn" data-action="añadir">+</button>
-                                <b> <?= $carrito['cantidad'] ?></b>
-                                <button class="cart-info__btn" data-action="quitar">-</button>
-                            </div>
-                        </div>
-                    </picture>
-                    <?php endforeach;
-                        ?>
-                    <?php else :
-                    ?>
-                    <span class="cart-info__empty">Tu carrito está vacio</span>
-                    <?php endif;
-                    ?>
 
-                </div>
-                <div class="cart-total">
-                    <span class="cart-total__total">Total: $<b>1000</b></span>
-                    <a class="mostrar-card__masinfo" href="#">Más informacion</a>
-                    <a class="cart-total__link cart-total__link--pay" href="#">Pagar</a>
-                    <button id="btnCloseCart">Cerrar</button>
-
-
-
-                </div>
-            </div>
         </div>
 
 
@@ -169,3 +122,27 @@
         <?php endforeach; ?>
     </div>
 </nav>
+<div class="cart-float" id="carrito">
+    <span class="cart-float__title">
+        <svg class="ico-form" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path
+                d="M352 160v-32C352 57.42 294.579 0 224 0 153.42 0 96 57.42 96 128v32H0v272c0 44.183 35.817 80 80 80h288c44.183 0 80-35.817 80-80V160h-96zm-192-32c0-35.29 28.71-64 64-64s64 28.71 64 64v32H160v-32zm160 120c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24zm-192 0c-13.255 0-24-10.745-24-24s10.745-24 24-24 24 10.745 24 24-10.745 24-24 24z">
+            </path>
+        </svg>
+        Mi Carrito
+        <h4></h4>
+    </span>
+    <div class="cart-cards">
+        <!-- api  -->
+    </div>
+    <div class="cart-total">
+        <span class="cart-total__total">Total: <b class="totalProducto"></b></span>
+        <a class="mostrar-card__masinfo" href="/carrito">Más informacion</a>
+        <a class="cart-total__link cart-total__link--pay" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path
+                    d="M512 32C547.3 32 576 60.65 576 96V128H0V96C0 60.65 28.65 32 64 32H512zM576 416C576 451.3 547.3 480 512 480H64C28.65 480 0 451.3 0 416V224H576V416zM112 352C103.2 352 96 359.2 96 368C96 376.8 103.2 384 112 384H176C184.8 384 192 376.8 192 368C192 359.2 184.8 352 176 352H112zM240 384H368C376.8 384 384 376.8 384 368C384 359.2 376.8 352 368 352H240C231.2 352 224 359.2 224 368C224 376.8 231.2 384 240 384z" />
+            </svg><b>Pagar</b></a>
+        <button id="btnCloseCart">X Cerrar</button>
+    </div>
+</div>
