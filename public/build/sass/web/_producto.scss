@@ -1,8 +1,39 @@
 @use '../template/variables'as var;
 
 .producto {
-    width: 90%;
+    width: 70%;
     padding-top: 2rem;
+    margin: 0 auto;
+    background-color: var.$color-card;
+    box-shadow: 0px 0px 1px #00000013;
+
+    @include var.laptop {
+        width: 90%;
+    }
+
+    &__parrafo {
+        width: 80%;
+
+        @include var.laptop {
+            width: 95%;
+        }
+    }
+
+    &__img {
+        width: 60%;
+
+        @include var.tablet {
+            width: 50%;
+        }
+    }
+
+    &__info {
+        width: 40%;
+
+        @include var.tablet {
+            width: 45%;
+        }
+    }
 }
 
 .categorias {
@@ -55,4 +86,238 @@
 
 
 
+}
+
+.comentarios {
+    padding: 1rem;
+    display: flex;
+
+    @include var.mini-tablet {
+        flex-direction: column;
+    }
+
+    &__title {
+        color: #abadad;
+        padding: .5rem 0;
+
+        @include var.mini-tablet {
+            text-align: center;
+        }
+    }
+
+    &-preguntar {
+        display: flex;
+        flex-direction: column;
+        margin-top: .5rem;
+
+        & span {
+            color: var.$color-fonts-primary;
+        }
+
+        &__input {
+            display: flex;
+            align-items: center;
+            margin-top: .2rem;
+
+            & input {
+
+                border: 1px solid var.$color-fonts-primary;
+                background-color: transparent;
+                padding: .6rem 1rem;
+                border-radius: .2rem;
+                width: 100%;
+                max-width: 700px;
+            }
+
+            & button {
+                border: none;
+                background-color: var.$color-quarty;
+                color: #fff;
+                padding: .6rem 1rem;
+                margin-left: .5rem;
+                cursor: pointer;
+                border-radius: .2rem;
+                // border: 1px solid #fff;
+            }
+        }
+    }
+}
+
+.comentario {
+    padding-top: 1rem;
+
+    &-container {
+        width: 60%;
+        margin: 0 auto;
+
+        @include var.mini-tablet {
+            width: 90%;
+            margin: 0 auto;
+
+        }
+    }
+
+    &-offer {
+        width: 40%;
+        padding-top: 2rem;
+
+        @include var.mini-tablet {
+            width: 100%;
+        }
+
+        &__product {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+
+            @include var.mini-tablet {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+    }
+
+    &-comment {
+        display: flex;
+        align-items: flex-start;
+        margin: .8rem 0;
+
+        &__info {
+            width: 100%;
+        }
+
+        &__name {
+            display: flex;
+            align-items: center;
+
+            & a {
+                text-decoration: none;
+                color: var.$color-fonts-primary;
+                font-family: var.$f_regular;
+                font-weight: 700;
+
+                @include var.mini-tablet {
+                    font-size: .8rem;
+                }
+            }
+
+            & span {
+                color: var.$color-fonts-quarty;
+                margin-left: .5rem;
+                font-size: .8rem;
+
+                @include var.mini-tablet {
+                    font-size: .7rem;
+                }
+            }
+        }
+
+        & img {
+            width: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: .5rem;
+
+            // @include var.mini-tablet {
+            //     width: .5rem;
+            // }
+        }
+
+        &__noImagen {
+            display: block;
+            background-color: var.$color-terciary;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: .5rem;
+            color: var.$color-fonts-terciary;
+        }
+
+        & p {
+            font-size: .9rem;
+            color: var.$color-fonts-primary;
+            font-family: var.$f_regular;
+
+            @include var.mini-tablet {
+                font-size: .8rem;
+            }
+        }
+
+        &__btn {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: .2rem;
+
+            & button {
+                border: none;
+                background-color: var.$color-quarty;
+                margin: 0rem .2rem;
+                color: #fff;
+                padding: .3em .6em;
+                cursor: pointer;
+                border-radius: .2rem;
+                font-size: 1rem;
+
+                @include var.mini-tablet {
+                    font-size: .8rem;
+                }
+
+                &:nth-child(2) {
+                    background-color: var.$color-error;
+                }
+            }
+        }
+
+    }
+}
+
+.offer-card {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    background-color: var(--color-card);
+    padding: 0.5rem 0;
+    box-shadow: 0px 0px 1px #00000013;
+
+    // hover
+    &:hover .best-card__image,
+    &:hover .best-card__view {
+        opacity: 1;
+        transform: translateY(0rem);
+        transition: transform .5s;
+    }
+}
+
+.productos__linked {
+    display: flex;
+    padding-top: 2rem;
+    padding-bottom: .5rem;
+    // max-width: 1200px;
+    width: 58%;
+    // max-width: 18.75rem;
+    // text-align: center;
+    margin: 0 auto;
+
+    & a {
+        text-decoration: none;
+        color: var.$color-fonts-secondary;
+    }
+
+    & p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #abadad;
+        font-size: .9rem;
+        width: 300px;
+    }
 }

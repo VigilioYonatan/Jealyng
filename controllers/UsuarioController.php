@@ -6,6 +6,7 @@ use Classes\EmailClass;
 use Model\UsuarioModel;
 use MVC\Router;
 use Classes\RenderizarImagenClass;
+use Model\CarritoModel;
 use Model\MarcaModel;
 use Model\ProductosModel;
 
@@ -16,8 +17,16 @@ class UsuarioController
     {
         session_start();
         $marcas = MarcaModel::whereAllLimit(10);
+        $inner = 'pro INNER JOIN categoria cat on pro.id_categoria = cat.id_categoria
+        INNER JOIN subcategoria sub on pro.id_subcategoria = sub.id_subcat
+        INNER JOIN marca on pro.id_marca = marca.id_marca
+        INNER JOIN descuento ON pro.id_descuento = descuento.id_descuento
+        INNER JOIN estadoproducto on pro.id_estado = estadoproducto.id_estadoPro ORDER BY nombre_descuento DESC';
+        //  
+        $ofertas = ProductosModel::buscadorPageInner(0, 10, $inner);
         $router->render('web/index', [
-            "marcas" => $marcas
+            "marcas" => $marcas,
+            "ofertas" => $ofertas
         ]);
     }
     public static function salir(Router $router)
@@ -56,19 +65,32 @@ class UsuarioController
                 if (!$verificarPassword) {
                     echo json_encode(["passwordInvalido" => "Contraseña incorrecta pruebe nuevamente..."]);
                 } else {
+                    session_start();
+                    $_SESSION['login'] = true;
+                    $_SESSION['id'] = $usuario->id_user;
+
+                    // die;
                     if ($usuario->id_rol === '1') {
-                        session_start();
-                        $_SESSION['login'] = true;
                         $_SESSION['id'] = $usuario->id_user;
                         echo json_encode(["logueado" => "Bienvenido a Jealyng $usuario->nombre_user ;3"]);
                     } else if ($usuario->id_rol === '2') {
-
-                        session_start();
-                        $_SESSION['login'] = true;
-                        $_SESSION['id'] = $usuario->id_user;
                         $_SESSION['admin'] = true;
                         echo json_encode(["logeoAdmin" => "Bienvenido Admin $usuario->nombre_user "]);
                     }
+
+                    // if (!empty($_SESSION['carrito'])) {
+                    //     $carrito = CarritoModel::where('id_user', $_SESSION['id']);
+
+                    //     foreach ($_SESSION['carrito'] as $value) {
+                    //         // $carrito->getId();
+                    //         $carrito->id_prod = $value['id_prod'];
+                    //         $carrito->id_user = $_SESSION['id'];
+                    //         $carrito->costoTotal_carrito = $value['costoTotal_carrito'];
+                    //         $carrito->cantidad_carrito = $value['cantidad_carrito'];
+                    //         $resultado = $carrito->guardar();
+                    //         echo json_encode($resultado);
+                    //     }
+                    // }
                 }
             }
         }

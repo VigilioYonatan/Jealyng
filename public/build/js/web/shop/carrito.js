@@ -1,35 +1,25 @@
-const productos = document.querySelector('#productos');
-const cardCard = document.querySelector('.cart-cards');
+
+// agregar carrito
 const btnCarrito = document.querySelector('#btn-carrito');
 const btnCloseCart = document.querySelector('#btnCloseCart');
 const carrito = document.querySelector('#carrito');
-// agregar carrito
-
 btnCarrito.addEventListener('click', (e) => {
     e.preventDefault();
     carrito.classList.add('showCart');
+    document.body.style.cssText = 'overflow:hidden'; // ocultar el scroll
 
+    modalBlack()
 
 
 })
 
-// document.addEventListener('click', (e) => {
-//     if (!e.target.classList.contains('showCart')) {
-//         carrito.classList.remove('showCart');
-//     }
-// })
-
 btnCloseCart.addEventListener('click', () => {
     carrito.classList.remove('showCart');
-});
-let carritoInfo = [];
+    const contenidoBlack = document.querySelector('.container-black2');
+    document.body.style.cssText = 'overflow:visible'; // ocultar el scroll
 
-// productos.addEventListener('click', (e) => {
-//     if (e.target.classList.contains('card-btn')) {
-//         const carrito = document.querySelector('#carrito');
-//         carrito.classList.add('show2');
-//         const idProducto = e.target.dataset.id;
-//         // apiAddCart(idProducto);
-//     }
-// })
+    contenidoBlack.remove();
+});
+
+
 
