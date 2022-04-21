@@ -201,38 +201,14 @@ class UsuarioController
     {
         session_start();
         if (!isset($_SESSION['login'])) header('Location: /');
-        $usuario = UsuarioModel::find($_SESSION['id']);
-
+        // $usuario = UsuarioModel::find($_SESSION['id']);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        }
         $router->render('web/perfil', [
-            "usuario" => $usuario
+            // "usuario" => $usuario
         ]);
     }
 
-
-    public static function apiUserPerfil()
-    {
-        session_start();
-        $usuario = UsuarioModel::find($_SESSION['id']);
-        echo json_encode(["usuario" => $usuario]);
-    }
-    public static function apiUserProvincia()
-    {
-        session_start();
-        $provincia = selectSql('provincia');
-        echo json_encode(["provincia" => $provincia]);
-    }
-    public static function apiUserDistritos()
-    {
-        session_start();
-        $distrito = selectSql('distrito');
-        echo json_encode(["distrito" => $distrito]);
-    }
-    public static function apiUserDepartamento()
-    {
-        session_start();
-        $departamentos = selectSql('departamentos');
-        echo json_encode(["departamentos" => $departamentos]);
-    }
 
     public static function apiPerfilDatos()
     {
@@ -243,13 +219,30 @@ class UsuarioController
             $usuario->nombre_user = $_POST['nombre_user'];
             $usuario->apellidoMaterno_user = $_POST['apellidoMaterno_user'];
             $usuario->apellidoPaterno_user = $_POST['apellidoPaterno_user'];
+            $usuario->nacimiento_user = $_POST['nacimiento_user'];
             $usuario->telefono_user = $_POST['telefono_user'];
-            $usuario->nacimimiento_user = $_POST['nacimimiento_user'];
-            $usuario->guardar();
-
-            echo json_encode(["resultado" =>  "Los cambios se realizaron exitosamente"]);
+            $usuario->nacimiento_user = $_POST['nacimiento_user'];
+            $resultado = $usuario->guardar();
+            echo json_encode($resultado);
         }
     }
+    public static function apiPerfilEnvio()
+    {
+        session_start();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario = UsuarioModel::find($_SESSION['id']);
+            $usuario->getId();
+            $usuario->id_departamento = $_POST['departamento'];
+            $usuario->id_provincia = $_POST['provincia'];
+            $usuario->id_distrito = $_POST['distrito'];
+            $usuario->direccion_user = $_POST['direccion'];
+           
+            $resultado = $usuario->guardar();
+            echo json_encode($resultado);
+        }
+    }
+
+
 
     public static function apiPerfilImagen()
     {

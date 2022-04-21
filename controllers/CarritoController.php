@@ -3,6 +3,8 @@
 namespace Controller;
 
 use Model\CarritoModel;
+use Model\HistorialComprasModel;
+use Model\PedidoModel;
 use Model\ProductosModel;
 use MVC\Router;
 
@@ -24,6 +26,7 @@ class CarritoController
     public static function carrito(Router $router)
     {
         session_start();
+
         $router->render('web/carrito', []);
     }
 
@@ -141,5 +144,77 @@ class CarritoController
                 }
             }
         }
+    }
+
+    public static function enviarInfoPago()
+    {
+        session_start();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $pedido = new PedidoModel;
+            $pedido->id_user = $_SESSION['id'];
+            $pedido->id_metodoP = 1;
+            $pedido->direccionEnvio = $_POST['distrito'] . ' ' . $_POST['direccion'];
+            $monto  = $_POST['monto'];
+            $carrito = $_POST['carrito'];
+            if (empty($_POST['datapay'])) {
+            } else {
+                $jsonPaypal = $_POST['datapay'];
+                $objPaypal = json_decode($jsonPaypal);
+                $pedido->estado = "Aprobado";
+
+                if (is_object($objPaypal)) {
+                    $pedido->datospaypal  = $jsonPaypal;
+                    $transaccionId = $objPaypal->purchase_units[0]->payments->captures[0]->id;
+                    $pedido->idtransaccionpaypal = $transaccionId;
+                    if ($objPaypal->status == "COMPLETED") {
+                        $totalPaypal = $objPaypal->purchase_units[0]->amount->value;
+                        $pedido->monto =  $totalPaypal;
+                        if ($monto == $totalPaypal) {
+
+                            $pedido->estado = "Completo";
+                        }
+
+                        $objCarrito = json_decode($carrito);
+
+
+                        $resultado = $pedido->guardar();
+
+                        foreach ($objCarrito as $objCar) {
+                            $historial = new HistorialComprasModel;
+
+                            $historial->id_pedido = $resultado['id'];
+                            $historial->id_user = $_SESSION['id'];
+                            $historial->id_prod = $objCar->id_prod;
+                            $historial->cantidad = $objCar->cantidad_carrito;
+                            $historial->costoTotalCarrito = $objCar->costoTotal_carrito;
+                            $historial->guardar();
+                        }
+
+                        $arrResponse = [
+                            "status" => true,
+                            "orden"  => $resultado['id'],
+                            "transaccion" => $transaccionId,
+                            "mensaje" => "Pedido Realizado"
+                        ];
+                        $_SESSION['dataorden'] = $arrResponse;
+                        echo json_encode($resultado);
+                    } else {
+                        echo json_encode(["status" => false, "Pago incompleto"]);
+                    }
+                } else {
+                    echo json_encode(["status" => false, "hubo un problema"]);
+                }
+            }
+        }
+    }
+
+    public static function pedidoConfirmado(Router $router)
+    {
+        session_start();
+        if (empty($_SESSION['dataorden'])) header('Location: /');
+
+        $router->render('web/token/pedidoConfirmado', [
+            "respuestaOrden" => $_SESSION['dataorden']
+        ]);
     }
 }

@@ -5,7 +5,7 @@ namespace Model;
 class EstadoProductoModel extends ActiveRecord
 {
     protected static $db;
-    protected static $tabla = 'estadoProducto'; // nombre tabla
+    protected static $tabla = 'estadoproducto'; // nombre tabla
     protected static $idTabla = 'id_estadoPro'; //id producto
     public $id; //id
     //columnas de la tabla productos

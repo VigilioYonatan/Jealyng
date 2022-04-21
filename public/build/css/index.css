@@ -1,6 +1,6 @@
 @charset "UTF-8";
 :root {
-  --color-fondo: #EDEDED;
+  --color-fondo: #e7e7e7;
   --color-primary: #1732a0;
   --color-card: #fff;
   --color-secondary: white;
@@ -3438,10 +3438,47 @@ template {
   color: var(--color-fonts-quarty);
 }
 
+.carrito {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.carrito-container {
+  display: flex;
+  width: 80%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+@media screen and (max-width: 1250px) {
+  .carrito-container {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 650px) {
+  .carrito-container {
+    width: 100%;
+  }
+}
+
+.CarritoBtnOpciones {
+  align-self: baseline;
+  margin-left: 5rem;
+  margin-bottom: 0.5rem;
+}
+.CarritoBtnOpciones .CarritoBtn {
+  color: var(--color-fonts-quarty);
+  cursor: no-drop;
+}
+.CarritoBtnOpciones .CarritoBtn__linked {
+  color: var(--color-fonts-secondary);
+  cursor: pointer;
+}
+
 .tablaCarrito {
   display: flex;
   gap: 1rem;
-  justify-content: center;
   align-items: flex-start;
   padding-bottom: 2rem;
   margin: 0rem 1rem;
@@ -3449,6 +3486,7 @@ template {
 @media screen and (max-width: 850px) {
   .tablaCarrito {
     flex-direction: column;
+    align-items: center;
   }
 }
 .tablaCarrito-container {
@@ -3456,8 +3494,41 @@ template {
   padding: 1rem 2rem;
   box-shadow: 0px 0px 1px #00000013;
   border: 1px solid #e5e5e5;
-  min-width: 38.5rem;
+  width: 70%;
   min-height: 30rem;
+}
+@media screen and (max-width: 850px) {
+  .tablaCarrito-container {
+    width: 90%;
+    padding: 1rem 0.3rem;
+  }
+}
+@media screen and (max-width: 650px) {
+  .tablaCarrito-container {
+    width: 100%;
+  }
+}
+.tablaCarrito-container2 {
+  background-color: var(--color-card);
+  padding: 1rem 2rem;
+  box-shadow: 0px 0px 1px #00000013;
+  border: 1px solid #e5e5e5;
+  width: 70%;
+  min-width: 50rem;
+  min-height: 30rem;
+}
+@media screen and (max-width: 850px) {
+  .tablaCarrito-container2 {
+    min-width: 35rem;
+    width: 90%;
+    padding: 1rem 0.3rem;
+  }
+}
+@media screen and (max-width: 650px) {
+  .tablaCarrito-container2 {
+    min-width: 25rem;
+    width: 100%;
+  }
 }
 .tablaCarrito-pay {
   background-color: var(--color-card);
@@ -3466,6 +3537,20 @@ template {
   border: 1px solid #e5e5e5;
   display: flex;
   flex-direction: column;
+}
+.tablaCarrito-pay2 {
+  width: 30%;
+  background-color: var(--color-card);
+  padding: 1rem 2rem;
+  box-shadow: 0px 0px 1px #00000013;
+  border: 1px solid #e5e5e5;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width: 850px) {
+  .tablaCarrito-pay2 {
+    width: 90%;
+  }
 }
 .tablaCarrito-pay__btn {
   background-color: var(--color-primary);
@@ -3560,6 +3645,52 @@ template {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+}
+
+.tablaCarrito2 {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 2rem;
+  margin: 0rem 1rem;
+}
+.tablaCarrito2-container {
+  background-color: var(--color-card);
+  padding: 1rem 2rem;
+  box-shadow: 0px 0px 1px #00000013;
+  border: 1px solid #e5e5e5;
+  min-width: 70%;
+  min-height: 30rem;
+}
+.tablaCarrito2-container__info {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+.tablaCarrito2-container__info p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.2rem 0.1rem;
+  font-weight: bolder;
+}
+.tablaCarrito2-container__info p span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: lighter;
+}
+.tablaCarrito2-container__info a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  margin: 0.5rem 0;
+}
+.tablaCarrito2-container__title {
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 .footer {
