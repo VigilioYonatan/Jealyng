@@ -57,7 +57,11 @@ function selectSql($tabla)
 function selectSqlBYid($id)
 {
     global $cnx;
-    $query = $cnx->query("SELECT * FROM usuario WHERE id_user=" . $id . " LIMIT 1");
+    $query = $cnx->query("SELECT * FROM usuario usu
+    INNER JOIN departamentos dep ON dep.idDepartamento = usu.id_departamento
+    INNER JOIN provincia pro ON pro.idProvincia = usu.id_provincia 
+    INNER JOIN distrito dis ON dis.idDistrito = usu.id_distrito
+     WHERE id_user=" . $id . " LIMIT 1");
     $row = $query->fetch_assoc();
 
 

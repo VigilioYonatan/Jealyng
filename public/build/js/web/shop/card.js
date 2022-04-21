@@ -4,7 +4,16 @@ const totalProducto = document.querySelectorAll('.totalProducto');
 const carritoTotal = document.querySelector('#carritoTotal');
 const carritoTotal2 = document.querySelector('.cart-float__title h4');
 const carritoContainer = document.querySelector('#carrito');
+const btnPay = document.querySelector('.tablaCarrito-pay__btn');
 const tablaCarrito = document.getElementById('tabla-carrito'); //carrito.php
+
+// paypal container 
+const paypalContainer = document.getElementById('paypal-button-container');
+const paypalButtonContainer = document.getElementById('paypal-button-container');
+
+
+
+
 let carritoCaja = [];
 
 listCarrito();
@@ -313,6 +322,9 @@ function insertarCarrito() {
 function insertarCarrito2() {
 
     limpiarHtml(tablaCarrito);
+    limpiarHtml(paypalContainer);
+
+
     if (carritoCaja.length <= 0) {
         const tablaContenedor = document.querySelector('.tablaCarrito');
         limpiarHtml(tablaContenedor)
@@ -370,6 +382,100 @@ function insertarCarrito2() {
 
     carritoTotal.textContent = carritoCaja.length;
     carritoTotal2.textContent = `${carritoCaja.length} productos`;
+
+    const precioPaypal = parseFloat(sumall) / 3.73;
+
+    const tablaInformacion = document.querySelector('.tablaCarrito2-container__info');
+
+    const departamento = tablaInformacion.children[1].children[0].textContent;
+    const provincia = tablaInformacion.children[2].children[0].textContent;
+    const distrito = tablaInformacion.children[3].children[0].textContent;
+    const direccion = tablaInformacion.children[4].children[0].textContent;
+    if (paypalButtonContainer) {
+        paypal.Buttons({
+
+            // Sets up the transaction when a payment button is clicked
+
+            createOrder: (data, actions) => {
+
+                return actions.order.create({
+
+                    purchase_units: [{
+
+                        amount: {
+
+                            value: Number(precioPaypal).toFixed(2), // Can also reference a variable or function
+                            description: "Compra de articulos JEALYNG"
+                        }
+
+                    }]
+
+                });
+
+            },
+
+            // Finalize the transaction after payer approval
+
+            onApprove: (data, actions) => {
+
+                return actions.order.capture().then(function (orderData) {
+
+                    // Successful capture! For dev/demo purposes:
+
+                    const values = {
+                        departamento,
+                        provincia,
+                        distrito,
+                        direccion,
+                        orderData: JSON.stringify(orderData),
+                        precioPaypal: Number(precioPaypal).toFixed(2),
+                        carrito: JSON.stringify(carritoCaja)
+                    }
+                    enviarInfoPago(values);
+                    // When ready to go live, remove the alert and show a success message within this page. For example:
+
+                    // const element = document.getElementById('paypal-button-container');
+
+                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+                    // Or go to another URL: actions.redirect('thank_you.html');
+
+                });
+
+            }
+
+        }).render('#paypal-button-container');
+    }
+
+}
+
+async function enviarInfoPago(values) {
+    const { departamento,
+        provincia,
+        distrito,
+        direccion,
+        orderData, precioPaypal, carrito } = values;
+
+    const formData = new FormData;
+    formData.append('distrito', distrito);
+    formData.append('direccion', direccion);
+    formData.append('datapay', orderData);
+    formData.append('monto', precioPaypal);
+    formData.append('carrito', carrito);
+
+    const url = 'http://localhost:3000/enviarInfoPago';
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: formData
+        });
+        const respuesta = await response.json();
+        if (respuesta.resultado) {
+            window.open('/pedidoConfirmado', '_self');
+        }
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 //agregar uno
@@ -444,11 +550,22 @@ async function apiCambiarCantidad(id, ur) {
 
 }
 
+// btnPay.addEventListener('click', e => {
+//     e.preventDefault();
+
+//     const tablaContenedor = document.querySelector('.tablaCarrito');
+//     limpiarHtml(tablaContenedor)
+// })
+
 function limpiarHtml(container) {
     while (container.firstElementChild) {
         container.removeChild(container.firstElementChild);
     }
 }
+
+// paypal
+
+
 
 
 

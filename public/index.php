@@ -26,11 +26,9 @@ $router->post('/apiRecuperar', [UsuarioController::class, 'apiRecuperar']);
 $router->get('/recuperar-cuenta', [UsuarioController::class, 'recuperarCuenta']);
 $router->post('/recuperar-cuenta-contraseña', [UsuarioController::class, 'recuperarCuentaContraseña']);
 $router->get('/perfil', [UsuarioController::class, 'perfil']);
-$router->get('/apiUserPerfil', [UsuarioController::class, 'apiUserPerfil']);
-$router->get('/apiUserDepartamento', [UsuarioController::class, 'apiUserDepartamento']);
-$router->get('/apiUserProvincia', [UsuarioController::class, 'apiUserProvincia']);
-$router->get('/apiUserDistritos', [UsuarioController::class, 'apiUserDistritos']);
+$router->post('/apiPerfilEnvio', [UsuarioController::class, 'apiPerfilEnvio']);
 $router->post('/apiPerfilDatos', [UsuarioController::class, 'apiPerfilDatos']);
+
 $router->post('/apiPerfilImagen', [UsuarioController::class, 'apiPerfilImagen']);
 $router->post('/apiPerfilWallpaper', [UsuarioController::class, 'apiPerfilWallpaper']);
 $router->post('/apiPerfilRol', [UsuarioController::class, 'apiPerfilRol']);
@@ -75,5 +73,8 @@ $router->get('/apiListCarrito', [CarritoController::class, 'apiListCarrito']);
 $router->post('/apiAddCarrito', [CarritoController::class, 'apiAddCarrito']);
 $router->post('/apiAumentarQTY', [CarritoController::class, 'apiAumentarQTY']);
 $router->post('/apiDisminuirQTY', [CarritoController::class, 'apiDisminuirQTY']);
+$router->post('/enviarInfoPago', [CarritoController::class, 'enviarInfoPago']);
+$router->get('/pedidoConfirmado', [CarritoController::class, 'pedidoConfirmado']);
+
 
 $router->comprobarRutas();

@@ -221,7 +221,7 @@ class ActiveRecord
     }
     //traer elementos buscador por pagina
     public static function buscadorPageInner($desde, $porPagina, $inner)
-    {
+    { 
         $query = self::$db->query("SELECT * FROM " . static::$tabla . " $inner LIMIT $desde, $porPagina");
         $print = [];
         while ($row = $query->fetch_assoc()) {

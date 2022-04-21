@@ -14,19 +14,80 @@
 <h1 class="carrito__title">Carrito de compras
     (<?= isset($_SESSION['carrito']) ? count($_SESSION['carrito']) . " articulos " : "0 articulos";  ?>) </h1>
 
-<section class="tablaCarrito container">
-    <div class="tablaCarrito-container" id="tabla-carrito">
-        <!-- API  -->
-    </div>
-    <div class="tablaCarrito-pay">
-        <a class="tablaCarrito-pay__btn" href="">Completar la transacción</a>
-        <div class="tablaCarrito-total">
-            <span>Subtotal:</span>
-            <p class="totalProducto">S/.
 
-            </p>
+<section class="carrito container">
+    <div class="carrito-container">
+        <div class="CarritoBtnOpciones">
+            <span class="CarritoBtn " id="btnCarritoOption">Carrito</span>/
+            <span class="CarritoBtn CarritoBtn__linked" id="btnPayOption">Procesar Pago</span>
+        </div>
+        <div class="tablaCarrito ">
+
+            <div class="tablaCarrito-container " id="tabla-carrito">
+                <!-- API  -->
+            </div>
+
+            <div class="tablaCarrito-pay ">
+                <?php if (!isset($_SESSION['login'])) : ?>
+                <a class="tablaCarrito-pay__btn" href="/login">Completar la transacción</a>
+                <?php else : ?>
+                <a class="tablaCarrito-pay__btn" id="btnCompletar">Completar la transacción</a>
+                <?php endif; ?>
+
+                <div class="tablaCarrito-total">
+                    <span>Subtotal:</span>
+                    <p class="totalProducto">S/.
+
+                    </p>
+                </div>
+
+            </div>
+
+            <?php
+            if (isset($_SESSION['id'])) :
+                $usuario = selectSqlBYid($_SESSION['id']);
+            ?>
+            <div class="tablaCarrito-container2 hidden">
+                <div class="tablaCarrito2-container__info">
+                    <span class="tablaCarrito2-container__title">Direccion de envio:</span>
+                    <p>Departamento:
+                        <span><?= $usuario['departamento']; ?></span>
+                    </p>
+                    <p>Provincia:
+                        <span><?= $usuario['provincia']; ?></bspan>
+                    </p>
+                    <p>Distrito:
+                        <span><?= $usuario['distrito']; ?></span>
+                    </p>
+                    <p>Direccion:
+                        <span><?= $usuario['direccion_user']; ?></span>
+                    </p>
+                    <a href="/perfil">Editar Direccion</a>
+                    <p>Precio total:<b class="totalProducto">S/.</b>
+
+                    </p>
+
+                </div>
+            </div>
+            <?php endif; ?>
+            <script
+                src="https://www.paypal.com/sdk/js?client-id=Ae_LRNWE4nHb-kGgoyY2zDPPK0N6sK8Drjby4UNE8BDhYXoJfk883mC8amtmbr-m1KyKRGc0ldNSv2Ot&currency=USD">
+            </script>
+            <div class="tablaCarrito-pay2 hidden">
+                <div id="paypal-button-container"></div>
+            </div>
+
         </div>
     </div>
 
 </section>
-<?php require_once __DIR__ . '/includes/footer.php';
+
+
+
+
+
+
+<?php require_once __DIR__ . '/includes/footer.php'; ?>
+<script src="./build/js/web/shop/paypal.js">
+
+</script>
