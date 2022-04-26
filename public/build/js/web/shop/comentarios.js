@@ -32,13 +32,13 @@ function imprimirComentariosHtml() {
 
     comentarios.forEach(comentario => {
         // console.log(comentario);
-        const { id_comentarios, nombre_user, apellidoPaterno_user, comentarios, fecha, imagen_user, id_user } = comentario;
+        const { id_comentarios, nombre_user, apellidoPaterno_user, comentarios, fechaComentario, imagen_user, id_user } = comentario;
         html = `<div class="comentario-comment" data-id="${id_comentarios}">
                     ${imagen_user.length > 1 ? `<img src="./build/img/usuarios/${imagen_user}" alt="usuarioJeayng${nombre_user}">` : `<span class="comentario-comment__noImagen">${nombre_user[0]}</span>`}        
                     <div class="comentario-comment__info">
                         <div class="comentario-comment__name">
                             <a href="/user/">${nombre_user} ${apellidoPaterno_user}</a>
-                            <span>${fecha}</span>
+                            <span>${fechaComentario}</span>
                         </div>
                         <p>${comentarios}</p>
                         <div class="comentario-comment__btn">

@@ -226,7 +226,7 @@ class UsuarioController
     {
         session_start();
 
-        $user = htmlGet($_GET['user']);
+        $user = $_GET['user'] ?? null;
         if (!isset($user)) {
             header('Location: /');
         }
@@ -377,8 +377,8 @@ class UsuarioController
         $totalUsuario = UsuarioModel::contar(null);
         $usuarioReciente = UsuarioModel::whereAllLimit('10');
         $totalProductos = ProductosModel::contar(null);
-        $inner = ' ped INNER JOIN usuario usu ON usu.id_user = ped.id_user';  
-$pedidos = PedidoModel::buscadorPageInner(0,20,$inner);
+        $inner = ' ped INNER JOIN usuario usu ON usu.id_user = ped.id_user';
+        $pedidos = PedidoModel::buscadorPageInner(0, 20, $inner);
         $router->render('admin/index', [
             "titulo" => "Admin-Dashboard",
 

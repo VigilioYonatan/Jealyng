@@ -8,13 +8,13 @@ class ComentariosModel extends ActiveRecord
 {
     protected static $tabla = 'comentariosproductos';
     protected static $idTabla = 'id_comentarios';
-    protected static $columnasDB = ['id_comentarios', 'comentarios', 'fecha', 'id_user', 'id_prod'];
+    protected static $columnasDB = ['id_comentarios', 'comentarios', 'fechaComentario', 'id_user', 'id_prod'];
     public $id;
     public function __construct($args = [])
     {
         $this->id_comentarios = $args['id_comentarios'] ?? null;
         $this->comentarios = $args['comentarios'] ?? null;
-        $this->fecha = $args['fecha'] ?? date('Y-m-d');
+        $this->fechaComentario = $args['fechaComentario'] ?? date('Y-m-d');
         $this->id_user = $args['id_user'] ?? null;
         $this->id_prod = $args['id_prod'] ?? null;
     }

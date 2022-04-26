@@ -1,7 +1,7 @@
 <?php
 const host = 'localhost';
-const user = 'VIGILIO98';
-const password = 'vigilio98';
+const user = 'root';
+const password = '';
 const db = 'jealyng';
 
 $cnx = mysqli_connect(host, user, password, db);
