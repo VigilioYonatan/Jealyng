@@ -1,7 +1,7 @@
 :root {
     --color-fondo: #e7e7e7;
     // --color-primary: #3F5C58;
-    --color-primary: #1732a0;
+    --color-primary: #161616;
     --color-card: #fff;
     --color-secondary: white;
     --color-terciary: black;
@@ -9,7 +9,7 @@
 
     --color-fonts-primary: black;
     // --color-fonts-secondary: #3F5C58;
-    --color-fonts-secondary: #00187D;
+    --color-fonts-secondary: #282828;
     --color-fonts-terciary: white;
     --color-fonts-quarty: #4d4949e6;
 
@@ -43,13 +43,13 @@ $admin-color:#{var( --admin-color)};
     --color-fondo: #282828;
     --color-card: #2D2D2F;
     // --color-primary: #3F5C58;
-    --color-primary: #00187D;
+    --color-primary: #161616;
     --color-secondary: #282828;
     --color-terciary: rgb(255, 255, 255);
     --color-quarty: #2E3238;
 
     --color-fonts-primary: rgb(255, 255, 255);
-    --color-fonts-secondary: #496bf3;
+    --color-fonts-secondary: #282828;
     // --color-fonts-secondary: #3F5C58;
     --color-fonts-terciary: rgb(7, 7, 7);
     --color-fonts-quarty: #fff;

@@ -11,10 +11,14 @@ class ActiveRecord
     protected static $columnasDB = [];
     protected static $idTabla = '';
     protected static $carpeta = '';
-
+    protected static $fecha;
     public static function setDb($database)
     {
         self::$db = $database;
+    }
+    public static function setfecha($fechaNow)
+    {
+        self::$fecha = $fechaNow;
     }
 
     // Consulta SQL para crear un objeto en Memoria
@@ -197,6 +201,13 @@ class ActiveRecord
         return $resultado;
     }
 
+    public function eliminarQuery($tabla, $id)
+    {
+        $query = "DELETE FROM "  . static::$tabla . " WHERE " . $tabla . " = " . self::$db->escape_string($id) . "";
+        $resultado = self::$db->query($query);
+        return $resultado;
+    }
+
     public static function buscador($columna, $buscar)
     {
         $query = "SELECT * FROM " . static::$tabla . " WHERE  $columna LIKE '%$buscar%' LIMIT 5";
@@ -221,7 +232,7 @@ class ActiveRecord
     }
     //traer elementos buscador por pagina
     public static function buscadorPageInner($desde, $porPagina, $inner)
-    { 
+    {
         $query = self::$db->query("SELECT * FROM " . static::$tabla . " $inner LIMIT $desde, $porPagina");
         $print = [];
         while ($row = $query->fetch_assoc()) {

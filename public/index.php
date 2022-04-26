@@ -28,6 +28,7 @@ $router->post('/recuperar-cuenta-contraseña', [UsuarioController::class, 'recup
 $router->get('/perfil', [UsuarioController::class, 'perfil']);
 $router->post('/apiPerfilEnvio', [UsuarioController::class, 'apiPerfilEnvio']);
 $router->post('/apiPerfilDatos', [UsuarioController::class, 'apiPerfilDatos']);
+$router->get('/apiBuscadorNombreUsuario', [UsuarioController::class, 'apiBuscadorNombreUsuario']);
 
 $router->post('/apiPerfilImagen', [UsuarioController::class, 'apiPerfilImagen']);
 $router->post('/apiPerfilWallpaper', [UsuarioController::class, 'apiPerfilWallpaper']);

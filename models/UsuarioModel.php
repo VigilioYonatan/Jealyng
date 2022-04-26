@@ -10,12 +10,13 @@ class UsuarioModel extends ActiveRecord
     protected static $carpeta = 'usuarios/'; //carpeta usuarios
     public $id; //id
     //columnas de la tabla usuario
-    protected static $columnasDB = ['id_user', 'nombre_user', 'apellidoMaterno_user', 'apellidoPaterno_user', 'email_user', 'password_user', 'nacimiento_user', 'telefono_user', 'id_departamento', 'id_provincia', 'id_distrito', 'direccion_user', 'imagen_user', 'wallpaper_user', 'estado_user', 'token_user', 'fechaCreado_user', 'id_rol'];
+    protected static $columnasDB = ['id_user', 'nick_user', 'nombre_user', 'apellidoMaterno_user', 'apellidoPaterno_user', 'email_user', 'password_user', 'nacimiento_user', 'telefono_user', 'id_departamento', 'id_provincia', 'id_distrito', 'direccion_user', 'imagen_user', 'wallpaper_user', 'estado_user', 'token_user', 'fechaCreado_user', 'id_rol'];
 
     //constructor 
     public function __construct($args = [])
     {
         $this->id_user =                $args['id_user']                ?? null;
+        $this->nick_user =                $args['nick_user']                ?? null;
         $this->nombre_user =            $args['nombre_user']            ?? null;
         $this->apellidoMaterno_user =   $args['apellidoMaterno_user']   ?? null;
         $this->apellidoPaterno_user =   $args['apellidoPaterno_user']   ?? null;
@@ -28,8 +29,8 @@ class UsuarioModel extends ActiveRecord
         $this->id_distrito =            $args['id_distrito']            ?? 1;
         $this->direccion_user =         $args['direccion_user']         ?? null;
         $this->imagen_user =            $args['imagen_user']            ?? null;
-        $this->wallpaper_user =         $args['wallpaper_user']         ?? 'wallpaperDefecto.jpg';
-        $this->estado_user =            $args['estado_user']            ?? null;
+        $this->wallpaper_user =         $args['wallpaper_user']         ?? 'wallpaperDefecto.webp';
+        $this->estado_user =            $args['estado_user']            ?? 0;
         $this->token_user =             $args['token_user']             ?? null;
         $this->fechaCreado_user =       $args['fechaCreado_user']             ?? date('Y-m-d');
         $this->id_rol =                 $args['id_rol']                ?? 1;
@@ -55,6 +56,14 @@ class UsuarioModel extends ActiveRecord
     {
 
         $query = self::$db->query("SELECT * FROM " . self::$tabla . " WHERE email_user = '$this->email_user' LIMIT 1");
+
+        return $query->num_rows;
+    }
+    //si existe un usuario en el sistema
+    public function existeNick()
+    {
+
+        $query = self::$db->query("SELECT * FROM " . self::$tabla . " WHERE nick_user = '$this->nick_user' LIMIT 1");
 
         return $query->num_rows;
     }

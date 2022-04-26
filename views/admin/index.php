@@ -67,75 +67,33 @@
     <div class="recentOrders">
         <div class="cardHeader">
             <h2>Ordenes Recientes</h2>
-            <a href="#" class="btn">View All</a>
+            <!-- <a href="#" class="btn">View All</a> -->
         </div>
 
         <table>
             <thead>
                 <tr>
-                    <td>Nombre</td>
+                    <td>Usuario</td>
                     <td>Precio</td>
                     <td>Pago</td>
+                    <td>Fecha</td>
                     <td>Estado</td>
                 </tr>
+
             </thead>
 
             <tbody>
+                <?php foreach ($pedidos as $ped) : ?>
                 <tr>
-                    <td>Star Refrigerator</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td><span class="status delivered">Delivered</span></td>
+                    <td><?= $ped['nombre_user'] ?></td>
+                    <td><?= $ped['monto'] ?></td>
+                    <td><?= $ped['id_metodoP'] ?></td>
+                    <td><?= $ped['fecha_pedido'] ?></td>
+                    <td><span class="status <?= $ped['estado'] === 'Completo' ? 'delivered' : 'pending'
+                                                ?>"><?= $ped['estado'] ?></span>
+                    </td>
                 </tr>
-
-                <tr>
-                    <td>Dell Laptop</td>
-                    <td>$110</td>
-                    <td>Due</td>
-                    <td><span class="status pending">Pending</span></td>
-                </tr>
-
-                <tr>
-                    <td>Apple Watch</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td><span class="status return">Return</span></td>
-                </tr>
-
-                <tr>
-                    <td>Addidas Shoes</td>
-                    <td>$620</td>
-                    <td>Due</td>
-                    <td><span class="status inProgress">In Progress</span></td>
-                </tr>
-
-                <tr>
-                    <td>Star Refrigerator</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td><span class="status delivered">Delivered</span></td>
-                </tr>
-
-                <tr>
-                    <td>Dell Laptop</td>
-                    <td>$110</td>
-                    <td>Due</td>
-                    <td><span class="status pending">Pending</span></td>
-                </tr>
-
-                <tr>
-                    <td>Apple Watch</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td><span class="status return">Return</span></td>
-                </tr>
-
-                <tr>
-                    <td>Addidas Shoes</td>
-                    <td>$620</td>
-                    <td>Due</td>
-                    <td><span class="status inProgress">In Progress</span></td>
-                </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>

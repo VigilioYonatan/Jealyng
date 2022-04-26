@@ -5,6 +5,7 @@ const carritoTotal = document.querySelector('#carritoTotal');
 const carritoTotal2 = document.querySelector('.cart-float__title h4');
 const carritoContainer = document.querySelector('#carrito');
 const btnPay = document.querySelector('.tablaCarrito-pay__btn');
+const carritoTitle = document.querySelector('.carrito__title');
 const tablaCarrito = document.getElementById('tabla-carrito'); //carrito.php
 
 // paypal container 
@@ -277,13 +278,12 @@ function insertarCarrito() {
 
     limpiarHtml(cardCard)
     if (carritoCaja.length <= 0) {
-        const html = `<span class="cart-info__empty">Está vacio</span>`;
+        const html = `<span class="cart-info__empty">No hay productos añadidos</span>`;
         const div = document.createElement('div');
         div.innerHTML = html;
         cardCard.append(div.firstElementChild);
     }
 
-    console.log(carritoCaja);
 
     carritoCaja.forEach(pro => {
         const { id_prod, nombre_prod, stock_prod, descripcion, costoTotal_carrito, imagen_prod, cantidad_carrito, precio } = pro;
@@ -313,8 +313,11 @@ function insertarCarrito() {
 
     // aumenta
 
-    const sumall = carritoCaja.map(item => parseInt(item.costoTotal_carrito)).reduce((prev, curr) => prev + curr, 0);
-    totalProducto.forEach(e => e.textContent = Intl.NumberFormat('es-PE', { style: 'currency', currency: 'PEN' }).format(sumall));
+    const sumall = carritoCaja.map(item => parseFloat(item.costoTotal_carrito)).reduce((prev, curr) => prev + curr, 0);
+    totalProducto.forEach(e => {
+        e.textContent = Intl.NumberFormat('es-PE', { style: 'currency', currency: 'PEN' }).format(sumall);
+        // e.textContent = sumall;
+    })
     carritoTotal.textContent = carritoCaja.length;
     carritoTotal2.textContent = `${carritoCaja.length} productos`;
 }
@@ -328,13 +331,13 @@ function insertarCarrito2() {
     if (carritoCaja.length <= 0) {
         const tablaContenedor = document.querySelector('.tablaCarrito');
         limpiarHtml(tablaContenedor)
-
+        const CarritoBtnOpciones = document.querySelector('.CarritoBtnOpciones');
+        CarritoBtnOpciones.classList.add('hidden');
         let html = `<div class="tablaCarrito-empty">
                         <span>No tienes artículos en el carro de compras.</span>
                         <p>¿Tienes una cuenta? Inicia sesión para ver tus artículos.</p>
                         <div class="tablaCarrito-buttons">
                             <a href="/categoria?nombre=Tecnologia">Empieza a comprar</a>
-                            <a href="/login">Inicia sesión</a>
                         </div>
                     </div>`;
         const div = document.createElement('div');
@@ -375,12 +378,15 @@ function insertarCarrito2() {
 
     // aumenta
 
-    const sumall = carritoCaja.map(item => parseInt(item.costoTotal_carrito)).reduce((prev, curr) => prev + curr, 0);
+    const sumall = carritoCaja.map(item => parseFloat(item.costoTotal_carrito)).reduce((prev, curr) => prev + curr, 0);
     totalProducto.forEach(e => {
         e.textContent = Intl.NumberFormat('es-PE', { style: 'currency', currency: 'PEN' }).format(sumall);
+        // e.textContent = sumall;
     })
+    console.log(sumall);
 
     carritoTotal.textContent = carritoCaja.length;
+    carritoTitle.textContent = `(Carrito de compras ${carritoCaja.length} articulos )`;
     carritoTotal2.textContent = `${carritoCaja.length} productos`;
 
     const precioPaypal = parseFloat(sumall) / 3.73;
@@ -462,7 +468,7 @@ async function enviarInfoPago(values) {
     formData.append('datapay', orderData);
     formData.append('monto', precioPaypal);
     formData.append('carrito', carrito);
-
+    console.log(orderData);
     const url = 'http://localhost:3000/enviarInfoPago';
     try {
         const response = await fetch(url, {
@@ -470,7 +476,9 @@ async function enviarInfoPago(values) {
             body: formData
         });
         const respuesta = await response.json();
+        console.log(respuesta);
         if (respuesta.resultado) {
+            // window.open('/pdfEnvio', '_self');
             window.open('/pedidoConfirmado', '_self');
         }
     } catch (error) {

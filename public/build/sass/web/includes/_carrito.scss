@@ -120,6 +120,11 @@
     transition: transform .5s;
     transform: translateX(27rem);
     box-shadow: 0px 0px 1px var.$color-terciary;
+
+    @include var.celular {
+        transform: translateX(45rem);
+        width: 100%;
+    }
 }
 
 .cart-cards {
@@ -156,6 +161,7 @@
     text-align: center;
     padding: 3rem 0;
     font-size: 1.2rem;
+    color: var.$color-fonts-primary;
 }
 
 .cart-info__info {
@@ -171,6 +177,10 @@
     min-width: 6.25rem;
     height: 6rem;
     object-fit: cover;
+
+    @include var.celular {
+        min-width: 10rem;
+    }
 }
 
 .cart-info__qty {

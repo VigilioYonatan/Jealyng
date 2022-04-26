@@ -43,7 +43,7 @@
     position: fixed;
     top: 0;
     width: 100vw;
-    z-index: 90;
+    z-index: 140;
     overflow: hidden;
     height: 100vh;
 }
@@ -172,7 +172,8 @@
     &__ico {
         margin-top: .5rem;
         width: 120px;
-        fill: var.$color-primary;
+        fill: var.$color-terciary;
+        padding: 2rem 0;
     }
 
     &__icoError {
@@ -180,6 +181,13 @@
         width: 120px;
         fill: var.$color-error;
         padding: 2rem 0;
+    }
+
+    & a {
+        text-decoration: none;
+        padding: .5rem 2rem;
+        background-color: var.$color-primary;
+        color: #fff;
     }
 
 }
@@ -223,6 +231,7 @@
 // loading spinner 
 .spinner-loading {
     width: 50%;
+    padding: 6rem 0;
 }
 
 .sk-fading-circle {

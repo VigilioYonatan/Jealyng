@@ -17,7 +17,17 @@
         </div>
         <div class="header-search">
             <input class="header-search__inp" type="text" id="buscador" placeholder="Buscar productos">
-            <a class="header-search__ico" id="icoBuscador" ref="#">
+            <a class="header-search__ico " id="icoBuscador" ref="#">
+                <svg data-search="prod" class="header-search__svg hidden" width='20px'
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                    <path
+                        d="M319.9 320c57.41 0 103.1-46.56 103.1-104c0-57.44-46.54-104-103.1-104c-57.41 0-103.1 46.56-103.1 104C215.9 273.4 262.5 320 319.9 320zM369.9 352H270.1C191.6 352 128 411.7 128 485.3C128 500.1 140.7 512 156.4 512h327.2C499.3 512 512 500.1 512 485.3C512 411.7 448.4 352 369.9 352zM512 160c44.18 0 80-35.82 80-80S556.2 0 512 0c-44.18 0-80 35.82-80 80S467.8 160 512 160zM183.9 216c0-5.449 .9824-10.63 1.609-15.91C174.6 194.1 162.6 192 149.9 192H88.08C39.44 192 0 233.8 0 285.3C0 295.6 7.887 304 17.62 304h199.5C196.7 280.2 183.9 249.7 183.9 216zM128 160c44.18 0 80-35.82 80-80S172.2 0 128 0C83.82 0 48 35.82 48 80S83.82 160 128 160zM551.9 192h-61.84c-12.8 0-24.88 3.037-35.86 8.24C454.8 205.5 455.8 210.6 455.8 216c0 33.71-12.78 64.21-33.16 88h199.7C632.1 304 640 295.6 640 285.3C640 233.8 600.6 192 551.9 192z" />
+                </svg>
+                <svg class="header-search__svg" data-search="user" width='20px' xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 576 512">
+                    <path
+                        d="M495.5 223.2C491.6 223.7 487.6 224 483.4 224C457.4 224 434.2 212.6 418.3 195C402.4 212.6 379.2 224 353.1 224C327 224 303.8 212.6 287.9 195C272 212.6 248.9 224 222.7 224C196.7 224 173.5 212.6 157.6 195C141.7 212.6 118.5 224 92.36 224C88.3 224 84.21 223.7 80.24 223.2C24.92 215.8-1.255 150.6 28.33 103.8L85.66 13.13C90.76 4.979 99.87 0 109.6 0H466.4C476.1 0 485.2 4.978 490.3 13.13L547.6 103.8C577.3 150.7 551 215.8 495.5 223.2H495.5zM499.7 254.9C503.1 254.4 508 253.6 512 252.6V448C512 483.3 483.3 512 448 512H128C92.66 512 64 483.3 64 448V252.6C67.87 253.6 71.86 254.4 75.97 254.9L76.09 254.9C81.35 255.6 86.83 256 92.36 256C104.8 256 116.8 254.1 128 250.6V384H448V250.7C459.2 254.1 471.1 256 483.4 256C489 256 494.4 255.6 499.7 254.9L499.7 254.9z" />
+                </svg>
                 <svg width='20px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path
                         d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" />
@@ -32,6 +42,15 @@
                         <b>Precio</b>
                     </div>
 
+                </div>
+            </div>
+            <div class="header-search__buscador">
+                <div href="/producto?nombre=" class="header-search__tipo" id="contendorBuscador2">
+                    <div class="header-search__type">
+                        <b>ID</b>
+                        <b>Nombre</b>
+                        <b>Imagen</b>
+                    </div>
                 </div>
             </div>
 
@@ -51,11 +70,11 @@
             if (isset($_SESSION['id'])) :
                 $usuario = selectSqlBYid($_SESSION['id']);
             ?>
-            <a class="header-info-perfil" href="#" id="perfil_imagen">
+            <a class="header-info-perfil " href="#" id="perfil_imagen">
                 <?php if (empty($usuario['imagen_user'])) : ?>
                 <span><?= $usuario['nombre_user'][0] ?></span>
                 <?php else : ?>
-                <img class="header-info-perfil__img" src="./build/img/usuarios/<?= $usuario['imagen_user'] ?>"
+                <img class="header-info-perfil__img " src="./build/img/usuarios/<?= $usuario['imagen_user'] ?>"
                     alt="<?= $usuario['nombre_user'] ?>">
                 <?php endif; ?>
             </a>
@@ -75,7 +94,7 @@
                     <?php if (isset($_SESSION['admin'])) : ?>
                     <a class="header-info-user__link" href="/admin">Admin</a>
                     <?php endif; ?>
-                    <a class="header-info-user__link" href="/perfil">Mi Perfil</a>
+                    <a class="header-info-user__link" href="/perfil?user=<?= $usuario['nick_user'] ?>">Mi Perfil</a>
                     <a class="header-info-user__link" href="#">Mis Pedidos</a>
                     <a class="header-info-user__link header-info-user__link--logout" href="/salir">Salir</a>
                 </div>
@@ -137,8 +156,7 @@
     </div>
     <div class="cart-total">
         <span class="cart-total__total">Total: <b class="totalProducto"></b></span>
-        <a class="mostrar-card__masinfo" href="/carrito">Más informacion</a>
-        <a class="cart-total__link cart-total__link--pay" href="#">
+        <a class="cart-total__link cart-total__link--pay" href="/carrito">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                 <path
                     d="M512 32C547.3 32 576 60.65 576 96V128H0V96C0 60.65 28.65 32 64 32H512zM576 416C576 451.3 547.3 480 512 480H64C28.65 480 0 451.3 0 416V224H576V416zM112 352C103.2 352 96 359.2 96 368C96 376.8 103.2 384 112 384H176C184.8 384 192 376.8 192 368C192 359.2 184.8 352 176 352H112zM240 384H368C376.8 384 384 376.8 384 368C384 359.2 376.8 352 368 352H240C231.2 352 224 359.2 224 368C224 376.8 231.2 384 240 384z" />

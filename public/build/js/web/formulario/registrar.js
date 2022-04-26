@@ -54,7 +54,7 @@ function validarFormulario(values) {
     // mayor a 3 caracteres
     if (nombre.length >= 1 && nombre.length < 3) errorNombre = [...errorNombre, 'Nombre demasiado corto min 3 carácteres'];
     // validar solo letras
-    const regexNombre = /^[a-zA-Z\s]*$/;
+    const regexNombre = /^[a-zA-Z0-9\s]*$/;
     if (!regexNombre.test(nombre)) errorNombre = [...errorNombre, 'Solo está permitido letras'];
 
     // correo no debe estar vacio
@@ -122,6 +122,14 @@ async function apiRegistrar(values) {
             form.classList.remove('hidden');
             msgError(respuesta.mensaje);
             form.children[2].children[1].style.cssText = 'border:2px solid rgb(155, 39, 39)';
+
+            spinner.remove();
+            return;
+        }
+        if (respuesta.existeNick) {
+            form.classList.remove('hidden');
+            msgError(respuesta.mensaje);
+            form.children[1].children[1].style.cssText = 'border:2px solid rgb(155, 39, 39)';
 
             spinner.remove();
             return;

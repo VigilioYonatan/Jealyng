@@ -5,7 +5,7 @@
         <form action="" class="form" id="formulario">
             <h4 class="form__title">REGISTRAR</h4>
             <div class="form-prop">
-                <label class="form-prop__lbl" for="nombre">Nombre:</label>
+                <label class="form-prop__lbl" for="nombre">Nombre de Usuario:</label>
                 <div class="form-prop-inp">
                     <svg class="ico-form" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
 

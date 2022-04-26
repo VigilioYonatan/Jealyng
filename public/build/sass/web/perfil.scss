@@ -1,17 +1,14 @@
 @use '../template/variables'as var;
 
 .perfil {
-    margin-top: 0 auto;
+    margin: 0 auto;
     padding-top: .5rem;
     max-width: 100rem;
     display: flex;
-
-    &-categorias {
-        width: 20%;
-    }
+    justify-content: center;
 
     &-info {
-        width: 80%;
+        width: 100%;
 
         display: flex;
         flex-direction: column;
@@ -160,7 +157,7 @@
 
         &-info {
             display: flex;
-            align-items: center;
+            // align-items: center;
             justify-content: center;
             padding: 3rem 0;
             background-color: #00000007;

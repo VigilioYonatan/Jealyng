@@ -4,40 +4,68 @@ const perfilInfo = document.querySelector('#perfilInfo');
 const navbar = document.querySelector('.navbar');
 const icoBuscador = document.getElementById('icoBuscador');
 const input = document.querySelector('.header-search__inp')
-
-icoBuscador.addEventListener('click', e => {
-    e.preventDefault();
-    const logo = document.querySelector('.header__logo');
-    const search = document.querySelector('.header-search');
-    search.classList.toggle('input-responsive');
-    input.classList.toggle('show');
-    logo.classList.toggle('hidden');
-})
 // dark mode 
 const mode = document.querySelector('#mode');
 // buscador 
 const buscador = document.getElementById('buscador');
-const mostrarBuscador = document.querySelector('.header-search__buscador');
+const mostrarBuscador = document.querySelectorAll('.header-search__buscador');
+
+
+icoBuscador.children[2].addEventListener('click', e => {
+    e.preventDefault();
+    const logo = document.querySelector('.header__logo');
+    const search = document.querySelector('.header-search');
+    icoBuscador.children[1].classList.toggle('show');
+
+    if (icoBuscador.style.fill === 'var(--color-primary)') {
+        icoBuscador.style.cssText = 'fill:#fff';
+    } else {
+        icoBuscador.style.cssText = 'fill:var(--color-primary)';
+    }
+
+    search.classList.toggle('input-responsive');
+    input.classList.toggle('show');
+    logo.classList.toggle('hidden');
+})
+
+
+icoBuscador.children[1].addEventListener('click', e => {
+    icoBuscador.children[1].classList.add('hidden');
+    icoBuscador.children[1].classList.remove('show');
+    icoBuscador.children[0].classList.add('show');
+    buscador.setAttribute('placeholder', 'Buscar usuarios');
+})
+icoBuscador.children[0].addEventListener('click', e => {
+    icoBuscador.children[0].classList.add('hidden');
+    icoBuscador.children[0].classList.remove('show');
+    icoBuscador.children[1].classList.add('show');
+    buscador.setAttribute('placeholder', 'Buscar productos');
+})
+
+
+
 // buscador 
 buscador.addEventListener('keyup', e => {
 
-    mostrarBuscador.classList.add('show');
     const palabra = e.target.value;
-    apiProductosBuscar(palabra);
 
-
-
+    if (e.target.getAttribute('placeholder') === 'Buscar usuarios') {
+        mostrarBuscador[1].classList.add('show');
+        mostrarBuscador[0].classList.remove('show');
+        apiUsuariosBuscar(palabra);
+        return;
+    }
+    if (e.target.getAttribute('placeholder') === 'Buscar productos') {
+        mostrarBuscador[0].classList.add('show');
+        mostrarBuscador[1].classList.remove('show');
+        apiProductosBuscar(palabra);
+        return;
+    }
 
     // contendorBuscador.classList.add('mostrar');
 
 })
 
-document.addEventListener('click', (e) => {
-
-    if (!e.target.classList.contains('header-search__buscador')) {
-        mostrarBuscador.classList.remove('show');
-    }
-})
 
 async function apiProductosBuscar(palabra) {
     const url = `http://localhost:3000/apiBuscadorNombreProducto?nombre=${palabra}`;
@@ -49,10 +77,47 @@ async function apiProductosBuscar(palabra) {
         console.log(error);
     }
 }
+async function apiUsuariosBuscar(palabra) {
+    const url = `http://localhost:3000/apiBuscadorNombreUsuario?nombre=${palabra}`;
+    try {
+        const response = await fetch(url);
+        const respuesta = await response.json();
+        console.log(respuesta);
+        imprimirUsuarios(respuesta.usuarios);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
+function imprimirUsuarios(usuarios) {
+    limpiarBuscador(contendorBuscador2)
+    if (usuarios.length <= 0) {
+        const span = document.createElement('span');
+        span.className = 'header-search__no'
+        span.textContent = 'No se econtró Usuarios';
+        contendorBuscador2.appendChild(span)
+    }
+    usuarios.forEach(user => {
+        const { id_user, nick_user, imagen_user } = user;
+
+        let html = `
+        <a href='/perfil?user=${nick_user}' class="header-search__pro">
+            <span>${id_user}</span>
+            <span>${nick_user}</span>
+            <img width="50px" src=" ./build/img/usuarios/${imagen_user}" alt="${nick_user}">
+            
+        </a>`;
+
+        const div = document.createElement('div');
+        div.innerHTML = html;
+
+        contendorBuscador2.appendChild(div.firstElementChild);
+    });
+
+}
 function imprimirBuscador(producto) {
-    limpiarBuscador()
+    limpiarBuscador(contendorBuscador)
     if (producto.length <= 0) {
         const span = document.createElement('span');
         span.className = 'header-search__no'
@@ -79,9 +144,9 @@ function imprimirBuscador(producto) {
 
 }
 
-function limpiarBuscador() {
-    while (contendorBuscador.children[1]) {
-        contendorBuscador.removeChild(contendorBuscador.children[1])
+function limpiarBuscador(contenedor) {
+    while (contenedor.children[1]) {
+        contenedor.removeChild(contenedor.children[1])
     }
 }
 
@@ -123,6 +188,13 @@ if (btnPerfil) {
         perfilInfo.classList.toggle('mostrar');
 
     })
+
+    // perfilInfo.addEventListener('click', e => {
+    //     console.log();
+    //     if (e.target.contains.length < 1) {
+    //         console.log('tas afuera');
+    //     }
+    // })
 }
 
 // modo oscuro 
@@ -148,3 +220,13 @@ mode.addEventListener('click', e => {
 function getLocalStorageTheme(tipo) {
     localStorage.setItem("theme", tipo);
 }
+
+
+document.addEventListener('click', (e) => {
+
+    if (!e.target.classList.contains('header-search__buscador')) {
+        mostrarBuscador.forEach(e => e.classList.remove('show'))
+    }
+
+
+})

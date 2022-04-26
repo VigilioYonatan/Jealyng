@@ -5,7 +5,7 @@
     background-color: var.$color-primary;
     position: sticky;
     top: 0;
-    z-index: 70;
+    z-index: 110;
 
     &__logo {
         margin: 0rem 2rem;
@@ -55,6 +55,8 @@
             width: 22px;
             height: 19px;
             fill: #fff;
+
+
         }
 
         &__title {
@@ -102,6 +104,7 @@
             color: var.$color-fonts-primary;
             width: 100%;
 
+
             @include var.tablet {
                 display: none;
             }
@@ -113,12 +116,23 @@
             border-left: 1px solid rgb(59, 58, 58);
             cursor: pointer;
             fill: var.$color-terciary;
+            display: flex;
+            gap: .3rem;
+
+            
 
             @include var.tablet {
                 padding: 0;
                 border: none;
                 fill: #fff;
             }
+        }
+
+        &__svg {
+            @include var.tablet {
+                display: none;
+            }
+
         }
 
         &__buscador {
@@ -137,6 +151,12 @@
                 width: 215%;
                 top: 2.1rem;
                 padding: 1rem;
+            }
+
+            @include var.celular {
+
+                width: 190%;
+
             }
         }
 
@@ -278,6 +298,7 @@
             width: 35px;
             height: 34px;
             overflow: hidden;
+            outline: 1px solid #fff;
 
             &:active {
                 outline: 1px solid #fff;
@@ -332,6 +353,10 @@
                 color: var.$color-fonts-terciary;
                 font-size: 2rem;
                 font-family: var.$f_regular;
+                position: absolute;
+                top: 2rem;
+                width: 75px;
+                height: 78px;
 
             }
 
@@ -345,7 +370,7 @@
 
                 & b {
                     font-family: var.$f_regular;
-                    color: var.$color-fonts-secondary;
+                    color: var.$color-fonts-primary;
                     filter: brightness(1.7);
                 }
             }
@@ -379,7 +404,9 @@
                 }
 
                 &--logout {
-                    color: var.$color-error;
+                    padding: .5rem 0;
+                    background-color: var.$color-error;
+                    color: #fff;
                 }
             }
 
@@ -455,12 +482,11 @@
         display: flex;
         justify-content: center;
         padding: 2rem 4rem;
-        background-color: var.$color-secondary;
+        background-color: var.$color-primary;
         flex-wrap: wrap;
 
         @include var.mini-tablet {
-            padding: 2rem 1rem;
-            justify-content: baseline;
+            padding: 1rem .5rem;
         }
     }
 
@@ -474,13 +500,15 @@
         padding: 0rem 2rem;
 
         @include var.mini-tablet {
-            align-items: baseline;
+            margin: 0 1rem .5rem;
+            width: 20%;
+            padding: 0rem .5rem;
         }
 
         &__title {
             font-family: var.$f_medium;
             margin-bottom: .3rem;
-            color: var.$color-fonts-secondary;
+            color: #fff;
             text-decoration: none;
             text-align: center;
             display: block;
@@ -496,7 +524,7 @@
             text-decoration: none;
             font-size: .8rem;
             font-family: var.$f_regular;
-            color: var.$color-terciary;
+            color: #fff;
 
 
             &::before {
@@ -505,7 +533,7 @@
 
             @include var.hover {
                 &:hover {
-                    color: var.$color-primary;
+
                     text-decoration: underline;
                 }
             }

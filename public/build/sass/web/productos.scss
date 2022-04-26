@@ -13,10 +13,12 @@
     justify-content: center;
 
     @include var.tablet {
-        display: none;
+        width: 0%;
     }
 
 }
+
+
 
 .contenido-category {
     width: 100%;
@@ -62,20 +64,108 @@
     align-items: center;
     flex-direction: column;
 
+
+
     @include var.tablet {
         width: 100%;
+
     }
 
-    &__title {
-        color: var.$color-fonts-quarty;
+    &__btn {
+        display: none;
+        padding: 0.8rem 0rem;
+        text-decoration: none;
+        color: var.$color-fonts-primary;
+        background-color: transparent;
+        border: 1px solid var.$color-fonts-primary;
+        margin: 1rem 0rem;
+        font-size: 0.9rem;
+        width: 150px;
+        text-align: center;
+        cursor: pointer;
+        font-family: "Poppins-Light";
+
+        // background-color: ;
+        @include var.tablet {
+            display: block;
+
+
+        }
+    }
+
+    &__title2 {
+        color: var.$color-fonts-primary;
         font-size: 1.2rem;
         font-family: var.$f_regular;
-        padding: 1rem 0;
-        display: flex;
-        flex-direction: column;
+        padding: 2rem 0;
+
         text-align: center;
         letter-spacing: .1rem;
         text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & svg {
+            width: 50px;
+            fill: var.$color-fonts-primary;
+            margin: 0rem 1rem;
+            transform: translateX(-52rem);
+            animation: icoMove 6s infinite;
+
+
+            @keyframes icoMove {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                50% {
+                    transform: rotate(360deg);
+                }
+
+                100% {
+                    transform: rotate(0deg);
+                }
+            }
+        }
+    }
+
+    &__title {
+        color: #fff;
+        font-size: 1.2rem;
+        font-family: var.$f_regular;
+        padding: 2rem 0;
+
+        text-align: center;
+        letter-spacing: .1rem;
+        text-transform: uppercase;
+        background-color: var.$color-primary;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & svg {
+            width: 50px;
+            fill: #fff;
+            margin: 0rem 1rem;
+            transform: translateX(-52rem);
+            animation: icoMove 6s infinite;
+
+
+            @keyframes icoMove {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                50% {
+                    transform: rotate(360deg);
+                }
+
+                100% {
+                    transform: rotate(0deg);
+                }
+            }
+        }
     }
 
     &__subtitle {
@@ -95,9 +185,55 @@
 .filtro {
     width: 80%;
 
+
+    &__cerrar {
+        margin-top: 3rem;
+        display: none;
+
+        @include var.tablet {
+            display: block;
+        }
+    }
+
 }
 
+
+
 .filtros {
+    padding: 1rem 2rem;
+    background-color: var.$color-card;
+    margin-top: 1rem;
+    border-radius: .5rem;
+
+    @include var.tablet {
+        // display: none;
+        position: fixed;
+        top: 2.7rem;
+        right: 0;
+        bottom: 0;
+        width: 35%;
+        z-index: 100;
+        border-radius: 0px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 0px 5px black;
+        transition: transform .5s;
+        transform: translateX(22rem);
+    }
+
+    @include var.mini-tablet {
+        // display: none;
+
+        width: 40%;
+
+    }
+
+    @include var.celular {
+
+        width: 55%;
+
+    }
+
     &__title {
         font-family: var.$f_regular;
         display: flex;
@@ -111,6 +247,11 @@
             color: #b6b4b4;
         }
     }
+}
+
+.filtros-active {
+    transition: transform .5s;
+    transform: translateX(0rem);
 }
 
 .filtro-section {
@@ -156,7 +297,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 100;
+    z-index: 150;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -245,7 +386,11 @@
             width: 100%;
             max-height: 30.75rem;
             object-fit: contain;
+            height: 20rem;
 
+            @include var.tablet {
+                height: 15rem;
+            }
         }
 
         &__elm {
@@ -684,7 +829,7 @@
         text-decoration: none;
         color: var.$color-fonts-secondary;
         align-self: center;
-        padding-top: .5rem;
+        padding: .5rem;
 
         @include var.hover {
             &:hover {

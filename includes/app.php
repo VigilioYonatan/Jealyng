@@ -12,6 +12,11 @@ use Model\SubCategoriaModel;
 // insertamos base de datos a nuestro active Record
 ActiveRecord::setDb($cnx);
 
+
+$fecha = new DateTime("now", new DateTimeZone('America/New_York'));
+ActiveRecord::setfecha($fecha);
+
+
 function categoria(): array
 {
     global $cnx;

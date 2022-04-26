@@ -131,6 +131,8 @@ class ProductosController
         $sub = $productos->tiendaSubcategoria($productoGet, $categoriaGet, $desde, $porPagina, $condicion, $descuento);
         // if (!$sub) header('Location: /');
         $router->render('web/tienda', [
+            "titulo" => "Tienda",
+
             "subCat" => $sub,
             "category" => $categoriaGet,
             "get" => $productoGet,
@@ -158,6 +160,7 @@ class ProductosController
                 INNER JOIN estadoproducto on pro.id_estado = estadoproducto.id_estadoPro WHERE sub.nombre_subcat = '$row[nombre_subcat]' AND cat.nombre_categoria ='$row[nombre_categoria]' ";
         $relacionado = $producto->buscadorPageInner(0, 4, $inner);
         $router->render('web/producto', [
+            "titulo" => $nombreProducto,
             "producto" =>  $row,
             "relacionado" => $relacionado
         ]);
@@ -179,6 +182,7 @@ class ProductosController
 
 
         $router->render('web/categoria', [
+            "titulo" => $categoria,
             "cats" => $cats,
             "categoria" => $categoria,
             "categorias" =>  $catGroup,

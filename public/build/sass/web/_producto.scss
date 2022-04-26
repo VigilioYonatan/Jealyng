@@ -29,6 +29,7 @@
 
     &__info {
         width: 40%;
+        background-color: var.$color-fondo;
 
         @include var.tablet {
             width: 45%;
@@ -42,7 +43,7 @@
         display: block;
         position: relative;
         width: 100%;
-        height: 6rem;
+        height: 8rem;
 
 
         & img {
@@ -59,7 +60,7 @@
             left: 0;
             bottom: 0;
             text-align: center;
-            line-height: 6rem;
+            line-height: 8rem;
             font-family: var.$f_medium;
             z-index: 20;
             color: #fff;
@@ -127,6 +128,7 @@
                 border-radius: .2rem;
                 width: 100%;
                 max-width: 700px;
+                color: var.$color-fonts-primary;
             }
 
             & button {

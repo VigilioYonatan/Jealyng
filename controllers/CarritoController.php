@@ -2,10 +2,13 @@
 
 namespace Controller;
 
+use Classes\EmailClass;
+use Classes\PdfClass;
 use Model\CarritoModel;
 use Model\HistorialComprasModel;
 use Model\PedidoModel;
 use Model\ProductosModel;
+use Model\UsuarioModel;
 use MVC\Router;
 
 class CarritoController
@@ -27,7 +30,9 @@ class CarritoController
     {
         session_start();
 
-        $router->render('web/carrito', []);
+        $router->render('web/carrito', [
+            "titulo" => "Carrito"
+        ]);
     }
 
     public static function apiAddCarrito()
@@ -168,7 +173,7 @@ class CarritoController
                     $pedido->idtransaccionpaypal = $transaccionId;
                     if ($objPaypal->status == "COMPLETED") {
                         $totalPaypal = $objPaypal->purchase_units[0]->amount->value;
-                        $pedido->monto =  $totalPaypal;
+                        $pedido->monto =  $totalPaypal * 3.7309;
                         if ($monto == $totalPaypal) {
 
                             $pedido->estado = "Completo";
@@ -178,9 +183,9 @@ class CarritoController
 
 
                         $resultado = $pedido->guardar();
-
+                        $historial = new HistorialComprasModel;
                         foreach ($objCarrito as $objCar) {
-                            $historial = new HistorialComprasModel;
+
 
                             $historial->id_pedido = $resultado['id'];
                             $historial->id_user = $_SESSION['id'];
@@ -190,13 +195,37 @@ class CarritoController
                             $historial->guardar();
                         }
 
+                        $carrito = new CarritoModel;
+                        $carrito->eliminarQuery('id_user', $_SESSION['id']);
+
+                        $usuario = UsuarioModel::find($_SESSION['id']);
+                        date_default_timezone_set("America/Lima");
+                        $info = [
+                            "nombre" => $usuario->nombre_user,
+                            "apellido" => $usuario->apellidoPaterno_user . $usuario->apellidoMaterno_user,
+                            "telefono" => $usuario->telefono_user,
+                            "total" => number_format($totalPaypal * 3.735, 2),
+                            "direccion" => $usuario->direccion_user,
+                            "fecha" => date('Y-m-d H:i:s')
+                        ];
+
+                        //crear nombre de pdf y subir al correo
+                        $nombre = md5(uniqid(rand(), true)) . '.pdf';
+
+
+                        // datos que se subiran al session
                         $arrResponse = [
                             "status" => true,
                             "orden"  => $resultado['id'],
                             "transaccion" => $transaccionId,
-                            "mensaje" => "Pedido Realizado"
+                            "mensaje" => "Pedido Realizado",
+                            "producto" => $objCarrito,
+                            "info" => $info,
+                            "nombrePDF" => $nombre,
                         ];
                         $_SESSION['dataorden'] = $arrResponse;
+
+
                         echo json_encode($resultado);
                     } else {
                         echo json_encode(["status" => false, "Pago incompleto"]);
@@ -214,6 +243,7 @@ class CarritoController
         if (empty($_SESSION['dataorden'])) header('Location: /');
 
         $router->render('web/token/pedidoConfirmado', [
+            "titulo" => "Confirmar pedido",
             "respuestaOrden" => $_SESSION['dataorden']
         ]);
     }
