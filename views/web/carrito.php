@@ -64,7 +64,7 @@
                     <p>Direccion:
                         <span><?= $usuario['direccion_user']; ?></span>
                     </p>
-                    <a href="/perfil">Editar Direccion</a>
+                    <a href="/perfil?user=<?= $usuario['nick_user']; ?>">Editar Direccion</a>
                     <p>Precio total:<b class="totalProducto">S/.</b>
 
                     </p>

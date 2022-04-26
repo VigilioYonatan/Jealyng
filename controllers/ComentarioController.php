@@ -45,7 +45,7 @@ class ComentarioController
             $comentario->getId();
             if($comentario->id_user === $_SESSION['id']){
                 $comentario->comentarios = $_POST['comentarios'];
-                $comentario->fecha = date('Y-m-d');
+                $comentario->fechaComentario = date('Y-m-d');
                 $resultado = $comentario->guardar();
                 echo json_encode(["resultado" => $resultado, "comentario" => $comentario]);
             }
