@@ -69,12 +69,12 @@
     margin-bottom: .5rem;
 
     & .CarritoBtn {
-        color: var.$color-fonts-quarty;
+        color: var.$color-fonts-primary;
 
         cursor: no-drop;
 
         &__linked {
-            color: var.$color-fonts-secondary;
+            color: var.$color-fonts-primary;
             cursor: pointer;
         }
     }
@@ -94,6 +94,7 @@
     margin: 0rem 1rem;
 
 
+
     @include var.tablet {
         flex-direction: column;
         align-items: center;
@@ -104,12 +105,13 @@
         padding: 1rem 2rem;
         box-shadow: 0px 0px 1px #00000013;
         border: 1px solid #e5e5e5;
-        width: 70%;
+        width: 50rem;
         min-height: 30rem;
 
         @include var.tablet {
             width: 90%;
             padding: 1rem .3rem;
+            min-height: 15rem;
         }
 
         @include var.mini-tablet {
@@ -129,11 +131,11 @@
 
             @include var.tablet {
                 min-width: 35rem;
-
+                min-height: 15rem;
                 width: 90%;
                 padding: 1rem .3rem;
             }
-            
+
 
             @include var.mini-tablet {
                 min-width: 25rem;
@@ -180,6 +182,7 @@
             color: #fff;
             text-decoration: none;
             text-align: center;
+            cursor: pointer;
         }
     }
 
@@ -198,17 +201,30 @@
         & p {
             font-family: var.$f_medium;
             font-size: 1.5rem;
+            color: var.$color-fonts-primary;
         }
     }
 
     &__products {
         display: flex;
         gap: 3rem;
-        padding: 1rem 0;
+        padding: 1rem .5rem;
         align-items: center;
         border-bottom: 1px solid #e5e5e5;
         border-top: 1px solid #e5e5e5;
         color: var.$color-fonts-primary;
+
+        @include var.hover {
+            &:hover {
+                background-color: var.$color-primary;
+                color: #fff;
+            }
+            &:hover .cart-info__spn{
+                color: #fff;
+            }
+
+
+        }
 
         @include var.tablet {
             gap: 1rem;
@@ -227,6 +243,9 @@
         & b {
             max-width: 250px;
 
+            @include var.tablet {
+                font-size: .7rem;
+            }
         }
     }
 
@@ -304,6 +323,10 @@
         min-width: 70%;
         min-height: 30rem;
 
+        @include var.tablet {
+            min-height: 15rem;
+        }
+
         &__info {
             display: flex;
             flex-direction: column;
@@ -317,7 +340,7 @@
                 justify-content: space-between;
                 margin: .2rem .1rem;
                 font-weight: bolder;
-
+                color: var.$color-fonts-primary;
 
                 & span {
                     overflow: hidden;
@@ -332,8 +355,9 @@
                 text-decoration: none;
                 font-size: .8rem;
                 color: var.$color-primary;
-                margin: .5rem 0;
-
+                text-align: end;
+                padding: .5rem 0;
+                color: var.$color-error;
             }
         }
 

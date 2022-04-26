@@ -52,56 +52,70 @@
 .wallpaper {
     position: relative;
 
+    background-color: var.$color-primary;
 
     &__elem {
         // background-color: var.$color-primary;
     }
 
     &-info {
+        top: 40%;
+        // right: 0;
+        // left: 0;
+        bottom: 0;
+        text-align: center;
+        position: absolute;
+        z-index: 40;
+        width: 100%;
 
-        background-color: var.$color-quarty;
-        padding: 2rem .5rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        &__info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            & span {
+                color: #fff;
+                text-shadow: 0px 0px 2px #000;
+                font-size: 1.5rem;
+            }
+
+            & a {
+                display: inline-block;
+                margin-top: 1rem;
+                text-decoration: none;
+                background-color: var.$color-primary;
+                padding: .8rem 2.5rem;
+                color: #fff;
+                border: 1px solid var.$color-primary;
+                box-shadow: 0px 0px 2px #fff;
+                border-radius: .5rem;
+
+                @include var.hover {
+                    &:hover {
+                        transition: all .5s;
+                        color: var.$color-terciary;
+                        background-color: #fff;
+                        box-shadow: 0px 0px 2px #000;
+                    }
+
+                }
+            }
+        }
 
         &__title {
-            width: 60%;
-            color: white; //
-            font-size: 3rem;
-            text-align: center;
+            display: inline-block;
+            font-size: 3.5rem;
+            color: #fff;
             font-family: var.$f_regular;
-
-            @include var.tablet {
-                font-size: 2.3rem;
-            }
-
-            @include var.mini-tablet {
-                font-size: 2rem;
-            }
-
+            text-align: center;
+            text-shadow: 0px 0px 3px #000;
         }
-
-        &__text {
-
-            color: white;
-            font-family: var.$f_light;
-            margin: 1rem 0;
-
-            @include var.tablet {
-                font-size: .9rem;
-            }
-        }
-
-
     }
 
 
     &-carousel {
 
         position: relative;
-        margin-top: 2rem;
 
     }
 
@@ -140,8 +154,12 @@
 
     &__img {
         width: 100%;
-        height: 20rem;
+        height: 47rem;
         object-fit: cover;
+
+        @include var.tablet {
+            height: 37rem;
+        }
     }
 
 
@@ -218,22 +236,25 @@
 
 // best seller 
 .best {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding-top: 3.5rem;
+
+    padding-bottom: 2rem;
 
     &__title {
         text-align: center;
         font-size: 2rem;
         font-family: var.$f_regular;
         color: var.$color-fonts-primary;
+
     }
 
     &-cards {
+        max-width: 1600px;
+        margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-wrap: wrap;
+        padding: 3rem 0;
     }
 
     &-card {
@@ -247,19 +268,14 @@
         border-radius: .5rem;
         background-color: var.$color-card;
         padding: .5rem 0;
-        box-shadow: 0px 0px 1px #00000013;
+        box-shadow: 0px 0px 15px #00000013;
 
         // box-shadow: 0px 0px 3px black;
         @include var.celular {
             margin: .4rem;
         }
 
-        @include var.hover {
-            &:hover {
-                transform: scale(1.2);
 
-            }
-        }
 
         @include var.laptop {
             width: 27%;
@@ -302,6 +318,8 @@
             height: 90%;
             opacity: 0;
             object-fit: contain;
+
+
         }
 
         &__image2 {
@@ -309,6 +327,8 @@
             width: 100%;
             height: 90%;
             object-fit: contain;
+
+
         }
 
         &__best {
@@ -396,6 +416,7 @@
                 color: var.$color-fonts-primary;
                 text-align: center;
 
+
                 @include var.celular {
                     font-size: .8rem;
                 }
@@ -416,10 +437,10 @@
             }
 
             &__desc {
-                font-family: var.$f_regular;
-                margin-top: .3rem;
-                color: #1b6c33;
-                font-size: 1rem;
+                font-family: var.$f_semibold;
+                margin: .3rem 0;
+                color: var.$color-fonts-primary;
+                font-size: 1.1rem;
 
                 @include var.celular {
                     font-size: .8rem;
@@ -431,11 +452,11 @@
 
 // about 
 .about {
-    max-width: 100rem;
-    margin: 0 auto;
+
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var.$color-primary;
 
     @include var.tablet {
         flex-direction: column;
@@ -471,7 +492,7 @@
             font-size: 1.8rem;
             text-align: center;
             font-family: var.$f_regular;
-            color: var.$color-fonts-primary;
+            color: #fff;
 
             @include var.mini-tablet {
                 font-size: 1.5rem;
@@ -487,7 +508,7 @@
             text-align: center;
             padding: .5rem 0;
             font-family: var.$f_light;
-            color: var.$color-fonts-primary;
+            color: #fff;
 
             @include var.tablet {
                 width: 80%;
@@ -687,5 +708,99 @@
         @include var.celular {
             left: -.2rem;
         }
+    }
+}
+
+.categorias2 {
+    padding: 4rem 0 6rem;
+    background-color: var.$color-primary;
+
+    &__title {
+        color: #fff;
+        text-align: center;
+        padding-bottom: 2rem;
+        font-family: var.$f_semibold;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+
+        & svg {
+            width: 30px;
+            fill: #fff;
+            margin: 0rem .5rem;
+        }
+    }
+
+    &-carousel {
+        max-width: 1400px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    &-list {
+        margin: 0rem 2rem;
+    }
+
+    &__elem {
+        margin: 0rem .5rem;
+        background-color: #fff;
+        border-radius: .5rem;
+        text-decoration: none;
+
+        & span {
+            padding: .5rem 0;
+            display: block;
+            text-align: center;
+            font-family: var.$f_semibold;
+            color: var.$color-fonts-secondary;
+        }
+    }
+
+    &__img {
+        overflow: hidden;
+
+        @include var.hover {
+            &:hover img {
+                transition: all .5s;
+                transform: scale(1.2);
+            }
+        }
+
+
+        & img {
+            width: 100%;
+            height: 15rem;
+            object-fit: cover;
+
+
+        }
+
+
+    }
+
+    &-next,
+    &-previous {
+        width: 20px;
+        border: none;
+        background-color: transparent;
+        position: absolute;
+        top: 35%;
+        z-index: 80;
+        fill: #fff;
+        cursor: pointer;
+
+
+
+    }
+
+    &-previous {
+        right: .5rem;
+
+
+    }
+
+    &-next {
+        left: 1rem;
+
+
     }
 }

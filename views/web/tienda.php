@@ -19,7 +19,7 @@
             </div>
 
             <div class="filtro-section">
-                <span class="filtro-section__title">Descuentos</span>
+                <span class="filtro-section__title">% Descuentos</span>
                 <div class="listados">
                     <?php if (count(filtroDescuento($category, $get)) > 1) : ?>
                     <?php foreach (filtroDescuento($category, $get) as $descuento) : ?>
@@ -43,15 +43,17 @@
                     <?php endforeach; ?>
                 </div>
             </div>
-
+            <button id="btnCerrarFiltro"
+                class="filtro__cerrar header-info-user__link header-info-user__link--logout">Cerrar</button>
         </div>
     </div>
     <!-- fin categorias  -->
     <!-- cards -->
-    <div class="contenido-card">
-        <h3 class="contenido-card__title"><?= $category;  ?><?= !empty($get) ? "($get)" : ''; ?><span
+    <div class=" contenido-card">
+        <h3 class="contenido-card__title2"><?= $category;  ?><?= !empty($get) ? "($get)" : ''; ?><span
                 class="contenido-card__subtitle">(<?= $total; ?>
                 resultados)</span></h3>
+        <button class="contenido-card__btn" id="btnFiltro">Filtros</button>
         <div class="pro-cards" class="cards" id="cards">
 
             <?php if (!empty($subCat)) :
@@ -70,7 +72,8 @@
                 </picture>
                 <div class="best-card-info">
                     <span class="best-card-info__title"><?= $key['nombre_prod'] ?></span>
-                    <span class="best-card-info__price">Antes: S/. <?= number_format($key['precio_prod'], 2) ?></span>
+                    <span class="best-card-info__price">Antes: S/.
+                        <?= number_format($key['precio_prod'], 2) ?></span>
                     <span class="best-card-info__desc">Ahora: S/.
                         <?= number_format($key['precio_prod'] - ($key['precio_prod'] * $key['nombre_descuento']), 2) ?></span>
                 </div>

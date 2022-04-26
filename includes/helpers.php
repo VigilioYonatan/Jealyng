@@ -15,3 +15,6 @@ function htmlGet($var): string
     $resultado = htmlspecialchars($var);
     return $resultado;
 }
+
+//hora
+$dt = new DateTime("now", new DateTimeZone('America/Lima'));

@@ -9,15 +9,17 @@
     <p>Estás fuera de la sesión. Para guardar estos artículos y realizar pagos, <a href="">inicia sesión</a>. </p>
 
 </div>
+
+
 <?php endif; ?>
+<h1 class="carrito__title">
 
-<h1 class="carrito__title">Carrito de compras
-    (<?= isset($_SESSION['carrito']) ? count($_SESSION['carrito']) . " articulos " : "0 articulos";  ?>) </h1>
-
+</h1>
 
 <section class="carrito container">
     <div class="carrito-container">
         <div class="CarritoBtnOpciones">
+
             <span class="CarritoBtn " id="btnCarritoOption">Carrito</span>/
             <span class="CarritoBtn CarritoBtn__linked" id="btnPayOption">Procesar Pago</span>
         </div>
@@ -29,9 +31,9 @@
 
             <div class="tablaCarrito-pay ">
                 <?php if (!isset($_SESSION['login'])) : ?>
-                <a class="tablaCarrito-pay__btn" href="/login">Completar la transacción</a>
+                <a class="tablaCarrito-pay__btn" href="/login?go=carrito">Completar la transacción</a>
                 <?php else : ?>
-                <a class="tablaCarrito-pay__btn" id="btnCompletar">Completar la transacción</a>
+                <a class=" tablaCarrito-pay__btn" id="btnCompletar">Completar la transacción</a>
                 <?php endif; ?>
 
                 <div class="tablaCarrito-total">

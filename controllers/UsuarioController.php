@@ -6,8 +6,12 @@ use Classes\EmailClass;
 use Model\UsuarioModel;
 use MVC\Router;
 use Classes\RenderizarImagenClass;
+use FontLib\Table\Type\head;
 use Model\CarritoModel;
+use Model\CategoriaModel;
+use Model\HistorialComprasModel;
 use Model\MarcaModel;
+use Model\PedidoModel;
 use Model\ProductosModel;
 
 class UsuarioController
@@ -24,9 +28,13 @@ class UsuarioController
         INNER JOIN estadoproducto on pro.id_estado = estadoproducto.id_estadoPro ORDER BY nombre_descuento DESC';
         //  
         $ofertas = ProductosModel::buscadorPageInner(0, 10, $inner);
+
+        $categorias = CategoriaModel::all();
         $router->render('web/index', [
+            "titulo" => "Jealyng",
             "marcas" => $marcas,
-            "ofertas" => $ofertas
+            "ofertas" => $ofertas,
+            "categorias" => $categorias
         ]);
     }
     public static function salir(Router $router)
@@ -39,13 +47,21 @@ class UsuarioController
     {
         session_start();
 
-        $router->render('web/error404');
+        $router->render('web/error404', [
+            "titulo" => "Error 404",
+        ]);
     }
     public static function login(Router $router)
     {
         session_start();
         if (isset($_SESSION['login'])) header('Location: /');
-        $router->render('web/login');
+        // $go = $_GET['go'] ?? null;
+        // if ($go !== 'carrito') {
+        //     header('Location: /');
+        // }
+        $router->render('web/login', [
+            "titulo" => "Acceso",
+        ]);
     }
 
     public static function apiLogin()
@@ -71,12 +87,15 @@ class UsuarioController
 
                     // die;
                     if ($usuario->id_rol === '1') {
+
                         $_SESSION['id'] = $usuario->id_user;
                         echo json_encode(["logueado" => "Bienvenido a Jealyng $usuario->nombre_user ;3"]);
                     } else if ($usuario->id_rol === '2') {
+
                         $_SESSION['admin'] = true;
                         echo json_encode(["logeoAdmin" => "Bienvenido Admin $usuario->nombre_user "]);
                     }
+
 
                     // if (!empty($_SESSION['carrito'])) {
                     //     $carrito = CarritoModel::where('id_user', $_SESSION['id']);
@@ -121,7 +140,7 @@ class UsuarioController
         if (!$token) header('Location: /');
         $resultado = UsuarioModel::where('token_user', $token);
 
-        $router->render('web/token/recuperarCuenta', ["resultado" => $resultado, "token" => $token]);
+        $router->render('web/token/recuperarCuenta', ["titulo" => "Recuperar Cuenta", "resultado" => $resultado, "token" => $token]);
     }
 
     public static function recuperarCuentaContraseña()
@@ -147,17 +166,22 @@ class UsuarioController
     {
         session_start();
         if (isset($_SESSION['login'])) header('Location: /');
-        $router->render('web/registrar');
+        $router->render('web/registrar', [
+            "titulo" => "Registrar",
+        ]);
     }
 
     public static function apiRegistrar()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usuario = new UsuarioModel($_POST); //lo que viene por metodo post
-            $usuario->getId(); //verifica si el id es null o no null
+
             $existe = $usuario->existeUsuario(); // verificar si el usuario existe
+            $existeNick = $usuario->existeNick(); // verificar si el usuario existe
             if ($existe >= 1) { // si existe mandamos error 
-                echo json_encode(["existe" => true, "mensaje" => "Este usuario ya existe en nuestro sistema, pruebe con otro"]);
+                echo json_encode(["existe" => true, "mensaje" => "Este correo ya existe en nuestro sistema, pruebe con otro"]);
+            } elseif ($existeNick >= 1) {
+                echo json_encode(["existeNick" => true, "mensaje" => "Este usuario ya existe en nuestro sistema, pruebe con otro"]);
             } else {
                 // no hubo error cuando se registro
                 $usuario->hashPassword(); //HASH a la contraseña
@@ -192,6 +216,7 @@ class UsuarioController
         }
 
         $router->render('web/token/confirmarCuenta', [
+            "titulo" => "Confirmar cuenta",
             "resultado" => $resultado,
             "nombre" => $usuario->nombre_user ?? null
         ]);
@@ -200,12 +225,19 @@ class UsuarioController
     public static function perfil(Router $router)
     {
         session_start();
-        if (!isset($_SESSION['login'])) header('Location: /');
-        // $usuario = UsuarioModel::find($_SESSION['id']);
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $user = htmlGet($_GET['user']);
+        if (!isset($user)) {
+            header('Location: /');
         }
+
+        $perfil = UsuarioModel::where('nick_user', $user);
+        $inner  = " his INNER JOIN productos pro ON pro.id_prod = his.id_prod WHERE his.id_user = $perfil->id_user ";
+        $historial = HistorialComprasModel::buscadorPageInner(0, 10, $inner);
         $router->render('web/perfil', [
-            // "usuario" => $usuario
+            "titulo" => $perfil->nombre_user,
+            "historial" => $historial,
+            "perfil" => $perfil
         ]);
     }
 
@@ -236,7 +268,7 @@ class UsuarioController
             $usuario->id_provincia = $_POST['provincia'];
             $usuario->id_distrito = $_POST['distrito'];
             $usuario->direccion_user = $_POST['direccion'];
-           
+
             $resultado = $usuario->guardar();
             echo json_encode($resultado);
         }
@@ -317,10 +349,22 @@ class UsuarioController
             echo json_encode(["eliminado" => $resultado]);
         }
     }
+
+    public static function apiBuscadorNombreUsuario()
+    {
+        $nombre = htmlGet($_GET['nombre']) ?? null;
+
+        $usuario = UsuarioModel::buscador('nick_user', $nombre);
+        echo json_encode(["usuarios" => $usuario]);
+    }
+
     public static function productos(Router $router)
     {
         session_start();
-        $router->render('web/productos');
+        $router->render('web/productos', [
+            "titulo" => "Producto",
+
+        ]);
     }
 
     public static function admin(Router $router)
@@ -333,11 +377,15 @@ class UsuarioController
         $totalUsuario = UsuarioModel::contar(null);
         $usuarioReciente = UsuarioModel::whereAllLimit('10');
         $totalProductos = ProductosModel::contar(null);
-
+        $inner = ' ped INNER JOIN usuario usu ON usu.id_user = ped.id_user';  
+$pedidos = PedidoModel::buscadorPageInner(0,20,$inner);
         $router->render('admin/index', [
+            "titulo" => "Admin-Dashboard",
+
             "totalUsuario" => $totalUsuario,
             "totalProductos" => $totalProductos,
-            "usuarioReciente" => $usuarioReciente
+            "usuarioReciente" => $usuarioReciente,
+            "pedidos" => $pedidos
         ]);
     }
 }

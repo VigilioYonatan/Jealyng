@@ -86,4 +86,40 @@ class EmailClass
         //enviamos al email
         $mail->send();
     }
+    public function enviarFacura()
+    {
+        //crear el objeto de email
+        $mail = new PHPMailer();
+        // $mail->SMTPDebug = 2;
+        $mail->isSMTP();
+        $mail->Host = 'smtp.office365.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = '1236890@senati.pe';
+        $mail->Password = 'Dokixd123';
+        $mail->SMTPSecure = 'STARTTLS';
+        $mail->Port = 587;
+
+        $mail->setFrom('1236890@senati.pe', 'jealyng SAC');
+
+        $mail->addAddress($this->email, $this->nombre);
+        $pdf = "build/pdf/$this->token";
+        $mail->AddAttachment($pdf, "facturaDePago$this->nombre.pdf");
+        $mail->Subject  = 'Factura de compras de Jealyng S.A.C';
+
+        $mail->isHTML(TRUE);
+        $mail->CharSet = 'UTF-8';
+        $contenido = "
+                    <html>
+                        <p>Hola <strong>$this->nombre</strong> Gracias por las compras de nuestros productos</p>
+                        
+                    </html>
+                    ";
+
+        $mail->Body = $contenido;
+
+
+        //enviamos al email
+        $mail->send();
+        // unlink($pdf);
+    }
 }

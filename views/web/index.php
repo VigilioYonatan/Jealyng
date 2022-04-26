@@ -1,7 +1,15 @@
 <?php require_once __DIR__ . '/includes/header.php';
 ?>
 <!-- wallpaper  -->
-<section class="wallpaper container">
+<section class="wallpaper">
+    <div class="wallpaper-info">
+        <div class="wallpaper-info__info">
+            <span>Bienvenido a</span>
+            <h2 class="wallpaper-info__title"> Jealyng</h2>
+            <a href="#cards">Comprar</a>
+        </div>
+
+    </div>
     <!-- carousel -->
     <div class="wallpaper-carousel">
         <button aria-label="Anterior" class="wallpaper-next">
@@ -20,14 +28,17 @@
 
         <div id="glider" class="wallpaper-list">
             <div class="wallpaper__elem">
-                <img class="wallpaper__img" src="./build/img/offer1.jpg" alt="wallpaper__img">
-            </div>
-            <!-- <div class="wallpaper__elem">
-                <img class="wallpaper__img" src="./build/img/img3.webp" alt="wallpaper__img2">
+                <img class="wallpaper__img" src="./build/img/offer1.jpg" alt="">
             </div>
             <div class="wallpaper__elem">
-                <img class="wallpaper__img" src="./build/img/img4.jpg" alt="wallpaper__img3">
-            </div> -->
+                <img class="wallpaper__img" src="./build/img/offer2.jpg" alt="_img2">
+            </div>
+            <div class="wallpaper__elem">
+                <img class="wallpaper__img" src="./build/img/offer3.jpg" alt=" wallpaper__img3">
+            </div>
+            <div class="wallpaper__elem">
+                <img class="wallpaper__img" src="./build/img/offer4.jpg" alt=" wallpaper__img3">
+            </div>
         </div>
     </div>
     <!-- fin carousel  -->
@@ -36,7 +47,17 @@
 <!-- best cards  -->
 
 <section class="best">
-    <h3 class="contenido-card__title" id="btnOffer">NUESTRAS MEJORES OFERTAS</h3>
+    <h3 class="contenido-card__title" id="btnOffer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+                d="M496.3 202.5l-110-15.38l41.88-104.4c6.625-16.63-11.63-32.25-26.63-22.63L307.5 120l-34.13-107.1C270.6 4.25 263.4 0 255.1 0C248.6 0 241.4 4.25 238.6 12.88L204.5 120L110.5 60.12c-15-9.5-33.22 5.1-26.6 22.63l41.85 104.4L15.71 202.5C-1.789 205-5.915 228.8 9.71 237.2l98.14 52.63l-74.51 83.5c-10.88 12.25-1.78 31 13.35 31c1.25 0 2.657-.25 4.032-.5l108.6-23.63l-4.126 112.5C154.7 504.4 164.1 512 173.6 512c5.125 0 10.38-2.25 14.25-7.25l68.13-88.88l68.23 88.88C327.1 509.8 333.2 512 338.4 512c9.5 0 18.88-7.625 18.38-19.25l-4.032-112.5l108.5 23.63c17.38 3.75 29.25-17.25 17.38-30.5l-74.51-83.5l98.14-52.72C517.9 228.8 513.8 205 496.3 202.5zM338.5 311.6L286.6 300.4l2 53.75l-32.63-42.5l-32.63 42.5l2-53.75L173.5 311.6l35.63-39.87L162.1 246.6L214.7 239.2L194.7 189.4l45 28.63L255.1 166.8l16.25 51.25l45-28.63L297.2 239.2l52.63 7.375l-47 25.13L338.5 311.6z" />
+        </svg>
+        <b>NUESTRAS MEJORES OFERTAS</b>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path
+                d="M496.3 202.5l-110-15.38l41.88-104.4c6.625-16.63-11.63-32.25-26.63-22.63L307.5 120l-34.13-107.1C270.6 4.25 263.4 0 255.1 0C248.6 0 241.4 4.25 238.6 12.88L204.5 120L110.5 60.12c-15-9.5-33.22 5.1-26.6 22.63l41.85 104.4L15.71 202.5C-1.789 205-5.915 228.8 9.71 237.2l98.14 52.63l-74.51 83.5c-10.88 12.25-1.78 31 13.35 31c1.25 0 2.657-.25 4.032-.5l108.6-23.63l-4.126 112.5C154.7 504.4 164.1 512 173.6 512c5.125 0 10.38-2.25 14.25-7.25l68.13-88.88l68.23 88.88C327.1 509.8 333.2 512 338.4 512c9.5 0 18.88-7.625 18.38-19.25l-4.032-112.5l108.5 23.63c17.38 3.75 29.25-17.25 17.38-30.5l-74.51-83.5l98.14-52.72C517.9 228.8 513.8 205 496.3 202.5zM338.5 311.6L286.6 300.4l2 53.75l-32.63-42.5l-32.63 42.5l2-53.75L173.5 311.6l35.63-39.87L162.1 246.6L214.7 239.2L194.7 189.4l45 28.63L255.1 166.8l16.25 51.25l45-28.63L297.2 239.2l52.63 7.375l-47 25.13L338.5 311.6z" />
+        </svg>
+    </h3>
     <div class="best-cards" id="cards">
         <?php foreach ($ofertas as $ofer) : ?>
         <div class="best-card" data-id="<?= $ofer['id_prod'] ?>">
@@ -64,30 +85,46 @@
     </div>
 </section>
 <!-- fin best cards  -->
-<!-- about  -->
-<section class="about">
-    <div class="about-info border-right">
-        <div class="about-info__card">
-            <h3 class="about-info__title">Cozy Sophistication</h3>
-            <p class="about-info__txt">I'm a paragraph. Click here to add your own text and edit me. Let your users
-                get
-                to know you.
-            </p>
-            <a class="btn about-info__btn" href="#">Shop Furniture</a>
+
+<section class="categorias2">
+    <h3 class="categorias2__title">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+            <path
+                d="M0 155.2C0 147.9 2.153 140.8 6.188 134.7L81.75 21.37C90.65 8.021 105.6 0 121.7 0H518.3C534.4 0 549.3 8.021 558.2 21.37L633.8 134.7C637.8 140.8 640 147.9 640 155.2C640 175.5 623.5 192 603.2 192H36.84C16.5 192 .0003 175.5 .0003 155.2H0zM64 224H128V384H320V224H384V464C384 490.5 362.5 512 336 512H112C85.49 512 64 490.5 64 464V224zM512 224H576V480C576 497.7 561.7 512 544 512C526.3 512 512 497.7 512 480V224z" />
+        </svg>
+        <b>categorias</b>
+    </h3>
+    <!-- carousel -->
+    <div class="categorias2-carousel ">
+
+
+        <div id="glider" class="categorias2-list">
+            <?php foreach ($categorias as $cat) : ?>
+            <a href="/categoria?nombre=<?= $cat->nombre_categoria; ?>" class="categorias2__elem">
+                <div class="categorias2__img">
+                    <img src="./build/img/categorias/<?= $cat->imagen_categoria; ?>"
+                        alt=" <?= $cat->nombre_categoria; ?>">
+                </div>
+                <span><?= $cat->nombre_categoria ?></span>
+            </a>
+            <?php endforeach; ?>
+
         </div>
-        <img class="about-info__img" src="./build/img/Soft Couch.webp" alt="Shop Furniture">
+        <button aria-label="Anterior" class="categorias2-previous">
+            <svg class="categorias2-previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                <path
+                    d="M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z" />
+            </svg>
+        </button>
+        <button aria-label="Siguiente" class="categorias2-next">
+            <svg class="categorias2next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512">
+                <path
+                    d="M192 448c-8.188 0-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l137.4 137.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448z" />
+            </svg>
+        </button>
     </div>
-    <div class="about-info">
-        <img class="about-info__img" src="./build/img/Woman Interior.webp" alt="Shop Furniture">
-        <div class="about-info__card">
-            <h3 class="about-info__title">Cozy Sophistication</h3>
-            <p class="about-info__txt">I'm a paragraph. Click here to add your own text and edit me. Let your users
-                get to know you.</p>
-            <a class="btn about-info__btn" href="#">Read Story</a>
-        </div>
-    </div>
+    <!-- fin carousel  -->
 </section>
-<!-- fin about  -->
 <!-- marcas -->
 <section class="brands ">
     <div class="contenido-title">
@@ -123,7 +160,30 @@
     <!-- fin carousel  -->
 </section>
 <!-- fin marcas  -->
+<!-- about  -->
+<section class="about">
+    <div class="about-info border-right">
+        <div class="about-info__card">
+            <h3 class="about-info__title">Cozy Sophistication</h3>
+            <p class="about-info__txt">I'm a paragraph. Click here to add your own text and edit me. Let your users
+                get
+                to know you.
+            </p>
+            <a class="btn about-info__btn" href="#">Shop Furniture</a>
+        </div>
+        <img class="about-info__img" src="./build/img/Soft Couch.webp" alt="Shop Furniture">
+    </div>
+    <div class="about-info">
+        <img class="about-info__img" src="./build/img/Woman Interior.webp" alt="Shop Furniture">
+        <div class="about-info__card">
+            <h3 class="about-info__title">Cozy Sophistication</h3>
+            <p class="about-info__txt">I'm a paragraph. Click here to add your own text and edit me. Let your users
+                get to know you.</p>
+            <a class="btn about-info__btn" href="#">Read Story</a>
+        </div>
+    </div>
+</section>
+<!-- fin about  -->
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
-<script src="./build/js/web/shop/price.js"></script>
 <script src="./build/js/web/slider/slider.js"></script>
 <script src="./build/js/web/slider/app.js"></script>
