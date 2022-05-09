@@ -81,7 +81,7 @@ async function apiRecuperarContraseña(values) {
     formData.append('token', token);
     formData.append('password_user', password2);
 
-    const url = 'http://localhost:3000/recuperar-cuenta-contraseña';
+    const url = `${apiGlobal}/recuperar-cuenta-contraseña`;
 
     try {
         const response = await fetch(url, {

@@ -10,7 +10,7 @@ let producto = [];
 listarProductos();
 
 async function listarProductos() {
-    const url = 'http://localhost:3000/apiListarProductos';
+    const url = `${apiGlobal}/apiListarProductos`;
     try {
         const response = await fetch(url);
         const respuesta = await response.json();
@@ -32,7 +32,7 @@ buscador.addEventListener('keyup', e => {
 })
 
 async function apiBuscarProducto(palabra) {
-    const url = `http://localhost:3000/apiBuscarProductos?nombre=${palabra}`;
+    const url = `${apiGlobal}/apiBuscarProductos?nombre=${palabra}`;
     try {
         const response = await fetch(url);
         const resultado = await response.json();
@@ -239,7 +239,7 @@ async function apiUpdProducto(values) {
 
 
 
-    const url = 'http://localhost:3000/apiActualizarProductos';
+    const url = `${apiGlobal}/apiActualizarProductos`;
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -258,7 +258,7 @@ async function apiUpdProducto(values) {
 
 async function apiEliminarProducto(id, img, img2) {
 
-    const url = 'http://localhost:3000/apiEliminarProductos';
+    const url = `${apiGlobal}/apiEliminarProductos`;
 
     const formData = new FormData();
     formData.append('id', id);
@@ -330,7 +330,7 @@ formProductos.addEventListener('submit', e => {
 async function apiSubcategorias(id, ruta) {
     const formData = new FormData();
     formData.append('id_categoria', id);
-    const url = 'http://localhost:3000/apiGetSubcategorias';
+    const url = `${apiGlobal}/apiGetSubcategorias`;
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -431,7 +431,7 @@ async function apiAddProducto(values) {
     formData.append('id_subcategoria', subcategoria);
     formData.append('imagen_prod', imagen[0]);
     formData.append('imagen2_prod', imagen2[0]);
-    const url = 'http://localhost:3000/apiAddProductos'
+    const url = `${apiGlobal}/apiAddProductos`;
 
 
     try {

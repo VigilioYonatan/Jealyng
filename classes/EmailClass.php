@@ -41,7 +41,7 @@ class EmailClass
                         <html>
                             <p>Hola <strong>$this->nombre</strong> Has creado tu cuenta en Jealync C.O,
                              Solo debes confirmarla presionando al siguiente enlace.</p>
-                             <p>Click aquí para confirmar <a href='http://localhost:3000/confirmar-cuenta?token=$this->token'>Confirmar</a></p>
+                             <p>Click aquí para confirmar <a href='https://still-forest-56289.herokuapp.com/confirmar-cuenta?token=$this->token'>Confirmar</a></p>
                              <p>Si tu no solicitaste esta cuenta, puedes ignorar el mensaje</p>
                         </html>
                     ";
@@ -76,7 +76,7 @@ class EmailClass
                         <html>
                             <p>Hola <strong>$this->nombre</strong> Para recuperar tu contraseña.
                              Solo debes confirmarla presionando al siguiente enlace.</p>
-                             <p>Click aquí para recuperar Contraseña <a href='http://localhost:3000/recuperar-cuenta?token=$this->token'>Confirmar</a></p>
+                             <p>Click aquí para recuperar Contraseña <a href='https://still-forest-56289.herokuapp.com/recuperar-cuenta?token=$this->token'>Confirmar</a></p>
                              <p>Si tu no solicitaste esta cuenta, puedes ignorar el mensaje</p>
                         </html>
                     ";

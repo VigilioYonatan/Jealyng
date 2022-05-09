@@ -6,7 +6,7 @@ imprimirComentarios(id);
 let comentarios = [];
 let idUser = '';
 async function imprimirComentarios(id) {
-    const url = `http://localhost:3000/apiGetComentario?id=${id}`;
+    const url = `${apiGlobal}/apiGetComentario?id=${id}`;
     try {
         const response = await fetch(url);
         const respuesta = await response.json();
@@ -124,7 +124,7 @@ function accionesComentario() {
 
 async function apiEditarComentario(values) {
     const { inputValue, id } = values;
-    const url = 'http://localhost:3000/actualizarComentario';
+    const url = `${apiGlobal}/actualizarComentario`;
 
     const formData = new FormData;
     formData.append('id', id);
@@ -153,7 +153,7 @@ async function apiEditarComentario(values) {
 }
 
 async function eliminarComentario(id) {
-    const url = 'http://localhost:3000/ApiEliminarComentario';
+    const url = `${apiGlobal}/ApiEliminarComentario`;
     const formData = new FormData;
     formData.append('id_comentarios', id);
     try {
@@ -217,7 +217,7 @@ async function ApiEnviandoComentario(values) {
     const formData = new FormData;
     formData.append('comentarios', c.value.trim())
     formData.append('id_prod', id)
-    const url = 'http://localhost:3000/ApiComentario';
+    const url = `${apiGlobal}/ApiComentario`;
     try {
         const response = await fetch(url, {
             method: 'POST',

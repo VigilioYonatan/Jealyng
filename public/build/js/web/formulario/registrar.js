@@ -127,7 +127,7 @@ async function apiRegistrar(values) {
     formData.append('nombre_user', nombre);
     formData.append('email_user', correo);
     formData.append('password_user', password2);
-    const url = 'http://localhost:3000/apiRegistrar';
+    const url = `${apiGlobal}/apiRegistrar`;
     try {
         const response = await fetch(url, {
             method: 'POST',

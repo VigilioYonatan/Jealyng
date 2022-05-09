@@ -66,7 +66,7 @@ tabla.addEventListener('click', e => {
 });
 
 async function apiActualizarMarcas(values) {
-    const url = 'http://localhost:3000/apiActualizarMarcas';
+    const url = `${apiGlobal}/apiActualizarMarcas`;
     const { id, nombreValue, imagenValue } = values;
     const formData = new FormData();
     formData.append('id_marca', id);
@@ -89,7 +89,7 @@ async function apiActualizarMarcas(values) {
 }
 
 async function apiEliminarMarcas(id) {
-    const url = 'http://localhost:3000/apiEliminarMarcas';
+    const url = `${apiGlobal}/apiEliminarMarcas`;
     const formData = new FormData();
     formData.append('id_marca', id);
     try {
