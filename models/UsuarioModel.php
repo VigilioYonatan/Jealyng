@@ -29,7 +29,7 @@ class UsuarioModel extends ActiveRecord
         $this->id_distrito =            $args['id_distrito']            ?? 1;
         $this->direccion_user =         $args['direccion_user']         ?? null;
         $this->imagen_user =            $args['imagen_user']            ?? null;
-        $this->wallpaper_user =         $args['wallpaper_user']         ?? 'wallpaperDefecto.webp';
+        $this->wallpaper_user =         $args['wallpaper_user']         ?? 'wallpaperDefecto.jpg';
         $this->estado_user =            $args['estado_user']            ?? 0;
         $this->token_user =             $args['token_user']             ?? null;
         $this->fechaCreado_user =       $args['fechaCreado_user']             ?? date('Y-m-d');

@@ -1,4 +1,4 @@
-@use '../template/variables'as var;
+@use '../template/variables' as var;
 
 .producto {
     width: 70%;
@@ -33,6 +33,12 @@
 
         @include var.tablet {
             width: 45%;
+        }
+
+        @include var.celular {
+            width: 80%;
+
+
         }
     }
 }
@@ -278,6 +284,7 @@
 }
 
 .offer-card {
+    position: relative;
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -296,6 +303,10 @@
         opacity: 1;
         transform: translateY(0rem);
         transition: transform .5s;
+    }
+
+    &:hover p {
+        display: block;
     }
 }
 

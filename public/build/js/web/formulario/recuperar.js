@@ -74,7 +74,6 @@ async function apiRecuperar(correo) {
         });
         const respuesta = await response.json();
         const formularioRecuperar = document.querySelector('#formularioRecuperar');
-        console.log(respuesta);
         if (respuesta.correoInvalido) {
 
             formularioRecuperar.classList.remove('hidden');

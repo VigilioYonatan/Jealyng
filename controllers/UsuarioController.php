@@ -6,9 +6,11 @@ use Classes\EmailClass;
 use Model\UsuarioModel;
 use MVC\Router;
 use Classes\RenderizarImagenClass;
-use FontLib\Table\Type\head;
+
 use Model\CarritoModel;
 use Model\CategoriaModel;
+use Model\ComentariosModel;
+use Model\FavoritoModel;
 use Model\HistorialComprasModel;
 use Model\MarcaModel;
 use Model\PedidoModel;
@@ -84,6 +86,7 @@ class UsuarioController
                     session_start();
                     $_SESSION['login'] = true;
                     $_SESSION['id'] = $usuario->id_user;
+                    $_SESSION['nick'] = $usuario->nick_user;
 
                     // die;
                     if ($usuario->id_rol === '1') {
@@ -97,19 +100,62 @@ class UsuarioController
                     }
 
 
-                    // if (!empty($_SESSION['carrito'])) {
-                    //     $carrito = CarritoModel::where('id_user', $_SESSION['id']);
+                    if (!empty($_SESSION['carrito'])) {
+                        $carrito = new CarritoModel;
+                        $existeCarrito = $carrito::whereAll('id_user', $_SESSION['id']);
+                        if (empty($existeCarrito)) {
+                            foreach ($_SESSION['carrito'] as $value) {
+                                // $carrito->getId();
+                                $carrito->id_prod = $value['id_prod'];
+                                $carrito->id_user = $_SESSION['id'];
+                                $carrito->costoTotal_carrito = $value['costoTotal_carrito'];
+                                $carrito->cantidad_carrito = $value['cantidad_carrito'];
+                                $carrito->guardar();
+                            }
+                        }
+                    }
 
-                    //     foreach ($_SESSION['carrito'] as $value) {
-                    //         // $carrito->getId();
-                    //         $carrito->id_prod = $value['id_prod'];
-                    //         $carrito->id_user = $_SESSION['id'];
-                    //         $carrito->costoTotal_carrito = $value['costoTotal_carrito'];
-                    //         $carrito->cantidad_carrito = $value['cantidad_carrito'];
-                    //         $resultado = $carrito->guardar();
-                    //         echo json_encode($resultado);
-                    //     }
-                    // }
+                    $favorito = new FavoritoModel;
+                    $existe = $favorito::whereAll('id_user', $_SESSION['id']);
+                    if (!empty($_SESSION['favorito'])) {
+
+                        if (empty($existe)) {
+                            foreach ($_SESSION['favorito'] as $value) {
+                                // $carrito->getId();
+                                $favorito->id_prod  = $value['idFavorito'];
+                                $favorito->id_user = $_SESSION['id'];
+                                $favoritoObj = [
+                                    "idFavorito" =>  $value['idFavorito']
+                                ];
+                                $_SESSION['favorito'] = [...$_SESSION['favorito'], $favoritoObj];
+                                $favorito->guardar();
+                            }
+                        } else {
+                            $_SESSION['favorito'] = [];
+                            foreach ($existe as $value) {
+                                // $carrito->getId();
+                                $favoritoObj = [
+                                    "idFavorito" =>  $value->id_prod
+                                ];
+                                $_SESSION['favorito'] = [...$_SESSION['favorito'], $favoritoObj];
+                            }
+                        }
+                    } else {
+
+                        if (empty($existe)) {
+
+                            $_SESSION['favorito'] = [];
+                        } else {
+                            $_SESSION['favorito'] = [];
+                            foreach ($existe as $value) {
+
+                                $favoritoObj = [
+                                    "idFavorito" => $value->id_prod
+                                ];
+                                $_SESSION['favorito'] = [...$_SESSION['favorito'], $favoritoObj];
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -228,12 +274,17 @@ class UsuarioController
 
         $user = $_GET['user'] ?? null;
         if (!isset($user)) {
-            header('Location: /');
+            header("Location: /login");
         }
 
         $perfil = UsuarioModel::where('nick_user', $user);
-        $inner  = " his INNER JOIN productos pro ON pro.id_prod = his.id_prod WHERE his.id_user = $perfil->id_user ";
+        if (empty($perfil)) {
+            header("Location: /");
+        }
+        $inner  = " his INNER JOIN productos pro ON pro.id_prod = his.id_prod INNER JOIN pedido ped ON ped.id_pedido = his.id_pedido  WHERE his.id_user = $perfil->id_user ";
         $historial = HistorialComprasModel::buscadorPageInner(0, 10, $inner);
+
+
         $router->render('web/perfil', [
             "titulo" => $perfil->nombre_user,
             "historial" => $historial,
@@ -294,7 +345,7 @@ class UsuarioController
             $imgRender->renderizar('usuarios', $usuario->imagen_user, '0.5');
             $usuario->guardar();
 
-            echo json_encode(["imagen" => $usuario->imagen_user]);
+            echo json_encode(["imagen" => $usuario->imagen_user, "nombre" => $_SESSION['nick']]);
         }
     }
 
@@ -305,7 +356,7 @@ class UsuarioController
             $usuario = UsuarioModel::find($_SESSION['id']);
             $usuario->getId();
             $usuario->crearCarpeta();
-            if ($usuario->wallpaper_user !== 'wallpaperDefecto.jpeg') {
+            if ($usuario->wallpaper_user !== 'wallpaperDefecto.jpg') {
                 $usuario->eliminarImagen($usuario->wallpaper_user);
             }
 
@@ -377,15 +428,20 @@ class UsuarioController
         $totalUsuario = UsuarioModel::contar(null);
         $usuarioReciente = UsuarioModel::whereAllLimit('10');
         $totalProductos = ProductosModel::contar(null);
-        $inner = ' ped INNER JOIN usuario usu ON usu.id_user = ped.id_user';
+        $inner = ' ped INNER JOIN usuario usu ON usu.id_user = ped.id_user ORDER BY ped.id_pedido DESC';
         $pedidos = PedidoModel::buscadorPageInner(0, 20, $inner);
+        $comentarios = ComentariosModel::contar(null);
+        $pedidosSuma = new PedidoModel;
+        $suma = $pedidosSuma->sumaTotalPedidos();
         $router->render('admin/index', [
             "titulo" => "Admin-Dashboard",
 
             "totalUsuario" => $totalUsuario,
             "totalProductos" => $totalProductos,
             "usuarioReciente" => $usuarioReciente,
-            "pedidos" => $pedidos
+            "pedidos" => $pedidos,
+            "comentarios" => $comentarios,
+            "suma" => $suma
         ]);
     }
 }

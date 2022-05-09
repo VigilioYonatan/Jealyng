@@ -12,6 +12,19 @@ function msgSuccess(mensaje) {
     div.innerHTML = html;
     document.body.prepend(div.firstElementChild);
 }
+//mensajes correctosIco
+function msgSuccessFavorito(mensaje) {
+    const favoritoMessage = document.querySelector('.msg-error');
+    if (favoritoMessage) {
+        favoritoMessage.remove();
+    }
+    let html = `<span class='msg-error'><svg class='icoError' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/></svg>${mensaje}</span>`;
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    document.body.prepend(div.firstElementChild);
+
+
+}
 
 //success
 function success(container, mensaje) {
@@ -155,7 +168,7 @@ function abrirImagen(mensaje) {
         <svg class="mostrar-card__ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M447.1 32h-384C28.64 32-.0091 60.65-.0091 96v320c0 35.35 28.65 64 63.1 64h384c35.35 0 64-28.65 64-64V96C511.1 60.65 483.3 32 447.1 32zM111.1 96c26.51 0 48 21.49 48 48S138.5 192 111.1 192s-48-21.49-48-48S85.48 96 111.1 96zM446.1 407.6C443.3 412.8 437.9 416 432 416H82.01c-6.021 0-11.53-3.379-14.26-8.75c-2.73-5.367-2.215-11.81 1.334-16.68l70-96C142.1 290.4 146.9 288 152 288s9.916 2.441 12.93 6.574l32.46 44.51l93.3-139.1C293.7 194.7 298.7 192 304 192s10.35 2.672 13.31 7.125l128 192C448.6 396 448.9 402.3 446.1 407.6z"/></svg>
         </label>
         <span class="mostrar-card__alert"><b>${alerta}</b></span>
-        <input class="mostrar-card__file" type="file"  id="inputFoto">
+        <input class="mostrar-card__file" type="file" accept="image/*"  id="inputFoto">
         <button class="form__btn">
         <svg  class="ico-form2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path

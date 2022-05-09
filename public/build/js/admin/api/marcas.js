@@ -7,7 +7,6 @@ tabla.addEventListener('click', e => {
         const nombre = e.target.parentElement.parentElement.children[1].textContent;
         const imagen = e.target.parentElement.parentElement.children[2].children[0].src.substr(39);
 
-        console.log(id);
         let html = `<div class="mostrar-card">
                         <div class="mostrar-card__containerCard">
                             <div class="eliminar">
@@ -36,8 +35,7 @@ tabla.addEventListener('click', e => {
             const values = {
                 id, nombreValue, imagenValue
             };
-            console.log(nombreValue);
-            console.log(imagenValue);
+
             // errores aqui
             apiActualizarMarcas(values);
         })

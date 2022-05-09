@@ -80,6 +80,30 @@
                 <span class="best-card-info__desc">Ahora: S/.
                     <?= number_format($ofer['precio_prod'] - ($ofer['precio_prod'] * $ofer['nombre_descuento']), 2) ?></span>
             </div>
+
+            <p class="icoFavorito"><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+                    xmlns=" http://www.w3.org/2000/svg">
+                    <path class="icoFavoritoBTN" opacity="0.75"
+                        d="M4.3314 12.0474L12 20L19.6686 12.0474C20.5211 11.1633 21 9.96429 21 8.71405C21 6.11055 18.9648 4 16.4543 4C15.2487 4 14.0925 4.49666 13.24 5.38071L12 6.66667L10.76 5.38071C9.90749 4.49666 8.75128 4 7.54569 4C5.03517 4 3 6.11055 3 8.71405C3 9.96429 3.47892 11.1633 4.3314 12.0474Z"
+                        fill="
+                      <?php
+                        if (!empty($_SESSION['favorito'])) {
+                            $favColumna = array_column($_SESSION['favorito'], 'idFavorito');
+                            if (in_array($ofer['id_prod'], $favColumna)) {
+                                echo "red";
+                            } else {
+                                echo "white";
+                            }
+                        } else {
+                            echo "white";
+                        }  ?>  
+                        
+                        " />
+                    <path
+                        d="M4.3314 12.0474L12 20L19.6686 12.0474C20.5211 11.1633 21 9.96429 21 8.71405C21 6.11055 18.9648 4 16.4543 4C15.2487 4 14.0925 4.49666 13.24 5.38071L12 6.66667L10.76 5.38071C9.90749 4.49666 8.75128 4 7.54569 4C5.03517 4 3 6.11055 3 8.71405C3 9.96429 3.47892 11.1633 4.3314 12.0474Z"
+                        stroke="var(--color-fonts-primary)" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg></p>
         </div>
         <?php endforeach; ?>
     </div>
@@ -164,22 +188,24 @@
 <section class="about">
     <div class="about-info border-right">
         <div class="about-info__card">
-            <h3 class="about-info__title">Cozy Sophistication</h3>
-            <p class="about-info__txt">I'm a paragraph. Click here to add your own text and edit me. Let your users
-                get
-                to know you.
+            <h3 class="about-info__title">Jealyng</h3>
+            <p class="about-info__txt">
+                Jealyng es una tienda especializada en productos de primera y segunda mano.
+                Ofrecemos todo tipo de productos que buscas a buenos precios. Somos una tienda con muchos años en el
+                mercado ...
             </p>
-            <a class="btn about-info__btn" href="#">Shop Furniture</a>
+            <a class="btn about-info__btn" href="#">Mas información</a>
         </div>
         <img class="about-info__img" src="./build/img/Soft Couch.webp" alt="Shop Furniture">
     </div>
     <div class="about-info">
         <img class="about-info__img" src="./build/img/Woman Interior.webp" alt="Shop Furniture">
         <div class="about-info__card">
-            <h3 class="about-info__title">Cozy Sophistication</h3>
-            <p class="about-info__txt">I'm a paragraph. Click here to add your own text and edit me. Let your users
-                get to know you.</p>
-            <a class="btn about-info__btn" href="#">Read Story</a>
+            <h3 class="about-info__title">Nuestra Historia</h3>
+            <p class="about-info__txt">Empezamos como una tienda pequeña con pocos productos, al pasar el tiempo Jealyng
+                creció demasiado ...
+            </p>
+            <a class="btn about-info__btn" href="#">Leer Historia</a>
         </div>
     </div>
 </section>

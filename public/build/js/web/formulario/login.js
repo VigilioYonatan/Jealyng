@@ -86,7 +86,6 @@ async function apiLogin(values) {
             body: formData
         })
         const respuesta = await response.json();
-        console.log(respuesta);
         if (respuesta.login) {
             form.children[1].children[1].style.cssText = 'border: 2px solid rgb(155, 39, 39)';
             form.children[2].children[1].style.cssText = 'border: 2px solid rgb(155, 39, 39)';

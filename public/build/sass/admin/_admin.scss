@@ -1,4 +1,4 @@
-@use '../template/variables'as var;
+@use '../template/variables' as var;
 
 // :root {
 //     --blue: #2a2185;
@@ -224,6 +224,11 @@ body {
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var.$color-terciary;
+    color: var.$color-fonts-terciary;
 }
 
 .user img {
@@ -256,14 +261,14 @@ body {
     box-shadow: 0 0px 5px var.$color-terciary;
 }
 
- .card .numbers {
+.card .numbers {
     position: relative;
     font-weight: 500;
     font-size: 2.5rem;
     color: var.$admin-color;
 }
 
- .card .cardName {
+.card .cardName {
     color: var.$color-fonts-primary;
     font-size: 1.1rem;
     margin-top: 5px;
@@ -278,7 +283,7 @@ body {
     background: var.$admin-color;
 }
 
- .card:hover .numbers,
+.card:hover .numbers,
 .card:hover .cardName,
 .card:hover .ico-admin2 {
     fill: var.$color-secondary;
@@ -334,6 +339,7 @@ body {
 
 .details table thead td {
     font-weight: 600;
+
 }
 
 .details .recentOrders table tr {
@@ -420,6 +426,7 @@ body {
     height: 40px;
     border-radius: 50px;
     overflow: hidden;
+    background-color: var.$color-terciary;
 }
 
 .recentCustomers .imgBx img {
@@ -528,4 +535,11 @@ body {
         right: 0;
         left: initial;
     }
+}
+
+.imgAdmin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
 }

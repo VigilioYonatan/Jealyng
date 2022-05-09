@@ -3,8 +3,8 @@
     <div class="perfil-info">
         <div class="perfil-info-user">
             <div class="perfil-info-user__wallpaper">
-                <img class="" src=" ./build/img/usuarios/<?= $perfil->wallpaper_user ?>" alt="">
-                <?php if ($perfil->id_user === $_SESSION['id']) : ?>
+                <img id="imgWallpaper" class="" src=" ./build/img/usuarios/<?= $perfil->wallpaper_user ?>" alt="">
+                <?php if (isset($_SESSION['login']) && $perfil->id_user === $_SESSION['id']) : ?>
                 <a class="perfil-info-user__cameraWall" href="#" id="btnWallpaper">
                     <svg width="15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                         <path
@@ -20,9 +20,10 @@
                     <?php if (empty($perfil->imagen_user)) : ?>
                     <span class="perfil-info-user__spanProfile"><?= $perfil->nick_user[0] ?></span>
                     <?php else : ?>
-                    <img class="header-info-perfil__img" src="./build/img/usuarios/<?= $perfil->imagen_user ?>" alt="">
+                    <img id="imgPerfil" class="header-info-perfil__img"
+                        src="./build/img/usuarios/<?= $perfil->imagen_user ?>" alt="">
                     <?php endif; ?>
-                    <?php if ($perfil->id_user === $_SESSION['id']) : ?>
+                    <?php if (isset($_SESSION['login']) && $perfil->id_user === $_SESSION['id']) : ?>
                     <a class="perfil-info-user__camera" href="#" id="btnFoto">
                         <svg width="15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path
@@ -35,10 +36,10 @@
             </div>
             <div class="perfil-info-user__categorias" id="links">
                 <a class="perfil-info-user__cat" href="#" data-link="datos">Datos Personales</a>
-                <?php if ($perfil->id_user === $_SESSION['id']) : ?>
+                <?php if (isset($_SESSION['login']) && $perfil->id_user === $_SESSION['id']) : ?>
                 <a class="perfil-info-user__cat" href="#" data-link="direccion">Dirección de Envio</a>
                 <a class=" perfil-info-user__cat" href="#" data-link="historial">Historial de pedidos</a>
-                <a class="perfil-info-user__cat" href="#">Favoritos</a>
+                <a class="perfil-info-user__cat" href="#" data-link="favoritos">Favoritos</a>
                 <?php endif; ?>
             </div>
         </div>
@@ -101,7 +102,7 @@
                         <input class="form-prop-inp__input" type="date" id="nacimiento"
                             value="<?= $perfil->nacimiento_user ?>">
                     </div>
-                    <?php if ($perfil->id_user === $_SESSION['id']) : ?>
+                    <?php if (isset($_SESSION['login']) && $perfil->id_user === $_SESSION['id']) : ?>
                     <button class="form__btn">
                         <svg class="ico-form2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path
@@ -172,27 +173,36 @@
 
             <div class="form hidden">
                 <h1>Historial de compras</h1>
+                <?php if (count($historial) < 1) : ?>
+                <p>No hay compras realizadas</p>
+                <?php else : ?>
                 <?php foreach ($historial as $his) : ?>
-
                 <div class="tablaCarrito__products">
                     <img src="./build/img/productos/<?= $his['imagen_prod'] ?>" alt="">
                     <b><?= $his['nombre_prod'] ?></b>
                     <div class="tablaCarrito__qty">
-                        <span class="cart-info__spn">cantidad </span>
+                        <p class="cart-info__spn">cantidad </p>
                         <div class="tablaCarrito__cantidad">
                             <b class="cart-info__spn">
                                 <?= $his['cantidad'] ?></b>
                         </div>
                     </div>
                     <div class="tablaCarrito__qty">
-                        <span class="cart-info__spn">Precio </span>
-                        <span>S/ <?= $his['costoTotalCarrito'] ?></span>
+                        <p class="cart-info__spn">Precio </p>
+                        <p>S/ <?= $his['costoTotalCarrito'] ?></p>
                     </div>
                     <div class="tablaCarrito__qty">
-                        <a href="" class="cart-info__spn">Volver a comprar </a>
+                        <b class="cart-info__spn">Fecha Pedido: </b>
+                        <p><?= $his['fecha_pedido'] ?></p>
                     </div>
                 </div>
                 <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+            <!-- favoritos -->
+            <div class="form hidden" id="favoritosPe">
+                <h1>Productos Favoritos</h1>
+
             </div>
         </div>
     </div>

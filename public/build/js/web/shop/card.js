@@ -16,7 +16,7 @@ const paypalButtonContainer = document.getElementById('paypal-button-container')
 
 
 let carritoCaja = [];
-
+let favoritos = [];
 listCarrito();
 
 
@@ -36,15 +36,57 @@ async function listCarrito() {
     }
 }
 
+// favoritosPe.addEventListener('click', e => {
+//     console.log(e.target);
+// })
+
 //si existe cards
 if (cards) {
     cards.addEventListener('click', e => {
         if (e.target.classList.contains('best-card__view')) {
             const id = e.target.parentElement.parentElement.parentElement.dataset.id;
             apiConsultarIdProducto(id);
+            return;
+        }
+        if (e.target.classList.contains('icoFavoritoBTN')) {
 
+            const heart = e.target;
+            const id = e.target.parentElement.parentElement.parentElement.dataset.id;
+            apiAddFavorito(id, heart);
+            return;
         }
     })
+
+}
+
+async function apiAddFavorito(id, heart) {
+    const url = 'http://localhost:3000/apiAddFavorito';
+    const formData = new FormData;
+    formData.append('id_prod', id);
+    try {
+        const respuesta = await fetch(url, {
+            method: 'POST',
+            body: formData
+        });
+        const resultado = await respuesta.json();
+        if (resultado.id) {
+            favoritos = [...favoritos, id];
+
+            heart.classList.add('favorito');
+            heart.classList.remove('nofavorito');
+            msgSuccessFavorito(`Añadido a Favoritos <a style="padding:0rem .3rem;  color: #fff; font-size: 1.2rem;" href="${resultado.nombre ? `/perfil?user=${resultado.nombre}` : '/login'}"> ver</a>`);
+            return;
+        }
+        if (resultado.eliminado) {
+
+            heart.classList.remove('favorito');
+            heart.classList.add('nofavorito');
+            msgSuccessFavorito('Removido de favoritos')
+            return;
+        }
+    } catch (error) {
+        console.log(error);
+    }
 
 }
 
@@ -73,11 +115,15 @@ function abrirCard(producto) {
                 <div id="glider" class="mostrar-card-container2__list">
                     <div class="mostrar-card-container2__elm">
                         <img class="mostrar-card-container2__img" src="./build/img/productos/${imagen_prod}" alt="">
-                        <span class="best-card__best2">- %${nombre_descuento * 100}</span>
+                        ${nombre_descuento > 0.1 ? `
+                            <span class="best-card__best2">- %${nombre_descuento * 100}</span>` : ''}
                     </div>
+        
+                       
                     <div class="mostrar-card-container2__elm">
                         <img class="mostrar-card-container2__img" src="./build/img/productos/${imagen2_prod}" alt="">
-                        <span class="best-card__best2">- %${nombre_descuento * 100}</span>
+                        ${nombre_descuento > 0.1 ? `
+                        <span class="best-card__best2">- %${nombre_descuento * 100}</span>` : ''}
                     </div>
                     
                 </div>
@@ -183,12 +229,10 @@ async function apiAddCarrito(values) {
             body: formData
         });
         const respuesta = await response.json();
-        console.log(respuesta);
 
         const modalBlack = document.querySelector('.container-black2');
         const mostrarCard = document.querySelector('.mostrar-card');
         if (respuesta.carrito) {
-            console.log(respuesta.carrito);
             carritoCaja = respuesta.carrito;
 
             insertarCarrito()
@@ -219,7 +263,6 @@ async function apiAddCarrito(values) {
 
 function mostrarProductoNotificacion(info) {
     limpiarNotificacion();
-    console.log(info);
     const { nombre_prod, imagen_prod, precio, stock_prod, cantidad_carrito } = info;
     let html = `
     <div class="notificacion">
@@ -317,6 +360,7 @@ function insertarCarrito() {
     totalProducto.forEach(e => {
         e.textContent = Intl.NumberFormat('es-PE', { style: 'currency', currency: 'PEN' }).format(sumall);
         // e.textContent = sumall;
+        costoTotalHeader.textContent = Intl.NumberFormat('es-PE', { style: 'currency', currency: 'PEN' }).format(sumall);
     })
     carritoTotal.textContent = carritoCaja.length;
     carritoTotal2.textContent = `${carritoCaja.length} productos`;
@@ -354,7 +398,7 @@ function insertarCarrito2() {
             <img src="./build/img/productos/${imagen_prod}" alt="">
             <b>${nombre_prod}</b>
             <div class="tablaCarrito__qty">
-                <span class="cart-info__spn">cantidad </span>
+                <p class="cart-info__spn">cantidad </p>
                 <div class="tablaCarrito__cantidad">
                     <button class="cart-info__btn false  " data-action="añadir" false="">+</button>
                     <b class="cart-info__spn">${cantidad_carrito}</b>
@@ -362,8 +406,8 @@ function insertarCarrito2() {
                 </div>
             </div>
             <div class="tablaCarrito__qty">
-                <span class="cart-info__spn">Precio </span>
-                <span>S/ ${Number(precio).toFixed(2)}</span>
+                <p class="cart-info__spn">Precio </p>
+                <p>S/ ${Number(precio).toFixed(2)}</p>
             </div>
         </div>`;
 
@@ -371,6 +415,7 @@ function insertarCarrito2() {
         div.innerHTML = html;
 
         tablaCarrito.append(div.firstElementChild);
+
 
 
     });
@@ -383,7 +428,6 @@ function insertarCarrito2() {
         e.textContent = Intl.NumberFormat('es-PE', { style: 'currency', currency: 'PEN' }).format(sumall);
         // e.textContent = sumall;
     })
-    console.log(sumall);
 
     carritoTotal.textContent = carritoCaja.length;
     carritoTitle.textContent = `(Carrito de compras ${carritoCaja.length} articulos )`;
@@ -438,13 +482,7 @@ function insertarCarrito2() {
                         carrito: JSON.stringify(carritoCaja)
                     }
                     enviarInfoPago(values);
-                    // When ready to go live, remove the alert and show a success message within this page. For example:
 
-                    // const element = document.getElementById('paypal-button-container');
-
-                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-
-                    // Or go to another URL: actions.redirect('thank_you.html');
 
                 });
 
@@ -468,7 +506,6 @@ async function enviarInfoPago(values) {
     formData.append('datapay', orderData);
     formData.append('monto', precioPaypal);
     formData.append('carrito', carrito);
-    console.log(orderData);
     const url = 'http://localhost:3000/enviarInfoPago';
     try {
         const response = await fetch(url, {
@@ -476,7 +513,6 @@ async function enviarInfoPago(values) {
             body: formData
         });
         const respuesta = await response.json();
-        console.log(respuesta);
         if (respuesta.resultado) {
             // window.open('/pdfEnvio', '_self');
             window.open('/pedidoConfirmado', '_self');
@@ -516,7 +552,6 @@ if (tablaCarrito) {
 
 
 async function apiCambiarCantidad(id, ur) {
-    console.log(id);
     const url = `http://localhost:3000/${ur}`;
     const formData = new FormData;
     formData.append('id_prod', id)
@@ -558,12 +593,7 @@ async function apiCambiarCantidad(id, ur) {
 
 }
 
-// btnPay.addEventListener('click', e => {
-//     e.preventDefault();
 
-//     const tablaContenedor = document.querySelector('.tablaCarrito');
-//     limpiarHtml(tablaContenedor)
-// })
 
 function limpiarHtml(container) {
     while (container.firstElementChild) {

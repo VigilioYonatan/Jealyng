@@ -9,7 +9,7 @@ tabla.addEventListener('click', e => {
     }
     if (e.target.classList.contains('return')) {
         const id = e.target.parentElement.parentElement.dataset.id;
-        console.log(id);
+      
         const img = e.target.parentElement.parentElement.children[4].children[0].src;
         const nombre = e.target.parentElement.parentElement.children[1].textContent;
         const imagen = img.substr(41);
@@ -62,7 +62,6 @@ async function apiActualizarRol(values) {
             body: formData
         });
         const respuesta = await response.json();
-        console.log(respuesta);
     } catch (error) {
         console.log(error);
     }

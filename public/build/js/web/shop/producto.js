@@ -23,7 +23,6 @@ addCart.addEventListener('click', e => {
         cantidad: cantidad.value,
         id: idProd
     }
-    console.log(values);
     apiAddCarrito(values);
 })
 

@@ -9,14 +9,21 @@ const mode = document.querySelector('#mode');
 // buscador 
 const buscador = document.getElementById('buscador');
 const mostrarBuscador = document.querySelectorAll('.header-search__buscador');
+const icosBuscador = document.querySelector('.icosBuscador');
+const btnCerrarInfo = document.querySelector('.perfilCerrar') ;
+if (btnCerrarInfo) {
+    btnCerrarInfo.addEventListener('click', e => {
+        btnCerrarInfo.parentElement.classList.remove('mostrar');
+    })
+}
 
-
-icoBuscador.children[2].addEventListener('click', e => {
+icoBuscador.children[1].addEventListener('click', e => {
     e.preventDefault();
+
     const logo = document.querySelector('.header__logo');
     const search = document.querySelector('.header-search');
-    icoBuscador.children[1].classList.toggle('show');
-
+    icosBuscador.classList.toggle('show');
+    icosBuscador.children[1].classList.toggle('show');
     if (icoBuscador.style.fill === 'var(--color-primary)') {
         icoBuscador.style.cssText = 'fill:#fff';
     } else {
@@ -29,16 +36,18 @@ icoBuscador.children[2].addEventListener('click', e => {
 })
 
 
-icoBuscador.children[1].addEventListener('click', e => {
-    icoBuscador.children[1].classList.add('hidden');
-    icoBuscador.children[1].classList.remove('show');
-    icoBuscador.children[0].classList.add('show');
+icosBuscador.children[1].addEventListener('click', e => {
+    icosBuscador.children[1].classList.add('hidden');
+    icosBuscador.children[1].classList.remove('show');
+    icosBuscador.children[0].classList.add('show');
+
     buscador.setAttribute('placeholder', 'Buscar usuarios');
+
 })
-icoBuscador.children[0].addEventListener('click', e => {
-    icoBuscador.children[0].classList.add('hidden');
-    icoBuscador.children[0].classList.remove('show');
-    icoBuscador.children[1].classList.add('show');
+icosBuscador.children[0].addEventListener('click', e => {
+    icosBuscador.children[0].classList.add('hidden');
+    icosBuscador.children[0].classList.remove('show');
+    icosBuscador.children[1].classList.add('show');
     buscador.setAttribute('placeholder', 'Buscar productos');
 })
 
@@ -82,7 +91,6 @@ async function apiUsuariosBuscar(palabra) {
     try {
         const response = await fetch(url);
         const respuesta = await response.json();
-        console.log(respuesta);
         imprimirUsuarios(respuesta.usuarios);
     } catch (error) {
         console.log(error);
@@ -189,12 +197,7 @@ if (btnPerfil) {
 
     })
 
-    // perfilInfo.addEventListener('click', e => {
-    //     console.log();
-    //     if (e.target.contains.length < 1) {
-    //         console.log('tas afuera');
-    //     }
-    // })
+
 }
 
 // modo oscuro 
@@ -202,7 +205,6 @@ const thema = localStorage.getItem('theme');
 document.documentElement.dataset.theme = thema;
 mode.addEventListener('click', e => {
     e.preventDefault();
-    console.log(document.documentElement.dataset);
     if (document.documentElement.dataset.theme !== 'dark') {
         getLocalStorageTheme('dark');
         mode.children[0].classList.add('hidden');

@@ -1,5 +1,5 @@
-@use '../../template/variables'as var;
-@use '../../template/librerias'as lib;
+@use '../../template/variables' as var;
+@use '../../template/librerias' as lib;
 
 .header {
     background-color: var.$color-primary;
@@ -66,6 +66,7 @@
             font-family: var.$f_regular;
             font-size: .8rem;
 
+
             @include var.tablet {
                 display: none;
             }
@@ -119,7 +120,7 @@
             display: flex;
             gap: .3rem;
 
-            
+
 
             @include var.tablet {
                 padding: 0;
@@ -437,7 +438,7 @@
         &__cart {
             position: relative;
             fill: white;
-            margin: 0rem 2rem;
+            margin: 0rem 1rem 0rem 1rem;
             text-decoration: none;
 
             @include var.celular {
@@ -512,6 +513,7 @@
             text-decoration: none;
             text-align: center;
             display: block;
+            text-transform: uppercase;
         }
 
         &__list {
@@ -551,4 +553,47 @@
 .input-responsive {
     display: flex;
     background-color: var.$color-secondary;
+}
+
+.icosBuscador {
+    display: flex;
+
+    @include var.tablet {
+        display: none;
+    }
+
+}
+
+// .icosBuscador svg:nth-child(1) {
+
+//     display: none;
+// }
+
+.perfilCerrar {
+    background-color: var.$color-error;
+    position: absolute;
+    right: 0;
+    padding: .4rem .7rem;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.costoTotalHeader {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    font-weight: 1000;
+    font-size: .8rem;
+    margin-left: .5rem;
+
+    @include var.tablet {
+        display: none;
+    }
+}
+
+#costoTotalHeader {
+    color: #fff;
+
+
 }
