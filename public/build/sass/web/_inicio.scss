@@ -1,4 +1,4 @@
-@use '../template/variables'as var;
+@use '../template/variables' as var;
 
 // @use '../template/librerias' as lib;
 .btn {
@@ -93,7 +93,7 @@
                 @include var.hover {
                     &:hover {
                         transition: all .5s;
-                        color: var.$color-terciary;
+                        color: #000;
                         background-color: #fff;
                         box-shadow: 0px 0px 2px #000;
                     }
@@ -259,6 +259,7 @@
 
     &-card {
         // max-width: 17%;
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -269,8 +270,9 @@
         background-color: var.$color-card;
         padding: .5rem 0;
         box-shadow: 0px 0px 15px #00000013;
+        min-width: 240px; // box-shadow: 0px 0px 3px black;
+        padding: 1.5rem 0;
 
-        // box-shadow: 0px 0px 3px black;
         @include var.celular {
             margin: .4rem;
         }
@@ -300,6 +302,10 @@
             opacity: 1;
             transform: translateY(0rem);
             transition: transform .5s;
+        }
+
+        &:hover .icoFavorito {
+            display: block;
         }
 
         &__img {
@@ -335,7 +341,7 @@
             position: relative;
             display: block;
             position: absolute;
-            top: -.5rem;
+            top: -1.5rem;
             left: .5rem;
             background-color: #e92b2b; // color
             padding: .3rem .8rem;
@@ -803,4 +809,20 @@
 
 
     }
+}
+
+.icoFavorito {
+    position: absolute;
+    top: .3rem;
+    right: .3rem;
+    display: none;
+
+    @include var.tablet {
+        display: block;
+
+    }
+}
+
+.icoFavorito:active {
+    transform: scale(1.2);
 }

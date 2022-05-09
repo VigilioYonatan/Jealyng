@@ -1,4 +1,4 @@
-@use '../template/variables'as var;
+@use '../template/variables' as var;
 
 .cardBox2 {
     width: 100%;
@@ -79,6 +79,7 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                 }
+
 
                 &:nth-child(5) {
                     display: flex;

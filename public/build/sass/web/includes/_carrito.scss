@@ -16,6 +16,13 @@
     animation: mostrarNotificacion 2s;
     border: 1px solid var.$color-fonts-primary;
 
+    @include var.celular {
+        transform: translateX(-2rem);
+
+        animation: mostrarNotificacion2 2s;
+
+    }
+
     & #cerrar {
         position: absolute;
         top: 0;
@@ -44,6 +51,24 @@
             transform: translateX(-5rem);
         }
     }
+    @keyframes mostrarNotificacion2 {
+        0% {
+            transform: translateX(22rem);
+        }
+
+        20% {
+            transform: translateX(-2rem);
+        }
+
+        50% {
+            transform: translateX(-2rem);
+        }
+
+        100% {
+            transform: translateX(-2rem);
+        }
+    }
+
 
     &-container {
         display: flex;

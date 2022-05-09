@@ -17,8 +17,7 @@ async function listarProductos() {
 
 
         producto = respuesta.productos
-        console.log(producto);
-
+  
         imprimirProductos();
 
     } catch (error) {
@@ -29,10 +28,7 @@ async function listarProductos() {
 buscador.addEventListener('keyup', e => {
     const palabra = e.target.value;
     apiBuscarProducto(palabra);
-    // producto = producto.filter(pro => (/`${palabra}`/g).test(pro.nombre_prod));
-    // producto = producto.filter(pro => pro.nombre_prod === palabra);
-    // console.log(producto);
-    // imprimirProductos();
+
 })
 
 async function apiBuscarProducto(palabra) {
@@ -182,7 +178,7 @@ function imprimirProductos() {
 
             formActualizar.addEventListener('submit', e => {
                 e.preventDefault();
-                console.log(imagenUpd);
+           
                 const values = {
                     id_prod: id_prod,
                     nombre_pro: nombreUpd.value,
@@ -225,7 +221,6 @@ function imprimirProductos() {
 }
 
 async function apiUpdProducto(values) {
-    console.log(values);
     const formData = new FormData();
     const { id_prod, nombre_pro, descripcion_prod, precio_prod, stock_prod, id_marca, id_descuento, id_estado, id_categoria, id_subcategoria, imagenUp, } = values;
     formData.append('id_prod', id_prod);
@@ -275,7 +270,6 @@ async function apiEliminarProducto(id, img, img2) {
             body: formData
         });
         const respuesta = await response.json();
-        console.log(respuesta);
         if (respuesta.eliminado) {
             producto = producto.filter(pro => pro.id_prod !== respuesta.id)
             imprimirProductos();
@@ -328,20 +322,7 @@ formProductos.addEventListener('submit', e => {
         imagen: imagen.files,
         imagen2: imagen2.files,
     }
-
-    validarFormulario(values) &&
-        apiAddProducto(values)
-    nombre.value = '';
-    descripcion.value = '';
-    precio.value = '';
-    stock.value = '';
-    marca.value = 'marca';
-    descuento.value = 'descuento';
-    estado.value = 'estado';
-    categoria.value = 'categoria';
-    imagen.value = '';
-    imagen2.value = '';
-    ;
+    validarFormulario(values)
 
 })
 
@@ -368,7 +349,6 @@ async function apiSubcategorias(id, ruta) {
 }
 
 function imprimirSubcategorias(subcategorias, ruta) {
-    console.log(subcategorias);
     limpiarFormulario(ruta)
     const label = document.createElement('label');
     label.textContent = 'SubCategorias';
@@ -397,7 +377,7 @@ function limpiarFormulario(ruta) {
 function validarFormulario(values) {
     const { nombre, descripcion, precio, stock, marca, descuento, estado, categoria, subcategoria, imagen, imagen2 } = values;
     const regexNumero = /[0-9]*$/;
-    let errorNombre = [], errorDescripcion = [], errorPrecio = [], errorStock = [], errorMarca = [], errorDescuento = [], errorEstado = [], errorCategoria = [], errorSubCategoria = [], errorImagen = [];
+    let errorNombre = [], errorDescripcion = [], errorPrecio = [], errorStock = [], errorMarca = [], errorDescuento = [], errorEstado = [], errorCategoria = [], errorSubCategoria = [], errorImagen = [], errorImagen2 = [];
 
     if (nombre.length <= 0) errorNombre = [...errorNombre, 'No deberia estar vacio este campo'];
     if (nombre.length > 80) errorNombre = [...errorNombre, 'Nombre demasiado Largo max 50 caracteres'];
@@ -412,6 +392,7 @@ function validarFormulario(values) {
     if (categoria === 'categoria') errorCategoria = [...errorCategoria, 'Seleccione una categoria'];
     if (!subcategoria) errorSubCategoria = [...errorSubCategoria, 'Seleccione una categoria'];
     if (imagen.length <= 0) errorImagen = [...errorImagen, 'La imagen no debe estar vacio'];
+    if (imagen2.length <= 0) errorImagen2 = [...errorImagen2, 'La imagen2 no debe estar vacio'];
 
     imprimirErrores(errorNombre, formProductos.children[1])
     imprimirErrores(errorDescripcion, formProductos.children[2])
@@ -422,20 +403,21 @@ function validarFormulario(values) {
     imprimirErrores(errorEstado, formProductos.children[4].children[1])
     imprimirErrores(errorCategoria, formProductos.children[4].children[2])
     imprimirErrores(errorImagen, formProductos.children[5])
+    imprimirErrores(errorImagen2, formProductos.children[6])
 
 
-    let resultado = false;
-    if (errorNombre.length <= 0 && errorDescripcion.length <= 0 && errorPrecio.length <= 0 && errorStock.length <= 0 && errorMarca.length <= 0 && errorMarca.length <= 0 && errorDescuento.length <= 0 && errorEstado.length <= 0 && errorCategoria.length <= 0 && errorImagen.length <= 0) {
-        resultado = true;
+
+    if (!errorNombre.length && !errorDescripcion.length && !errorPrecio.length && !errorStock.length && !errorMarca.length && !errorMarca.length && !errorDescuento.length && !errorEstado.length && !errorCategoria.length && !errorImagen.length && !errorImagen2.length) {
+        apiAddProducto(values)
+        return;
     }
 
-    return resultado;
+
 
 }
 
 async function apiAddProducto(values) {
     const { nombre, descripcion, precio, stock, marca, descuento, estado, categoria, subcategoria, imagen, imagen2 } = values;
-
 
     const formData = new FormData();
     formData.append('nombre_prod', nombre);

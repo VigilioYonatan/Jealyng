@@ -1,4 +1,4 @@
-@use '../template/variables'as var;
+@use '../template/variables' as var;
 
 .perfil {
     margin: 0 auto;
@@ -164,4 +164,9 @@
             min-height: 47.5rem;
         }
     }
+}
+
+.icoFavoritoBTN {
+    cursor: pointer;
+    
 }

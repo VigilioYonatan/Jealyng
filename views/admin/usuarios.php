@@ -36,7 +36,13 @@
                         <td><?= $user->nombre_user; ?></td>
                         <td><?= $user->email_user; ?></td>
                         <td><?= $user->fechaCreado_user; ?></td>
-                        <td><img src="../build/img/usuarios/<?= $user->imagen_user; ?>" width="50"></td>
+                        <td>
+                            <?php if (empty($user->imagen_user)) : ?>
+                            <?= $user->nombre_user[0]; ?>
+                            <?php else : ?>
+                            <img src="../build/img/usuarios/<?= $user->imagen_user; ?>" width="50">
+                            <?php endif; ?>
+                        </td>
 
                         <td>
                             <?php foreach ($roles as $rol) : ?>

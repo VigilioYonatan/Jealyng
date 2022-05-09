@@ -3,7 +3,7 @@
     <div class="admin-container">
         <div class="card">
             <div>
-                <div class="numbers">1000</div>
+                <div class="numbers"><?= count($cats) ?></div>
                 <div class="cardName">Categorias</div>
             </div>
 

@@ -32,4 +32,11 @@ class PedidoModel extends ActiveRecord
     {
         $this->id =  $this->id_pedido;
     }
+
+    public function sumaTotalPedidos()
+    {
+        $query = self::$db->query('SELECT SUM(monto) as sumaTotal FROM ' . self::$tabla . '');
+        $suma = $query->fetch_assoc();
+        return $suma;
+    }
 }

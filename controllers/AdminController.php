@@ -27,6 +27,7 @@ class AdminController
         $marca = MarcaModel::all();
         $descuento = DescuentoModel::all();
         $router->render('admin/productos', [
+            "titulo" => "Productos",
             "categorias" => $categorias,
             "estadoPro" => $estadoPro,
             "marca" => $marca,
@@ -77,6 +78,7 @@ class AdminController
 
 
         $router->render('admin/marcas', [
+            "titulo" => "Marcas",
             "errores" => $errores,
             "marcaList" => $marcaList,
             "pagina" => $pagina,
@@ -107,6 +109,7 @@ class AdminController
         $router->render(
             'admin/usuarios',
             [
+                "titulo" => "Usuarios",
                 "usuarios" => $usuarios,
                 "roles" => $roles,
                 "pagina" => $pagina,
@@ -189,6 +192,7 @@ class AdminController
         $router->render(
             'admin/subcategorias',
             [
+                "titulo" => "Subcategorias",
                 "subs" => $subs,
                 "categorias" => $categorias,
                 "errores" => $errores,
@@ -285,6 +289,7 @@ class AdminController
             }
         }
         $router->render('admin/categorias', [
+            "titulo" => "Categorias",
             "cats" => $cats,
             "errores" => $errores ?? null,
             "pagina" => $pagina,

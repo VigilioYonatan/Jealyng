@@ -6,6 +6,7 @@ use Controller\UsuarioController;
 use Controller\AdminController;
 use Controller\CarritoController;
 use Controller\ComentarioController;
+use Controller\FavoritoController;
 use Controller\MarcaController;
 use Controller\ProductosController;
 
@@ -77,5 +78,9 @@ $router->post('/apiDisminuirQTY', [CarritoController::class, 'apiDisminuirQTY'])
 $router->post('/enviarInfoPago', [CarritoController::class, 'enviarInfoPago']);
 $router->get('/pedidoConfirmado', [CarritoController::class, 'pedidoConfirmado']);
 
+// favorito
+$router->post('/apiAddFavorito', [FavoritoController::class, 'apiAddFavorito']);
+$router->get('/apiViewFavorito', [FavoritoController::class, 'apiViewFavorito']);
+$router->post('/apiRemoveFavorito', [FavoritoController::class, 'apiRemoveFavorito']);
 
 $router->comprobarRutas();

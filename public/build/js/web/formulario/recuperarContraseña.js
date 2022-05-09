@@ -26,7 +26,6 @@ form.addEventListener('submit', e => {
         password2: password2.value.trim(),
         token: token
     }
-    console.log(values);
 
     // llamando funcion validar formulario
     validarFormulario(values);
@@ -66,7 +65,6 @@ function validarFormulario(values) {
     // si no hay errores consultar api
     if (errorPassword.length <= 0 &&
         errorPassword2.length <= 0) {
-        console.log('hola');
         form.classList.add('hidden');
         loading(formularioContenedor)
         apiRecuperarContraseña(values);
@@ -91,7 +89,6 @@ async function apiRecuperarContraseña(values) {
             body: formData
         })
         const respuesta = await response.json();
-        console.log(respuesta);
         if (respuesta.resultado) {
             spinner.remove();
             form.remove();

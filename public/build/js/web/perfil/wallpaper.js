@@ -1,64 +1,66 @@
 const btnWallpaper = document.getElementById('btnWallpaper');
-btnWallpaper.addEventListener('click', e => {
-    e.preventDefault();
-    document.body.style.cssText = 'overflow:hidden'; // ocultar el scroll
-    const headerProfile = document.querySelector('.header-info-user');
-    headerProfile.classList.remove('mostrar');
-    modalBlack()
-    const mensaje = {
-        titulo: 'Cambiar portada de perfil',
-        mess: 'recomendable (1080px x 520px)',
-        alerta: 'Max 2mb'
-    };
-    abrirImagen(mensaje);
-    const mostrarCard = document.querySelector('.mostrar-card');
-
-
-    mostrarCard.addEventListener('submit', e => {
+if (btnWallpaper) {
+    btnWallpaper.addEventListener('click', e => {
         e.preventDefault();
-        let errorFoto = [];
-        const inputFoto = document.querySelector('#inputFoto');
+        document.body.style.cssText = 'overflow:hidden'; // ocultar el scroll
+        const headerProfile = document.querySelector('.header-info-user');
+        headerProfile.classList.remove('mostrar');
+        modalBlack()
+        const mensaje = {
+            titulo: 'Cambiar portada de perfil',
+            mess: 'recomendable (1080px x 520px)',
+            alerta: 'Max 2mb'
+        };
+        abrirImagen(mensaje);
+        const mostrarCard = document.querySelector('.mostrar-card');
 
-        if (inputFoto.files[0]) {
-            if (inputFoto.files[0].type !== 'image/jpeg' && inputFoto.files[0].type !== 'image/jpg' && inputFoto.files[0].type !== 'image/png' && inputFoto.files[0].type !== 'image/webp') {
-                errorFoto = [...errorFoto, 'Formato de imagen No válida'];
+
+        mostrarCard.addEventListener('submit', e => {
+            e.preventDefault();
+            let errorFoto = [];
+            const inputFoto = document.querySelector('#inputFoto');
+
+            if (inputFoto.files[0]) {
+                if (inputFoto.files[0].type !== 'image/jpeg' && inputFoto.files[0].type !== 'image/jpg' && inputFoto.files[0].type !== 'image/png' && inputFoto.files[0].type !== 'image/webp') {
+                    errorFoto = [...errorFoto, 'Formato de imagen No válida'];
+                }
+                if (inputFoto.files[0].size > 2000000) {
+                    errorFoto = [...errorFoto, 'Imagen demasiado pesado max 1mb'];
+                }
+
+            } else {
+                errorFoto = [...errorFoto, 'No ha subido ni una imagen'];
             }
-            if (inputFoto.files[0].size > 2000000) {
-                errorFoto = [...errorFoto, 'Imagen demasiado pesado max 1mb'];
+
+            //si están mal los inputs      
+            imprimirErrorImagen(errorFoto, mostrarCard.children[0].children[2]);
+            if (errorFoto.length <= 0) {
+                loading(mostrarCard.children[0].children[2]);
+                const btnActualizar = document.querySelector('.form__btn');
+                btnActualizar.remove(); // chau btn
+                apiActualizarPortada(inputFoto.files[0]);
             }
+        })
 
-        } else {
-            errorFoto = [...errorFoto, 'No ha subido ni una imagen'];
-        }
+        const modalBlacks = document.querySelector('.container-black2');
+        const btnCerrar = document.querySelector('.mostrar-card__close');
 
-        //si están mal los inputs      
-        imprimirErrorImagen(errorFoto, mostrarCard.children[0].children[2]);
-        console.log(inputFoto.files);
-        if (errorFoto.length <= 0) {
-            loading(mostrarCard.children[0].children[2]);
-            const btnActualizar = document.querySelector('.form__btn');
-            btnActualizar.remove(); // chau btn
-            apiActualizarPortada(inputFoto.files[0]);
-        }
-    })
+        modalBlacks.addEventListener('click', e => {
+            modalBlacks.remove();
+            mostrarCard.remove();
+            document.body.style.cssText = 'overflow:visible'; // desocultar el scroll
 
-    const modalBlacks = document.querySelector('.container-black2');
-    const btnCerrar = document.querySelector('.mostrar-card__close');
+        })
+        btnCerrar.addEventListener('click', e => {
+            modalBlacks.remove();
+            mostrarCard.remove();
+            document.body.style.cssText = 'overflow:visible'; // desocultar el scroll
 
-    modalBlacks.addEventListener('click', e => {
-        modalBlacks.remove();
-        mostrarCard.remove();
-        document.body.style.cssText = 'overflow:visible'; // desocultar el scroll
-
-    })
-    btnCerrar.addEventListener('click', e => {
-        modalBlacks.remove();
-        mostrarCard.remove();
-        document.body.style.cssText = 'overflow:visible'; // desocultar el scroll
+        })
 
     })
 
-})
+}
 
 async function apiActualizarPortada(inputFoto) {
     const formData = new FormData();
@@ -91,4 +93,17 @@ async function apiActualizarPortada(inputFoto) {
         console.log(error);
     }
 }
+
+imgWallpaper.addEventListener('click', e => {
+    html = `<div class="mostrar-card">
+                        <div class="mostrar-card__containerCard wallpaperOpen">
+                            <div class="eliminar wallpaperOpen2">
+                            <img width="100%"  src=" ./build/img/usuarios/${e.target.src.substr(41)}" alt="">
+                            </div>
+                        <span class="mostrar-card__close">x</span>
+                        </div>
+                    </div>`;
+
+    abrirActualizar(html)
+})
 

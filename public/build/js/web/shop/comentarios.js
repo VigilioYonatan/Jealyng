@@ -31,7 +31,6 @@ function imprimirComentariosHtml() {
 
 
     comentarios.forEach(comentario => {
-        // console.log(comentario);
         const { id_comentarios, nombre_user, apellidoPaterno_user, comentarios, fechaComentario, imagen_user, id_user } = comentario;
         html = `<div class="comentario-comment" data-id="${id_comentarios}">
                     ${imagen_user.length > 1 ? `<img src="./build/img/usuarios/${imagen_user}" alt="usuarioJeayng${nombre_user}">` : `<span class="comentario-comment__noImagen">${nombre_user[0]}</span>`}        
@@ -137,7 +136,6 @@ async function apiEditarComentario(values) {
         });
         const respuesta = await response.json();
         if (respuesta.resultado) {
-            console.log(respuesta.comentario);
             comentarios = comentarios.map(e => {
                 if (e.id_comentarios === respuesta.comentario.id_comentarios) {
                     e.comentarios = respuesta.comentario.comentarios;

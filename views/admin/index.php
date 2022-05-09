@@ -35,7 +35,7 @@
 
     <div class="card">
         <div>
-            <div class="numbers">284</div>
+            <div class="numbers"><?= $comentarios; ?></div>
             <div class="cardName">Comentarios</div>
         </div>
 
@@ -49,7 +49,7 @@
 
     <div class="card">
         <div>
-            <div class="numbers">$7,842</div>
+            <div class="numbers">S/. <?= $suma['sumaTotal'] ?></div>
             <div class="cardName">Ganancias</div>
         </div>
 
@@ -86,7 +86,7 @@
                 <?php foreach ($pedidos as $ped) : ?>
                 <tr>
                     <td><?= $ped['nombre_user'] ?></td>
-                    <td><?= $ped['monto'] ?></td>
+                    <td>S/ <?= $ped['monto'] ?></td>
                     <td><?= $ped['id_metodoP'] ?></td>
                     <td><?= $ped['fecha_pedido'] ?></td>
                     <td><span class="status <?= $ped['estado'] === 'Completo' ? 'delivered' : 'pending'
@@ -108,7 +108,11 @@
             <?php foreach ($usuarioReciente as $user) : ?>
             <tr>
                 <td width="60px">
+                    <?php if (empty($user->imagen_user)) : ?>
+                    <div class="imgBx imgAdmin"><?= $user->nombre_user[0] ?></div>
+                    <?php else : ?>
                     <div class="imgBx"><img src="build/img/usuarios/<?= $user->imagen_user ?>" alt=""></div>
+                    <?php endif; ?>
                 </td>
                 <td>
                     <h4><?= $user->nombre_user ?> <?= $user->apellidoPaterno_user ?><br>
