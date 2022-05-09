@@ -31,8 +31,7 @@ class Router
 
         if ($method === 'GET') {
             $fn = $this->getRoutes[$splitURL[0]] ?? null; //$splitURL[0] contiene la URL sin variables 
-        }
-        if ($method === 'POST') {
+        }else{
             $fn = $this->postRoutes[$splitURL[0]] ?? null;
         }
         if ($fn) {
