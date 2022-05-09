@@ -63,7 +63,7 @@ olvideContraseña.addEventListener('click', e => {
 async function apiRecuperar(correo) {
     const spinner = document.querySelector('.spinner-loading');
 
-    const url = 'http://localhost:3000/apiRecuperar';
+    const url = `${apiGlobal}/apiRecuperar`;
 
     const formData = new FormData();
     formData.append('email_user', correo);

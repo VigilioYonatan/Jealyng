@@ -65,7 +65,7 @@ if (btnWallpaper) {
 async function apiActualizarPortada(inputFoto) {
     const formData = new FormData();
     formData.append('wallpaper_user', inputFoto);
-    const url = 'http://localhost:3000/apiPerfilWallpaper';
+    const url = `${apiGlobal}/apiPerfilWallpaper`;
     try {
         const response = await fetch(url, {
             method: 'POST',

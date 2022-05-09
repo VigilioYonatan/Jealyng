@@ -77,7 +77,7 @@ buscador.addEventListener('keyup', e => {
 
 
 async function apiProductosBuscar(palabra) {
-    const url = `http://localhost:3000/apiBuscadorNombreProducto?nombre=${palabra}`;
+    const url = `${apiGlobal}/apiBuscadorNombreProducto?nombre=${palabra}`;
     try {
         const response = await fetch(url);
         const respuesta = await response.json();
@@ -87,7 +87,7 @@ async function apiProductosBuscar(palabra) {
     }
 }
 async function apiUsuariosBuscar(palabra) {
-    const url = `http://localhost:3000/apiBuscadorNombreUsuario?nombre=${palabra}`;
+    const url = `${apiGlobal}/apiBuscadorNombreUsuario?nombre=${palabra}`;
     try {
         const response = await fetch(url);
         const respuesta = await response.json();

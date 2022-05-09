@@ -66,7 +66,7 @@ if (btnFoto) {
 async function apiActualizarFoto(inputFoto) {
     const formData = new FormData();
     formData.append('imagen_user', inputFoto);
-    const url = 'http://localhost:3000/apiPerfilImagen';
+    const url = `${apiGlobal}/apiPerfilImagen`;
     try {
         const response = await fetch(url, {
             method: 'POST',

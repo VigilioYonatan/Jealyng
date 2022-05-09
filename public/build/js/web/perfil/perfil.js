@@ -75,7 +75,7 @@ async function apiUpdateDatos(values) {
     formData.append('telefono_user', telefono);
     formData.append('nacimiento_user', fecha);
 
-    const url = 'http://localhost:3000/apiPerfilDatos';
+    const url = `${apiGlobal}/apiPerfilDatos`;
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -107,7 +107,7 @@ forms[1].addEventListener('submit', e => {
 
 
 const apiFavoritos = async () => {
-    const url = 'http://localhost:3000/apiViewFavorito';
+    const url = `${apiGlobal}/apiViewFavorito`;
     try {
         const respuesta = await fetch(url);
         const resultado = await respuesta.json();
@@ -188,7 +188,7 @@ function limpiarFavoritos() {
 
 const eliminarFavorito = async (id_prod, idFavorito) => {
 
-    const url = `http://localhost:3000/apiRemoveFavorito`;
+    const url = `${apiGlobal}/apiRemoveFavorito`;
     const formData = new FormData;
     formData.append('idFavorito', idFavorito);
     formData.append('id_prod', id_prod);
@@ -214,7 +214,7 @@ const eliminarFavorito = async (id_prod, idFavorito) => {
 async function apiPerfilEnvio(values) {
 
     const { departamento, provincia, distrito, direccion } = values;
-    const url = 'http://localhost:3000/apiPerfilEnvio';
+    const url = `${apiGlobal}/apiPerfilEnvio`;
 
 
     const formData = new FormData;

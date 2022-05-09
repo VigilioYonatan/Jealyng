@@ -21,7 +21,7 @@ listCarrito();
 
 
 async function listCarrito() {
-    const url = 'http://localhost:3000/apiListCarrito';
+    const url = `${apiGlobal}/apiListCarrito`;
     try {
         const response = await fetch(url);
         const respuesta = await response.json();
@@ -60,7 +60,7 @@ if (cards) {
 }
 
 async function apiAddFavorito(id, heart) {
-    const url = 'http://localhost:3000/apiAddFavorito';
+    const url = `${apiGlobal}/apiAddFavorito`;
     const formData = new FormData;
     formData.append('id_prod', id);
     try {
@@ -93,7 +93,7 @@ async function apiAddFavorito(id, heart) {
 
 
 async function apiConsultarIdProducto(id) {
-    const url = `http://localhost:3000/apiConsultarIdProducto?id=${id}`;
+    const url = `${apiGlobal}/apiConsultarIdProducto?id=${id}`;
     try {
         const response = await fetch(url);
         const respuesta = await response.json();
@@ -216,7 +216,7 @@ function abrirCard(producto) {
 
 
 async function apiAddCarrito(values) {
-    const url = 'http://localhost:3000/apiAddCarrito';
+    const url = `${apiGlobal}/apiAddCarrito`;
     const formData = new FormData();
 
     const { id, cantidad } = values;
@@ -506,7 +506,7 @@ async function enviarInfoPago(values) {
     formData.append('datapay', orderData);
     formData.append('monto', precioPaypal);
     formData.append('carrito', carrito);
-    const url = 'http://localhost:3000/enviarInfoPago';
+    const url = `${apiGlobal}/enviarInfoPago`;
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -552,7 +552,7 @@ if (tablaCarrito) {
 
 
 async function apiCambiarCantidad(id, ur) {
-    const url = `http://localhost:3000/${ur}`;
+    const url = `${apiGlobal}/${ur}`;
     const formData = new FormData;
     formData.append('id_prod', id)
     try {

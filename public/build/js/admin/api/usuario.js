@@ -31,7 +31,7 @@ tabla.addEventListener('click', e => {
 })
 
 async function apiEliminarUsuario(id) {
-    const url = 'http://localhost:3000/apiEliminarPerfil';
+    const url = `${apiGlobal}/apiEliminarPerfil`;
 
     const formData = new FormData();
     formData.append('id_user', id);
@@ -55,7 +55,7 @@ async function apiActualizarRol(values) {
     formData.append('id_user', id);
     formData.append('id_rol', value);
 
-    const url = 'http://localhost:3000/apiPerfilRol';
+    const url = `${apiGlobal}/apiPerfilRol`;
     try {
         const response = await fetch(url, {
             method: 'POST',
