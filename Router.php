@@ -32,7 +32,7 @@ class Router
         if ($method === 'GET') {
             $fn = $this->getRoutes[$splitURL[0]] ?? null; //$splitURL[0] contiene la URL sin variables 
         } else {
-          $fn = $this->postRoutes[$splitURL[0]] ?? null;
+          $fn = $this->postRoutes[$splitURL[0]];
         }
         if ($fn) {
             // Call user fn va a llamar una función cuando no sabemos cual sera
