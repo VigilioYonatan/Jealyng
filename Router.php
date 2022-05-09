@@ -26,7 +26,8 @@ class Router
             
         //dividimos la URL actual cada vez que exista un '?' eso indica que se están pasando variables por la url
         $splitURL = explode('?', $currentUrl);
-        // debuguear($splitURL)s;
+       // debuguear($splitURL)s;
+
          
         if ($method === 'GET') {
             $fn = $this->getRoutes[$splitURL[0]] ?? null; //$splitURL[0] contiene la URL sin variables 
