@@ -1,4 +1,4 @@
-const apiGlobal = 'http://localhost:3000';
+const apiGlobal = 'https://still-forest-56289.herokuapp.com';
 
 // mensaje erroneas
 function msgError(mensaje) {
