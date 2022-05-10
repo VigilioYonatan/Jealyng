@@ -2,7 +2,6 @@
 
 namespace Controller;
 
-use Classes\RenderizarImagenClass;
 use Model\CategoriaModel;
 use Model\ProductosModel;
 use Model\SubCategoriaModel;
@@ -35,10 +34,8 @@ class ProductosController
             $producto->crearNombreImagen($imagen);
             $producto->crearNombreImagen2($imagen2);
 
-            $imagen = new RenderizarImagenClass($imagen);
-            $imagen->renderizar('productos', $producto->imagen_prod, '0.9');
-            $imagen = new RenderizarImagenClass($imagen2);
-            $imagen->renderizar('productos', $producto->imagen2_prod, '0.9');
+            $producto->subirImagen($imagen, $producto->imagen_prod);
+            $producto->subirImagen($imagen2, $producto->imagen2_prod);
             $resultado = $producto->guardar();
             $productoInfo = $producto->getAllInfo();
             echo json_encode(["productos" => $productoInfo, "now" => $resultado]);
@@ -60,8 +57,7 @@ class ProductosController
 
                 $resultado->crearCarpeta();
                 $producto->crearNombreImagen($imagen);
-                $imagen = new RenderizarImagenClass($imagen);
-                $imagen->renderizar('productos', $producto->imagen_prod, '0.9');
+                $producto->subirImagen($imagen, $producto->imagen_prod);
                 $resultado = $producto->guardar();
             } else {
                 // $usuario->imagen = $resultado->imagen;

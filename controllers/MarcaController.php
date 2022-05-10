@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-use Classes\RenderizarImagenClass;
+
 use Model\MarcaModel;
 
 class MarcaController
@@ -20,8 +20,7 @@ class MarcaController
                 $imagen = $_FILES['imagen_marca'];
                 $marca->crearCarpeta();
                 $marca->nombreMarcaImagen($imagen);
-                $newImagen = new RenderizarImagenClass($imagen);
-                $newImagen->renderizar('marcas', $marca->imagen_marca, '0.5');
+                $marca->subirImagen($imagen,  $marca->imagen_marca);
             }
             $resultado = $marca->guardar();
             echo json_encode(["actualizado" => $resultado]);

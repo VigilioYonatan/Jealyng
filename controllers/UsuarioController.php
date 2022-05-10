@@ -5,7 +5,6 @@ namespace Controller;
 use Classes\EmailClass;
 use Model\UsuarioModel;
 use MVC\Router;
-use Classes\RenderizarImagenClass;
 
 use Model\CarritoModel;
 use Model\CategoriaModel;
@@ -341,8 +340,7 @@ class UsuarioController
             $imagen = $_FILES['imagen_user'];
             $usuario->crearNombreImagen($imagen);
 
-            // $imgRender = new RenderizarImagenClass($imagen);
-            // $imgRender->renderizar('usuarios', $usuario->imagen_user, '0.5');
+       
             $usuario-> subirImagen($imagen,$usuario->imagen_user);
             $usuario->guardar();
 
@@ -364,8 +362,7 @@ class UsuarioController
             $imagen = $_FILES['wallpaper_user'];
             $usuario->crearNombrePortada($imagen);
 
-            $imgRender = new RenderizarImagenClass($imagen);
-            $imgRender->renderizar('usuarios', $usuario->wallpaper_user, '0.8');
+            $usuario-> subirImagen($imagen,$usuario->imagen_user);
             $usuario->guardar();
 
             echo json_encode(["portada" => $usuario->wallpaper_user]);

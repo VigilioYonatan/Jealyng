@@ -2,7 +2,6 @@
 
 namespace Controller;
 
-use Classes\RenderizarImagenClass;
 use Model\CarritoModel;
 use Model\CategoriaModel;
 use Model\DescuentoModel;
@@ -70,8 +69,7 @@ class AdminController
                 $marcas->crearCarpeta();
 
                 $marcas->nombreMarcaImagen($imagen);
-                $imagen = new RenderizarImagenClass($imagen);
-                $imagen->renderizar('marcas', $marcas->imagen_marca, '0.5');
+                $marcas->subirImagen($imagen,$marcas->imagen_marca);
                 $marcas->guardar();
             }
         }
@@ -160,8 +158,7 @@ class AdminController
                     }
                     $subId->crearCarpeta();
                     $subId->crearNombreImagen($imagen);
-                    $imagen = new RenderizarImagenClass($imagen);
-                    $imagen->renderizar('subcategorias', $subId->imagen_subcat, '0.5');
+                    $subId->subirImagen($imagen,$subId->imagen_subcat);
                 }
                 $subId->guardar();
                 header('Location: /admin/subcategorias');
@@ -183,8 +180,7 @@ class AdminController
                     $subcategorias->crearCarpeta();
 
                     $subcategorias->crearNombreImagen($imagen);
-                    $imagen = new RenderizarImagenClass($imagen);
-                    $imagen->renderizar('subcategorias', $subcategorias->imagen_subcat, '0.5');
+                    $subcategorias->subirImagen($imagen,$subcategorias->imagen_subcat);
                     $subcategorias->guardar();
                 }
             }
@@ -241,8 +237,8 @@ class AdminController
                     }
                     $subId->crearCarpeta();
                     $subId->crearNombreImagen($imagen);
-                    $imagen = new RenderizarImagenClass($imagen);
-                    $imagen->renderizar('categorias', $subId->imagen_categoria, '0.6');
+                    $subId->subirImagen($imagen,$subId->imagen_categoria);
+
                 }
                 if (!empty($_FILES['wallpaper_categoria']['tmp_name'])) {
                     $wallpaper = $_FILES['wallpaper_categoria'];
@@ -251,8 +247,9 @@ class AdminController
                     }
                     $subId->crearCarpeta();
                     $subId->crearNombreWallpaper($wallpaper);
-                    $imagen = new RenderizarImagenClass($wallpaper);
-                    $imagen->renderizar('categorias', $subId->wallpaper_categoria, '0.95');
+                    $subId->subirImagen($wallpaper,$subId->wallpaper_categoria);
+
+                
                 }
                 $subId->guardar();
                 header('Location: /admin/categorias');
@@ -280,10 +277,8 @@ class AdminController
 
                     $categorias->crearNombreImagen($imagen);
                     $categorias->crearNombreWallpaper($wallpaper);
-                    $imagen = new RenderizarImagenClass($imagen);
-                    $wallpaper = new RenderizarImagenClass($wallpaper);
-                    $imagen->renderizar('categorias', $categorias->imagen_categoria, '0.6');
-                    $wallpaper->renderizar('categorias', $categorias->wallpaper_categoria, '0.95');
+                    $categorias->subirImagen($imagen, $categorias->imagen_categoria);
+                    $categorias->subirImagen($wallpaper,  $categorias->wallpaper_categoria);
                     $categorias->guardar();
                 }
             }
