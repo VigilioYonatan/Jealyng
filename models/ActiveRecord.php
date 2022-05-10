@@ -254,4 +254,8 @@ class ActiveRecord
     {
         unlink('./build/img/' . static::$carpeta . $imagen);
     }
+    public function subirImagen($imagen,$imagenName)
+    {
+        move_uploaded_file($imagen['tmp_name'], "./build/img/" . static::$carpeta . "/$imagenName");
+    }
 }

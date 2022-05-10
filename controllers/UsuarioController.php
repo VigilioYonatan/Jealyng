@@ -341,8 +341,9 @@ class UsuarioController
             $imagen = $_FILES['imagen_user'];
             $usuario->crearNombreImagen($imagen);
 
-            $imgRender = new RenderizarImagenClass($imagen);
-            $imgRender->renderizar('usuarios', $usuario->imagen_user, '0.5');
+            // $imgRender = new RenderizarImagenClass($imagen);
+            // $imgRender->renderizar('usuarios', $usuario->imagen_user, '0.5');
+            $usuario-> subirImagen($imagen,$usuario->imagen_user);
             $usuario->guardar();
 
             echo json_encode(["imagen" => $usuario->imagen_user, "nombre" => $_SESSION['nick']]);
