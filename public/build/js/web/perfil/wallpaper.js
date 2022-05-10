@@ -98,7 +98,7 @@ imgWallpaper.addEventListener('click', e => {
     html = `<div class="mostrar-card">
                         <div class="mostrar-card__containerCard wallpaperOpen">
                             <div class="eliminar wallpaperOpen2">
-                            <img width="100%"  src="./build/img/usuarios/${e.target.src.substr(61)}" alt="">
+                            <img width="100%"  src="./build/img/usuarios/${e.target.src.substr(60)}" alt="">
                             </div>
                         <span class="mostrar-card__close">x</span>
                         </div>

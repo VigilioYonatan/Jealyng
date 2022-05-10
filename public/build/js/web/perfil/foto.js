@@ -111,7 +111,7 @@ if (imgPerfil) {
         html = `<div class="mostrar-card">
                             <div class="mostrar-card__containerCard wallpaperOpen3">
                                 <div class="eliminar ">
-                                <img style="width:400px; height:500px; object-fit:cover;"   src="./build/img/usuarios/${e.target.src.substr(61)}" alt="">
+                                <img style="width:400px; height:500px; object-fit:cover;"   src="./build/img/usuarios/${e.target.src.substr(60)}" alt="">
                                 </div>
                             <span class="mostrar-card__close">x</span>
                             </div>
