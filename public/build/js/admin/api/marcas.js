@@ -5,7 +5,7 @@ tabla.addEventListener('click', e => {
     if (e.target.classList.contains('delivered')) {
         const id = e.target.parentElement.parentElement.dataset.id;
         const nombre = e.target.parentElement.parentElement.children[1].textContent;
-        const imagen = e.target.parentElement.parentElement.children[2].children[0].src.substr(39);
+        const imagen = e.target.parentElement.parentElement.children[2].children[0].src.substr(59);
 
         let html = `<div class="mostrar-card">
                         <div class="mostrar-card__containerCard">

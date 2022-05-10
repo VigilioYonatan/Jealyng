@@ -362,7 +362,7 @@ class UsuarioController
             $imagen = $_FILES['wallpaper_user'];
             $usuario->crearNombrePortada($imagen);
 
-            $usuario-> subirImagen($imagen,$usuario->imagen_user);
+            $usuario-> subirImagen($imagen,$usuario->wallpaper_user);
             $usuario->guardar();
 
             echo json_encode(["portada" => $usuario->wallpaper_user]);
