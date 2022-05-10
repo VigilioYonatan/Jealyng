@@ -80,7 +80,7 @@ async function apiActualizarFoto(inputFoto) {
             if (imagenSpan) {
                 successProfile(mostrarCard, 'Cambiaste foto de Perfil correctamente', mostrarCard);
                 setTimeout(() => {
-                    window.open(`http://localhost:3000/perfil?user=${respuesta.nombre}`, '_self');
+                    window.open(`${apiGlobal}/perfil?user=${respuesta.nombre}`, '_self');
                 }, 1000);
             }
 
