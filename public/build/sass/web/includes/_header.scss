@@ -14,6 +14,8 @@
         order: 1;
         text-decoration: none;
         font-size: 1.5rem;
+        display: flex;
+        align-items: center;
 
         @include var.mini-tablet {
             margin: 0rem 1rem;

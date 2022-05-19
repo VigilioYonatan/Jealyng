@@ -1,6 +1,9 @@
 <header class="header">
     <div class="container-header">
-        <a href="/" class="header__logo">Jealyng</a>
+        <a href="/" class="header__logo">
+            <img src="./build/img/favicon.png" width="50px" alt="">
+            <span>Jealyng</span>
+        </a>
         <div class="header-categorias">
             <a class="header-categorias__hmb" id="hamburguer" href="#">
                 <svg class="header-categorias__ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
