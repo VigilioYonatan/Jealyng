@@ -1380,7 +1380,7 @@ template {
 
 .navbar-responsive {
   transition: transform 0.5s;
-  transform: translateY(3rem);
+  transform: translateY(4rem);
 }
 
 .input-responsive {
