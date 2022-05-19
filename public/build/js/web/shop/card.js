@@ -73,6 +73,7 @@ async function apiAddFavorito(id, heart) {
             favoritos = [...favoritos, id];
 
             heart.classList.add('favorito');
+            heart.parentElement.parentElement.classList.add('show');
             heart.classList.remove('nofavorito');
             msgSuccessFavorito(`Añadido a Favoritos <a style="padding:0rem .3rem;  color: #fff; font-size: 1.2rem;" href="${resultado.nombre ? `/perfil?user=${resultado.nombre}` : '/login'}"> ver</a>`);
             return;
@@ -80,6 +81,7 @@ async function apiAddFavorito(id, heart) {
         if (resultado.eliminado) {
 
             heart.classList.remove('favorito');
+            heart.parentElement.parentElement.classList.remove('show');
             heart.classList.add('nofavorito');
             msgSuccessFavorito('Removido de favoritos')
             return;
