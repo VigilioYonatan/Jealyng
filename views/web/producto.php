@@ -125,7 +125,7 @@
                                         $show = false;
                                     }
                                 } else {
-                                    $show = true;
+                                    $show = false;
                                 }
                                 ?>
                         <p class="icoFavorito <?= $show ? 'show' : ''; ?>"><svg width="24px" height="24px"

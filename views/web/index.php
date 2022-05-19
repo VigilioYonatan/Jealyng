@@ -91,7 +91,7 @@
                         $show = false;
                     }
                 } else {
-                    $show = true;
+                    $show = false;
                 }  
                 ?>
 
