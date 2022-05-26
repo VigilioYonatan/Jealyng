@@ -188,7 +188,7 @@ class UsuarioController
         $router->render('web/token/recuperarCuenta', ["titulo" => "Recuperar Cuenta", "resultado" => $resultado, "token" => $token]);
     }
 
-    public static function recuperarCuentaContraseña()
+    public static function recuperarCuentaContrasena()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $token = $_POST['token'];

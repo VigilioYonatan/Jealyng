@@ -1,3 +1,4 @@
+
 const eyeOpen = document.getElementById('eye-open');
 const eyeClose = document.getElementById('eye-close');
 const formularioContenedor = document.querySelector('.formulario');
@@ -75,20 +76,21 @@ function validarFormulario(values) {
 async function apiRecuperarContraseña(values) {
     const spinner = document.querySelector('.spinner-loading');
 
-    const { password, password2, token } = values;
-
+    const { password2, token } = values;
+    console.log(password2);
     const formData = new FormData();
     formData.append('token', token);
     formData.append('password_user', password2);
 
-    const url = `${apiGlobal}/recuperar-cuenta-contraseña`;
-
+    const url = `${apiGlobal}/recuperar-cuenta-contrasena`;
+    console.log(url);
     try {
         const response = await fetch(url, {
             method: 'POST',
             body: formData
         })
         const respuesta = await response.json();
+        console.log(respuesta);
         if (respuesta.resultado) {
             spinner.remove();
             form.remove();
