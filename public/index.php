@@ -25,7 +25,7 @@ $router->get('/login', [UsuarioController::class, 'login']);
 $router->post('/apiLogin', [UsuarioController::class, 'apiLogin']);
 $router->post('/apiRecuperar', [UsuarioController::class, 'apiRecuperar']);
 $router->get('/recuperar-cuenta', [UsuarioController::class, 'recuperarCuenta']);
-$router->post('/recuperar-cuenta-contraseña', [UsuarioController::class, 'recuperarCuentaContraseña']);
+$router->post('/recuperar-cuenta-contrasena', [UsuarioController::class, 'recuperarCuentaContrasena']);
 $router->get('/perfil', [UsuarioController::class, 'perfil']);
 $router->post('/apiPerfilEnvio', [UsuarioController::class, 'apiPerfilEnvio']);
 $router->post('/apiPerfilDatos', [UsuarioController::class, 'apiPerfilDatos']);
