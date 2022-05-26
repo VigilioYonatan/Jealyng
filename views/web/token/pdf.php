@@ -171,7 +171,6 @@ ob_start();
                 <thead>
                     <tr>
                         <th>Id producto</th>
-                        <th>Imagen</th>
                         <th>Nombre</th>
                         <th>Precio c/u</th>
                         <th>Cantidad</th>
@@ -184,8 +183,7 @@ ob_start();
                     foreach ($producto as $pro) : ?>
                     <tr>
                         <td>1</td>
-                        <td><img src="./build/img/productos/<?= $pro->imagen_prod ?>" width="50px" alt="">
-                        </td>
+
                         <td><?= $pro->nombre_prod ?> </td>
                         <td>S/. <?= $pro->precio ?></td>
                         <td><?= $pro->cantidad_carrito ?> Unidades</td>

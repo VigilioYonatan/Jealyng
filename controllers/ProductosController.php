@@ -63,6 +63,7 @@ class ProductosController
                 // $usuario->imagen = $resultado->imagen;
                 // $result = $usuario->guardar();
                 $producto->imagen_prod = $resultado->imagen_prod;
+                $producto->imagen2_prod = $resultado->imagen2_prod;
                 $producto->guardar();
             }
 
